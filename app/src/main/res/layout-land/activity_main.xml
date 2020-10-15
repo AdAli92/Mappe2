@@ -25,6 +25,29 @@
                     android:layout_height="?actionBarSize"
                     >
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_gravity="start"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/moteapp"
+                            android:layout_marginRight="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:layout_gravity="center"
+                            android:background="?attr/selectableItemBackground"
+                            android:text="@string/app_name"/>
+                    </LinearLayout>
+
                 </androidx.appcompat.widget.Toolbar>
 
                 <com.google.android.material.tabs.TabLayout
@@ -81,7 +104,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/add_foreground"
+        android:src="@drawable/add_fore"
         android:id="@+id/main_fab"
         app:backgroundTint="#8fa9ac"
         app:tint="?attr/colorPrimaryDark"

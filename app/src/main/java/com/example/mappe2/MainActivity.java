@@ -10,24 +10,20 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.mappe2.Adapters.ViewPagerAdapter;
 import com.example.mappe2.Fragments.MoteFragment;
 import com.example.mappe2.Fragments.MoteInfo;
 import com.example.mappe2.Fragments.PersonFragment;
 import com.example.mappe2.Fragments.PersonInfo;
-import com.example.mappe2.Modul.Mote;
-import com.example.mappe2.Modul.Person;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.List;
-
-import Controller.DatabaseHandler;
+import com.example.mappe2.Controller.DatabaseHandler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,8 +38,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        db = new DatabaseHandler(getApplicationContext());
+        /*db = new DatabaseHandler(getApplicationContext());
         Mote mote1 = new Mote("leseMøte", "infomøte", "2019/10/5", "Oslo");
         Mote mote2 = new Mote("leseMøte", "infomøte", "2019/10/5", "Oslo");
         Mote mote3 = new Mote("leseMøte", "infomøte", "2019/10/5", "Oslo");
@@ -85,11 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         db.closeDB();
-
-
-
-
-        setContentView(R.layout.activity_main);
+*/
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -121,6 +114,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            fab.setEnabled(false);
+            fab.setVisibility(View.GONE);
+        }
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -178,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
+
                 return false;
             }
 

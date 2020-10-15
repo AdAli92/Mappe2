@@ -23,12 +23,12 @@
                 android:layout_weight="1.5"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:padding="15dp"
-                    android:layout_height="wrap_content"
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="match_parent"
+                    android:scaleType="center"
+                    android:layout_margin="10dp"
+                    android:layout_height="match_parent"
                     />
             </LinearLayout>
 
@@ -51,7 +51,7 @@
                         android:textSize="20dp"
                         android:textStyle="bold"
                         android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:id="@+id/person"
+                        android:id="@+id/person2"
                         >
                     </TextView>
                 </LinearLayout>
@@ -63,12 +63,12 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/telefonnr"
-                            android:layout_width="wrap_content"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/telefonnr2"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

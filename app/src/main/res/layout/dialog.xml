@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    >
+
+    <LinearLayout
+        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#276281"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Navn"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:layout_marginTop="90dp"/>
+        <Button
+            android:id="@+id/dialog_btn"
+            android:textAlignment="textEnd"
+            android:drawableRight="@drawable/ic_slette"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="Slett"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_marginTop="10dp"/>
+        
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/meeting"
+        android:padding="10dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#276281"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"/>
+    
+
+</RelativeLayout>

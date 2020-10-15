@@ -1,7 +1,10 @@
 package com.example.mappe2.Fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -12,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
 import com.example.mappe2.Adapters.MoteRvAdapter;
 import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.MoteActivity;
@@ -25,6 +31,7 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
     private View view;
     ArrayList<Mote> moter;
     MoteRvAdapter adapter;
+    Dialog dialog;
 
     public MoteFragment() {
     }
@@ -99,10 +106,31 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
     }
 
     @Override
-    public void onLongItemClick(int position) {
+    public void onLongItemClick(final int position) {
 
-        moter.remove(position);
-        adapter.notifyItemRemoved(position);
+        Mote mote = moter.get(position);
+
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        TextView title = dialog.findViewById(R.id.dialog_title);
+        title.setText(mote.getNavn());
+
+        dialog.show();
+
+        Button btn = dialog.findViewById(R.id.dialog_btn);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moter.remove(position);
+                adapter.notifyItemRemoved(position);
+                dialog.cancel();
+            }
+        });
+
+
 
     }
 }
