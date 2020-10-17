@@ -2,6 +2,7 @@ package com.example.mappe2.Fragments;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
@@ -9,11 +10,14 @@ import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TimePicker;
 
 import com.example.mappe2.ListActivity;
 import com.example.mappe2.MoteActivity;
@@ -22,7 +26,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class MoteInfo extends Fragment {
 
-    private TextInputEditText navn, type, sted, dato;
+    private TextInputEditText navn, type, sted, dato, tid;
     private Button button;
     private Calendar calendar;
     View v;
@@ -41,13 +45,17 @@ public class MoteInfo extends Fragment {
         type = v.findViewById(R.id.type1);
         sted = v.findViewById(R.id.sted1);
         dato = v.findViewById(R.id.dato1);
+        tid = v.findViewById(R.id.tid1);
         button = v.findViewById(R.id.add_personer2);
 
         dato.setShowSoftInputOnFocus(false);
+        tid.setShowSoftInputOnFocus(false);
         calendar = Calendar.getInstance();
         final int aar = calendar.get(Calendar.YEAR);
         final int moneder = calendar.get(Calendar.MONTH);
         final int dag = calendar.get(Calendar.DAY_OF_MONTH);
+        final int hour = calendar.get(java.util.Calendar.HOUR_OF_DAY);
+        final int minut = calendar.get(java.util.Calendar.MINUTE);
 
         dato.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +70,24 @@ public class MoteInfo extends Fragment {
                     }
                 }, aar, moneder, dag);
                 datePickerDialog.show();
+            }
+        });
+
+        tid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hour, int min) {
+                        hour = hour+1;
+                        String tiden = hour+":"+min;
+                        tid.setText(tiden);
+                    }
+                }, hour, minut,  DateFormat.is24HourFormat(getContext()));
+                timePickerDialog.show();
+
             }
         });
 

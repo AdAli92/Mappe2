@@ -107,6 +107,7 @@
                     android:layout_height="65dp"
                     app:startIconDrawable="@drawable/dato"
                     app:startIconCheckable="false"
+                    android:focusableInTouchMode="false"
                     app:startIconTint="@color/colorPrimary"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
@@ -114,6 +115,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:focusableInTouchMode="false"
                         android:hint="Dato"
                         android:id="@+id/dato1"
                         />
@@ -126,6 +128,7 @@
                     android:layout_height="65dp"
                     app:startIconDrawable="@drawable/tid"
                     app:startIconCheckable="false"
+                    android:focusableInTouchMode="false"
                     app:startIconTint="@color/colorPrimary"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
@@ -133,6 +136,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:focusableInTouchMode="false"
                         android:hint="Tid"
                         android:id="@+id/tid1"
                         />

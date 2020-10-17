@@ -92,14 +92,16 @@
             android:layout_marginRight="10dp"
             app:startIconDrawable="@drawable/dato"
             app:startIconCheckable="false"
+            android:focusableInTouchMode="false"
             app:startIconTint="@color/colorPrimary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:focusableInTouchMode="false"
                 android:hint="Dato"
-                android:textSize="14dp"
+                android:textSize="11dp"
                 android:id="@+id/dato1"
                 />
 
@@ -109,6 +111,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:startIconDrawable="@drawable/tid"
+            android:focusableInTouchMode="false"
             app:startIconCheckable="false"
             app:startIconTint="@color/colorPrimary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -116,8 +119,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:focusableInTouchMode="false"
                 android:hint="Tid"
-                android:textSize="14dp"
+                android:textSize="11dp"
                 android:id="@+id/tid1"
                 />
 

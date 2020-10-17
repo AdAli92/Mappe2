@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +21,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.mappe2.Controller.DatabaseHandler;
 import com.example.mappe2.Modul.Mote;
@@ -29,7 +32,7 @@ import java.util.List;
 
 public class MoteActivity extends AppCompatActivity {
 
-    private TextInputEditText navn, type, sted, dato;
+    private TextInputEditText navn, type, sted, dato, tid;
     private Button button;
     private Bundle extras;
     private Toolbar toolbar;
@@ -50,8 +53,10 @@ public class MoteActivity extends AppCompatActivity {
         type = findViewById(R.id.type1);
         sted = findViewById(R.id.sted1);
         dato = findViewById(R.id.dato1);
+        tid = findViewById(R.id.tid1);
         button = findViewById(R.id.add_personer);
         dato.setShowSoftInputOnFocus(false);
+        tid.setShowSoftInputOnFocus(false);
         toolbar = findViewById(R.id.toolbar1);
         personer_view=findViewById(R.id.person_view);
         db =  new DatabaseHandler(getApplicationContext());
@@ -84,6 +89,8 @@ public class MoteActivity extends AppCompatActivity {
         final int aar = calendar.get(Calendar.YEAR);
         final int moneder = calendar.get(Calendar.MONTH);
         final int dag = calendar.get(Calendar.DAY_OF_MONTH);
+        final int hour = calendar.get(java.util.Calendar.HOUR_OF_DAY);
+        final int minut = calendar.get(java.util.Calendar.MINUTE);
 
         dato.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +105,24 @@ public class MoteActivity extends AppCompatActivity {
                     }
                 }, aar, moneder, dag);
                 datePickerDialog.show();
+            }
+        });
+
+        tid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        MoteActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hour, int min) {
+                        hour = hour+1;
+                        String tiden = hour+":"+min;
+                        tid.setText(tiden);
+                    }
+                }, hour, minut,  DateFormat.is24HourFormat(getApplicationContext()));
+                timePickerDialog.show();
+
             }
         });
 

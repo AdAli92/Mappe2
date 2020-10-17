@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.mappe2.Adapters.MoteRvAdapter;
 import com.example.mappe2.Adapters.ViewPagerAdapter;
 import com.example.mappe2.Fragments.MoteFragment;
 import com.example.mappe2.Fragments.MoteInfo;
@@ -28,6 +29,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import com.example.mappe2.Controller.DatabaseHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private PersonFragment personFragment;
     private FloatingActionButton fab;
     DatabaseHandler db;
+    MoteRvAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         db = new DatabaseHandler(getApplicationContext());
 
-
-
-
         Log.d("Tag Name","Her er jeg ");
 List<Person>personerUnerEtmote = db.HenteAllePersonerIMote(1);
 
@@ -57,17 +57,7 @@ List<Person>personerUnerEtmote = db.HenteAllePersonerIMote(1);
         for (Person person: personerUnerEtmote) {
             Log.d("Tag Name", "person_id"+person.getPersonId());
         }
-
-
-
-
-
-
-
-
-
         db.closeDB();
-
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -162,13 +152,28 @@ List<Person>personerUnerEtmote = db.HenteAllePersonerIMote(1);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
-
+                /*
+                ArrayList<Mote> mote = db.getMote(query);
+                adapter.setMoteList(mote);
+                adapter.notifyDataSetChanged();*/
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+               /* ArrayList<Mote> mote = db.getMote(newText);
+                adapter.setMoteList(mote);
+                adapter.notifyDataSetChanged();*/
+                return false;
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+               /* List<Mote> mote = db.HenteAlleMoter();
+                adapter.setMoteList(mote);
+                adapter.notifyDataSetChanged();*/
                 return false;
             }
         });

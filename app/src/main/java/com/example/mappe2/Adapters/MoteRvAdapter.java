@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.R;
 import com.example.mappe2.RecyclerViewInterface;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MoteRvAdapter extends RecyclerView.Adapter<MoteRvAdapter.ViewHolder> {
@@ -18,6 +20,14 @@ public class MoteRvAdapter extends RecyclerView.Adapter<MoteRvAdapter.ViewHolder
     private RecyclerViewInterface recyclerViewInterface;
     Context mContext;
     public List<Mote> moteList;
+
+    /*public List<Mote> getMoteList() {
+        return moteList;
+    }
+
+    public void setMoteList(List<Mote> moteList) {
+        this.moteList = moteList;
+    }*/
 
     public MoteRvAdapter(Context context, List<Mote> list, RecyclerViewInterface recyclerViewInterface){
         this.mContext = context;

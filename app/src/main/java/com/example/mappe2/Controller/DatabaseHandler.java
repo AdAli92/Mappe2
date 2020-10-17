@@ -414,6 +414,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+    //søke
+    public ArrayList<Mote> getMote(String modelsok){
+        ArrayList<Mote> moter = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+DatabaseHandler.TABLE_Mote+
+                " WHERE "+DatabaseHandler.Tittel+" LIKE ?", new String[] {modelsok+"%"});
+
+        if(cursor != null && cursor.moveToFirst()){
+            do {
+                String tittle = cursor.getString(cursor.getColumnIndex(DatabaseHandler.Tittel));
+                String type = cursor.getString(cursor.getColumnIndex(DatabaseHandler.Type));
+                String dato = cursor.getString(cursor.getColumnIndex(DatabaseHandler.Dato));
+                String sted = cursor.getString(cursor.getColumnIndex(DatabaseHandler.Sted));
+
+                Mote m = new Mote(tittle, type, dato, sted);
+                moter.add(m);
+            }
+            while (cursor.moveToNext());
+            cursor.close();
+        }
+        return moter;
+    }
+
 
 
 
