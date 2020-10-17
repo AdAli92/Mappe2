@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mappe2.Adapters.PersonRvAdapter;
+import com.example.mappe2.Controller.DatabaseHandler;
 import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.Modul.Person;
 import com.example.mappe2.PersonActivity;
@@ -25,14 +26,17 @@ import com.example.mappe2.R;
 import com.example.mappe2.RecyclerViewInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PersonFragment extends Fragment implements RecyclerViewInterface {
 
     private View view;
     private RecyclerView recyclerView;
-    ArrayList<Person> personer;
+    List<Person> personer;
     PersonRvAdapter personRvAdapter;
     Dialog dialog;
+    DatabaseHandler db;
+    Person person;
 
     public PersonFragment() {
     }
@@ -42,23 +46,11 @@ public class PersonFragment extends Fragment implements RecyclerViewInterface {
 
         view = inflater.inflate(R.layout.fragment_person, container, false);
         recyclerView = view.findViewById(R.id.rv_person);
-        personer = new ArrayList<>();
 
-        personer.add(new Person("person1","34434556", R.drawable.person));
-        personer.add(new Person("person2","34434556", R.drawable.person));
-        personer.add(new Person("person3","34434556", R.drawable.person));
-        personer.add(new Person("person4","34434556", R.drawable.person));
-        personer.add(new Person("person5","34434556", R.drawable.person));
-        personer.add(new Person("person6","34434556", R.drawable.person));
-        personer.add(new Person("person7","34434556", R.drawable.person));
-        personer.add(new Person("person8","34434556", R.drawable.person));
-        personer.add(new Person("person9","34434556", R.drawable.person));
-        personer.add(new Person("person10","34434556", R.drawable.person));
-        personer.add(new Person("person11","34434556", R.drawable.person));
-        personer.add(new Person("person12","34434556", R.drawable.person));
-        personer.add(new Person("person13","34434556", R.drawable.person));
-        personer.add(new Person("person14","34434556", R.drawable.person));
-        personer.add(new Person("person15","34434556", R.drawable.person));
+        db = new DatabaseHandler(getActivity().getApplicationContext());
+        personer =db.HenteAllePersoner();
+
+
 
         personRvAdapter = new PersonRvAdapter(getContext(), personer, this);
 
@@ -78,7 +70,7 @@ public class PersonFragment extends Fragment implements RecyclerViewInterface {
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
 
             Intent intent = new Intent(getContext(), PersonActivity.class);
-
+            intent.putExtra("id",person.getPersonId());
             intent.putExtra("navn1", person.getNavn());
             intent.putExtra("telefonnr1", person.getTelefonnr());
 
@@ -106,7 +98,7 @@ public class PersonFragment extends Fragment implements RecyclerViewInterface {
     @Override
     public void onLongItemClick(final int position) {
 
-        Person person = personer.get(position);
+        person = personer.get(position);
 
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog);
@@ -123,6 +115,7 @@ public class PersonFragment extends Fragment implements RecyclerViewInterface {
             @Override
             public void onClick(View view) {
                 personer.remove(position);
+                db.SlettePerson(person.getPersonId());
                 personRvAdapter.notifyItemRemoved(position);
                 dialog.cancel();
             }

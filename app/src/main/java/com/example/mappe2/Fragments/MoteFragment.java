@@ -19,19 +19,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mappe2.Adapters.MoteRvAdapter;
+import com.example.mappe2.Controller.DatabaseHandler;
 import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.MoteActivity;
 import com.example.mappe2.R;
 import com.example.mappe2.RecyclerViewInterface;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MoteFragment extends Fragment implements RecyclerViewInterface {
 
     private RecyclerView recyclerView;
     private View view;
-    ArrayList<Mote> moter;
+    List<Mote> moter;
     MoteRvAdapter adapter;
     Dialog dialog;
+    DatabaseHandler db;
+    Mote mote;
 
     public MoteFragment() {
     }
@@ -39,25 +43,13 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        db = new DatabaseHandler(getActivity().getApplicationContext());
 
         view =inflater.inflate(R.layout.fragment_mote, container, false);
         recyclerView =view.findViewById(R.id.rv_mote);
-        moter = new ArrayList<>();
 
-        moter.add(new Mote("Møte1","info","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte2","Generel","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte3","Info","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte4","Generel","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte5","Info","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte5","Generel","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte6","Info","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte7","Generel","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte8","Info","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte9","Generel","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte10","Info","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte11","Generel","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte12","Info","10/10/2020","Sandvika", R.drawable.mote));
-        moter.add(new Mote("Møte13","Generel","10/10/2020","Sandvika", R.drawable.mote));
+        moter =db.HenteAlleMoter();
+
 
         adapter = new MoteRvAdapter(getContext() , moter, this);
 
@@ -77,7 +69,7 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
 
             Intent intent = new Intent(getContext(), MoteActivity.class);
-
+            intent.putExtra("id",mote.getMoteId());
             intent.putExtra("navn", mote.getNavn());
             intent.putExtra("type", mote.getType());
             intent.putExtra("sted", mote.getSted());
@@ -108,7 +100,7 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
     @Override
     public void onLongItemClick(final int position) {
 
-        Mote mote = moter.get(position);
+         mote = moter.get(position);
 
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog);
@@ -125,6 +117,7 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
             @Override
             public void onClick(View view) {
                 moter.remove(position);
+              db.SletteMote(mote.getMoteId());
                 adapter.notifyItemRemoved(position);
                 dialog.cancel();
             }

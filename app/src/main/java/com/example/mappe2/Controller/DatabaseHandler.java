@@ -16,7 +16,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION =2;
 
     // Database Navn
     private static final String DATABASE_NAME = "MotePersonDb";
@@ -112,6 +112,38 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+
+    public long LageMote(Mote mote, int[] personer_ider) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(Tittel,mote.getNavn());
+        values.put(Type, mote.getType());
+        values.put(Dato, mote.getDato());
+        values.put(Sted,mote.getSted());
+
+        //    values.put(img, person.getImg());
+
+
+        long Mote_id = db.insert(TABLE_Mote, null, values);
+
+
+        for (int id : personer_ider) {
+            createMotePerson(Mote_id, id);
+        }
+
+        return Mote_id ;
+    }
+
+
+
+
+
+
+
+
+
     //Hente Person
     public Person getPerson(long person_id){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -169,10 +201,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<Person> personer = new ArrayList<Person>();
 
         String selectQuery = "SELECT  * FROM " + TABLE_Person + " td, "
-                + TABLE_Mote + " tg, " + TABLE_Person_Mote + " tt WHERE tg."
-                + Mote_ID + " = '" + moteId + "'" + " AND tg." + Person_ID
-                + " = " + "tt." + Person_ID + " AND td." + Mote_ID+ " = "
-                + "tt." + Mote_ID;
+                + TABLE_Mote + " tg, " + TABLE_Person_Mote + " tt WHERE tt."
+                + Mote_ID + " = '" + moteId + "'" + " AND td." + Person_ID
+                + " = " + "tt." + Person_ID ;
 
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -222,6 +253,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(person_id) });
     }
 
+    //Slette et møte
+
+    public void SletteMote(long mote_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_Mote, Mote_ID + " = ?",
+                new String[] { String.valueOf(mote_id) });
+
+    }
 
     //Lage en møte
 
@@ -239,6 +278,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return mote_id;
     }
+
+    //Legge Til Person
+    public long createPerson(Person person) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Navn,person.getNavn());
+        values.put(Telefonnr,person.getTelefonnr());
+
+
+        // insert row
+        long person_id = db.insert(TABLE_Person, null, values);
+
+        return person_id;
+    }
+
 
 
     //Hente alle Mæter
@@ -337,6 +392,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.update(TABLE_Person, values, Person_ID + " = ?",
                 new String[] { String.valueOf(id) });
     }
+
+
 
 
     //Slutte Databasen

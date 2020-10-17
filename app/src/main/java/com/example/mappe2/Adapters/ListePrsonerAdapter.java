@@ -12,17 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mappe2.Modul.Person;
 import com.example.mappe2.R;
-import com.example.mappe2.RecyclerViewInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapter.PersonViewHolder>
 {
     Context context;
-    private ArrayList<Person> personer;
+    private List<Person> personer;
     ArrayList<Person> checked = new ArrayList<>();
 
-    public ListePrsonerAdapter(Context context, ArrayList<Person> personer) {
+    public ListePrsonerAdapter(Context context, List<Person> personer) {
         this.context = context;
         this.personer = personer;
     }
@@ -93,6 +93,9 @@ public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapte
         public void onClick(View view) {
             this.itemClick.onItemClick(view, getLayoutPosition());
         }
+    }
+    public ArrayList<Person> returnChecked(){
+        return checked;
     }
 
     public interface ItemClick {

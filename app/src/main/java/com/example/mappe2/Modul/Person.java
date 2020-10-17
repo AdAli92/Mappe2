@@ -11,8 +11,11 @@ public class Person {
     public Person(){
     }
 
-
-
+    public Person(int personId, String navn, String telefonnr) {
+        this.personId = personId;
+        this.navn = navn;
+        this.telefonnr = telefonnr;
+    }
 
     public Person(String navn, String telefonnr, int img) {
         this.navn = navn;

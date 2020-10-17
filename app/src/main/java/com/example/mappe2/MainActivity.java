@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,10 +21,14 @@ import com.example.mappe2.Fragments.MoteFragment;
 import com.example.mappe2.Fragments.MoteInfo;
 import com.example.mappe2.Fragments.PersonFragment;
 import com.example.mappe2.Fragments.PersonInfo;
+import com.example.mappe2.Modul.Mote;
+import com.example.mappe2.Modul.Person;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import com.example.mappe2.Controller.DatabaseHandler;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,49 +45,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*db = new DatabaseHandler(getApplicationContext());
-        Mote mote1 = new Mote("leseMøte", "infomøte", "2019/10/5", "Oslo");
-        Mote mote2 = new Mote("leseMøte", "infomøte", "2019/10/5", "Oslo");
-        Mote mote3 = new Mote("leseMøte", "infomøte", "2019/10/5", "Oslo");
-        Mote mote4 = new Mote("leseMøte", "infomøte", "2019/10/5", "Oslo");
-
-        long mote_id1 = db.createMote(mote1);
-        long mote_id2 = db.createMote(mote2);
-        long mote_id3 = db.createMote(mote3);
+        db = new DatabaseHandler(getApplicationContext());
 
 
 
-        Person person1 = new Person("Adnan", "12345678");
-        Person person2 = new Person("Adnan", "12345678");
-        Person person3 = new Person("Adnan", "12345678");
-        Person person4 = new Person("Adnan", "12345678");
-        Person person5 = new Person("Adnan", "12345678");
-        Person person6 = new Person("Adnan", "12345678");
 
 
-        long person_Id1 = db.LeggeTilPerson(person1, new long[]{mote_id1});
-        long person_Id2 = db.LeggeTilPerson(person2, new long[]{mote_id1});
+        Log.d("Tag Name","Her er jeg ");
+List<Person>personerUnerEtmote = db.HenteAllePersonerIMote(4);
 
-        long person_Id3 = db.LeggeTilPerson(person3, new long[]{mote_id2});
-        long person_Id4 = db.LeggeTilPerson(person4, new long[]{mote_id2});
-
-
-        long person_Id5 = db.LeggeTilPerson(person5, new long[]{mote_id3});
-        long person_Id6 = db.LeggeTilPerson(person6, new long[]{mote_id3});
-
-
-
-        db.createMotePerson(person_Id6,mote_id2);
-
-        Log.d("Get Tags", "Getting All Tags");
-
-        List<Mote> allTags = db.HenteAlleMoter();
-        for (Mote tag : allTags) {
-            Log.d("Tag Name", tag.getNavn());
+        for (Person person: personerUnerEtmote) {
+            Log.d("Tag Name", person.getNavn());
         }
 
+
+
+
+
+
+
+
+
         db.closeDB();
-*/
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

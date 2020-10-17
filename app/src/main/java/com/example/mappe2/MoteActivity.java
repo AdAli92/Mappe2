@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 
+import com.example.mappe2.Controller.DatabaseHandler;
+import com.example.mappe2.Modul.Mote;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class MoteActivity extends AppCompatActivity {
@@ -26,7 +28,11 @@ public class MoteActivity extends AppCompatActivity {
     private Bundle extras;
     private Toolbar toolbar;
     private Calendar calendar;
-
+    private DatabaseHandler db;
+    private int id ;
+    Mote mote;
+    MenuItem lagre,endre,slette;
+    private boolean forEndre = false ;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +46,21 @@ public class MoteActivity extends AppCompatActivity {
         button = findViewById(R.id.add_personer);
         dato.setShowSoftInputOnFocus(false);
         toolbar = findViewById(R.id.toolbar1);
+        db =  new DatabaseHandler(getApplicationContext());
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
 
         extras = getIntent().getExtras();
         if(extras != null){
+            forEndre = true;
+
             navn.setText(extras.getString("navn"));
             type.setText(extras.getString("type"));
             sted.setText(extras.getString("sted"));
             dato.setText(extras.getString("dato"));
+            id=extras.getInt("id");
+        }else {
+            forEndre = false;
         }
 
         calendar = Calendar.getInstance();
@@ -75,8 +87,22 @@ public class MoteActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String innNavn = navn.getText().toString();
+                String innType = type.getText().toString();
+                String innSted = sted.getText().toString();
+                String innDato = sted.getText().toString();
+
+                //  mote= new Mote(innNavn, innType, innDato, innSted);
+                //  db.createMote(mote);
+
                 Intent intent = new Intent(getBaseContext(), ListActivity.class);
+                intent.putExtra("navn",innNavn);
+                intent.putExtra("type",innType);
+                intent.putExtra("sted",innSted);
+                intent.putExtra("dato",innDato);
+
                 startActivity(intent);
+
             }
         });
 
@@ -87,9 +113,18 @@ public class MoteActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.andre_meny, menu);
-        MenuItem lagre = menu.findItem(R.id.meny_lagre);
-        MenuItem endre = menu.findItem(R.id.meny_endre);
-        MenuItem slette = menu.findItem(R.id.meny_slette);
+      lagre = menu.findItem(R.id.meny_lagre);
+      endre = menu.findItem(R.id.meny_endre);
+        slette = menu.findItem(R.id.meny_slette);
+       if(forEndre){
+           lagre.setVisible(false);
+           slette.setVisible(false);
+       }else{
+           endre.setVisible(false);
+           lagre.setVisible(false);
+           slette.setVisible(false);
+
+       }
 
         return true;
     }
@@ -98,8 +133,22 @@ public class MoteActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.meny_lagre:
+
+
                 return true;
             case R.id.meny_endre:
+
+                String innNavn1 = navn.getText().toString();
+                String innType1 = type.getText().toString();
+                String innSted1 = sted.getText().toString();
+                String innDato1 = sted.getText().toString();
+                //int moteId, String navn, String type, String dato, String sted
+                 mote = new Mote(id,innNavn1,innType1, innDato1,innSted1);
+
+                db.OppdatereMote(mote);
+                Intent intent1 = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent1);
+
                 return true;
             case R.id.meny_slette:
                 return true;
@@ -107,25 +156,6 @@ public class MoteActivity extends AppCompatActivity {
         return false;
     }
 
-    private void disableFelt(){
-        navn.setEnabled(false);
-        type.setEnabled(false);
-        sted.setEnabled(false);
-        dato.setEnabled(false);
-    }
 
-    private void enableFelt(){
-        navn.setEnabled(true);
-        type.setEnabled(true);
-        sted.setEnabled(true);
-        dato.setEnabled(true);
-    }
-
-    private void clearFelt(){
-        navn.setText("");
-        type.setText("");
-        sted.setText("");
-        dato.setText("");
-    }
 
 }

@@ -30,8 +30,14 @@ public class Mote {
 
     }
 
-
-
+    public Mote(int moteId, String navn, String type, String dato, String sted) {
+        this.moteId = moteId;
+        this.navn = navn;
+        this.type = type;
+        this.dato = dato;
+        this.sted = sted;
+        this.img = img;
+    }
 
     public Mote(){
 
