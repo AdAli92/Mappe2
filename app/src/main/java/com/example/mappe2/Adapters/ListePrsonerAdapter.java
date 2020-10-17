@@ -44,6 +44,7 @@ public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapte
         Person person = personer.get(position);
         holder.navn.setText(person.getNavn());
         holder.tel.setText(person.getTelefonnr());
+        holder.navn.setTag(person.getPersonId());
 
         holder.setItemClickListener(new ItemClick() {
             @Override
@@ -91,6 +92,7 @@ public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapte
 
         @Override
         public void onClick(View view) {
+
             this.itemClick.onItemClick(view, getLayoutPosition());
         }
     }

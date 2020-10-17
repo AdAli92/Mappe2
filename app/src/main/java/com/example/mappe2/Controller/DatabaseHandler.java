@@ -52,7 +52,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Table Create Statements
     private static final String CREATE_TABLE_Person = "CREATE TABLE "
             + TABLE_Person  + "(" +  Person_ID + " INTEGER PRIMARY KEY," + Navn
-            + " TEXT,"+Telefonnr+"TEXT" + ")";
+            + " TEXT,"+Telefonnr + " TEXT" + ")";
 
     // Møte table create statement
     private static final String CREATE_TABLE_Mote= "CREATE TABLE " + TABLE_Mote
@@ -201,9 +201,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<Person> personer = new ArrayList<Person>();
 
         String selectQuery = "SELECT  * FROM " + TABLE_Person + " td, "
-                + TABLE_Mote + " tg, " + TABLE_Person_Mote + " tt WHERE tt."
+                + TABLE_Mote + " tg, " + TABLE_Person_Mote + " tt WHERE tg."
                 + Mote_ID + " = '" + moteId + "'" + " AND td." + Person_ID
-                + " = " + "tt." + Person_ID ;
+                + " = " + "tt." + Person_ID + " AND tg." + Mote_ID+ " = "
+                + "tt." + Mote_ID;
 
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -280,7 +281,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //Legge Til Person
-    public long createPerson(Person person) {
+    public int createPerson(Person person) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -289,7 +290,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         // insert row
-        long person_id = db.insert(TABLE_Person, null, values);
+        int person_id =(int) db.insert(TABLE_Person, null, values);
 
         return person_id;
     }

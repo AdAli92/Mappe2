@@ -91,12 +91,18 @@ public class ListActivity extends AppCompatActivity {
                 Toast.makeText(this, "Hei from list", Toast.LENGTH_SHORT).show();
 
                 checked= adapter.returnChecked();
+
+
+
                 int [] presoner_ider = new int [checked.size()];
              for(int i = 0; i<presoner_ider.length; i++){
+
                  presoner_ider[i]=checked.get(i).getPersonId();
+
              }
             long mote_id   = db.LageMote(mote,presoner_ider);
-                Log.d("Tag Name", mote_id +"Dette er id møte");
+                Log.d("Tag Name", "Mote_id"+ mote_id );
+
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
