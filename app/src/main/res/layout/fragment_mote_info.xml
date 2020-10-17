@@ -144,7 +144,7 @@
              >
         </com.google.android.material.button.MaterialButton>
         <ScrollView
-            android:id="@+id/scroll"
+            android:id="@+id/person_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>

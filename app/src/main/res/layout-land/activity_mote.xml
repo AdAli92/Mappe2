@@ -175,10 +175,13 @@
 
 
                 <ScrollView
-                    android:id="@+id/scroll"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="55dp"/>
+                    android:layout_height="55dp"
+                    >   <TextView
+                    android:id="@+id/person_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></TextView></ScrollView>
             </LinearLayout>
 
 

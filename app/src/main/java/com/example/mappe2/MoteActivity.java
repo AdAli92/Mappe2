@@ -11,15 +11,21 @@ import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.example.mappe2.Controller.DatabaseHandler;
 import com.example.mappe2.Modul.Mote;
+import com.example.mappe2.Modul.Person;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.List;
 
 public class MoteActivity extends AppCompatActivity {
 
@@ -31,6 +37,7 @@ public class MoteActivity extends AppCompatActivity {
     private DatabaseHandler db;
     private int id ;
     Mote mote;
+    TextView personer_view;
     MenuItem lagre,endre,slette;
     private boolean forEndre = false ;
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -46,6 +53,7 @@ public class MoteActivity extends AppCompatActivity {
         button = findViewById(R.id.add_personer);
         dato.setShowSoftInputOnFocus(false);
         toolbar = findViewById(R.id.toolbar1);
+        personer_view=findViewById(R.id.person_view);
         db =  new DatabaseHandler(getApplicationContext());
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
@@ -59,6 +67,15 @@ public class MoteActivity extends AppCompatActivity {
             sted.setText(extras.getString("sted"));
             dato.setText(extras.getString("dato"));
             id=extras.getInt("id");
+            List<Person> personerUnerEtmote = db.HenteAllePersonerIMote(id);
+            for (Person person: personerUnerEtmote) {
+                Log.d("Tag Name", "person_id"+person.getPersonId());
+                personer_view.append(person.getNavn());
+                personer_view.append("\n");
+
+            }
+
+
         }else {
             forEndre = false;
         }

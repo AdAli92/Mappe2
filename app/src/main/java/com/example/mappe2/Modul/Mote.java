@@ -14,7 +14,7 @@ public class Mote {
         this.moteId = moteId;
     }
 
-    public Mote(String navn, String type, String dato, String sted, String tid, int img) {
+    public Mote(String navn, String type, String dato, String sted, int img) {
         this.navn = navn;
         this.type = type;
         this.dato = dato;
@@ -23,7 +23,7 @@ public class Mote {
         this.tid = tid;
     }
 
-    public Mote(String navn, String type, String dato, String sted, String tid) {
+    public Mote(String navn, String type, String dato, String sted) {
         this.navn = navn;
         this.type = type;
         this.dato = dato;
@@ -32,7 +32,7 @@ public class Mote {
 
     }
 
-    public Mote(int moteId, String navn, String type, String dato, String sted, String tid) {
+    public Mote(int moteId, String navn, String type, String dato, String sted) {
         this.moteId = moteId;
         this.navn = navn;
         this.type = type;

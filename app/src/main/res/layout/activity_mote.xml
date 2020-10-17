@@ -152,10 +152,13 @@
 
             </com.google.android.material.button.MaterialButton>
 
-            <ScrollView
-            android:id="@+id/scroll"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"/>
+
+                <TextView
+                    android:id="@+id/person_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"></TextView>
+
+
 
         </LinearLayout>
 

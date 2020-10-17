@@ -16,7 +16,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     // Database Version
-    private static final int DATABASE_VERSION =2;
+    private static final int DATABASE_VERSION =3;
 
     // Database Navn
     private static final String DATABASE_NAME = "MotePersonDb";
@@ -113,7 +113,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
-    public long LageMote(Mote mote, int[] personer_ider) {
+    public int LageMote(Mote mote, int[] personer_ider) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -126,7 +126,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //    values.put(img, person.getImg());
 
 
-        long Mote_id = db.insert(TABLE_Mote, null, values);
+        int Mote_id =(int) db.insert(TABLE_Mote, null, values);
 
 
         for (int id : personer_ider) {
@@ -200,11 +200,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<Person> HenteAllePersonerIMote(int  moteId) {
         List<Person> personer = new ArrayList<Person>();
 
-        String selectQuery = "SELECT  * FROM " + TABLE_Person + " td, "
-                + TABLE_Mote + " tg, " + TABLE_Person_Mote + " tt WHERE tg."
-                + Mote_ID + " = '" + moteId + "'" + " AND td." + Person_ID
-                + " = " + "tt." + Person_ID + " AND tg." + Mote_ID+ " = "
-                + "tt." + Mote_ID;
+
+
+
+
+
+        String selectQuery = "SELECT * FROM " +TABLE_Person+" , " +TABLE_Mote+" , "+TABLE_Person_Mote+" WHERE "+TABLE_Mote+"."+
+                Mote_ID+"= '"+moteId +"'"+ " AND "+TABLE_Person+"."+Person_ID+" = "+TABLE_Person_Mote+"."+Person_ID+" AND "+TABLE_Mote+"."+Mote_ID+" ="+TABLE_Person_Mote+"."+Mote_ID;
+
+
+
+
+
+
 
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -353,11 +361,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
-    public long createMotePerson(long person_id, long mote_id) {
+    public long createMotePerson( long mote_id,long person_id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Person_ID, person_id);
+       values.put(Person_ID, person_id);
         values.put(Mote_ID, mote_id);
 
 

@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Tag Name","Her er jeg ");
 List<Person>personerUnerEtmote = db.HenteAllePersonerIMote(1);
 
+
         for (Person person: personerUnerEtmote) {
             Log.d("Tag Name", "person_id"+person.getPersonId());
         }
