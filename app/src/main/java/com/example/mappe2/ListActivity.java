@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -22,6 +24,7 @@ import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.Modul.Person;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
@@ -63,7 +66,7 @@ public class ListActivity extends AppCompatActivity {
         extras = getIntent().getExtras();
         if(extras != null){
             mote = new Mote(extras.getString("navn"),extras.getString("type"),
-                    extras.getString("sted"),extras.getString("dato"));
+                    extras.getString("sted"),extras.getString("dato"),extras.getString("tid"));
 
 
         }
@@ -102,7 +105,6 @@ public class ListActivity extends AppCompatActivity {
              }
             long mote_id   = db.LageMote(mote,presoner_ider);
                 Log.d("Tag Name", "Mote_id"+ mote_id );
-
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
                 finish();

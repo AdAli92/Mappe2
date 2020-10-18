@@ -41,6 +41,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String Tittel="Tittel";
     private static final String Type="Type";
     private static final String Dato="Dato";
+    private static final String Tid="Tid";
     private static final String Sted="Sted";
 
 
@@ -57,7 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Møte table create statement
     private static final String CREATE_TABLE_Mote= "CREATE TABLE " + TABLE_Mote
             + "(" + Mote_ID + " INTEGER PRIMARY KEY," + Tittel + " TEXT,"+ Type + " TEXT,"+Sted + " TEXT,"
-            + Dato + " DATETIME" + ")";
+            + Dato + " DATETIME,"+ Tid +" TEXT" + ")";
 
 
     // Person_tag table create statement
@@ -117,7 +118,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-
+        values.put(Tid,mote.getTid());
         values.put(Tittel,mote.getNavn());
         values.put(Type, mote.getType());
         values.put(Dato, mote.getDato());
@@ -325,6 +326,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 mote.setSted(c.getString(c.getColumnIndex(Sted)));
                 mote.setType(c.getString(c.getColumnIndex(Type)));
                 mote.setDato(c.getString(c.getColumnIndex(Dato)));
+                mote.setTid(c.getString(c.getColumnIndex(Tid)));
 
 
 
@@ -346,6 +348,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(Type,mote.getType());
         values.put(Dato,mote.getDato());
         values.put(Sted,mote.getSted());
+        values.put(Tid,mote.getTid());
 
 
 
@@ -427,8 +430,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 String type = cursor.getString(cursor.getColumnIndex(DatabaseHandler.Type));
                 String dato = cursor.getString(cursor.getColumnIndex(DatabaseHandler.Dato));
                 String sted = cursor.getString(cursor.getColumnIndex(DatabaseHandler.Sted));
+                String tid = cursor.getString(cursor.getColumnIndex(DatabaseHandler.Tid));
 
-                Mote m = new Mote(tittle, type, dato, sted);
+                Mote m = new Mote(tittle, type, dato, sted,tid);
                 moter.add(m);
             }
             while (cursor.moveToNext());

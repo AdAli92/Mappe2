@@ -77,8 +77,8 @@ public class MoteActivity extends AppCompatActivity {
                 Log.d("Tag Name", "person_id"+person.getPersonId());
                 personer_view.append(person.getNavn());
                 personer_view.append("\n");
-
             }
+//alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 5*60*1000, pendingIntent);
 
 
         }else {
@@ -132,7 +132,8 @@ public class MoteActivity extends AppCompatActivity {
                 String innNavn = navn.getText().toString();
                 String innType = type.getText().toString();
                 String innSted = sted.getText().toString();
-                String innDato = sted.getText().toString();
+                String innDato = dato.getText().toString();
+                String innTid = tid.getText().toString();
 
                 //  mote= new Mote(innNavn, innType, innDato, innSted);
                 //  db.createMote(mote);
@@ -142,6 +143,7 @@ public class MoteActivity extends AppCompatActivity {
                 intent.putExtra("type",innType);
                 intent.putExtra("sted",innSted);
                 intent.putExtra("dato",innDato);
+                intent.putExtra("tid",innTid);
 
                 startActivity(intent);
 
@@ -183,9 +185,10 @@ public class MoteActivity extends AppCompatActivity {
                 String innNavn1 = navn.getText().toString();
                 String innType1 = type.getText().toString();
                 String innSted1 = sted.getText().toString();
-                String innDato1 = sted.getText().toString();
+                String innDato1 = dato.getText().toString();
+                String innTid =tid.getText().toString();
                 //int moteId, String navn, String type, String dato, String sted
-                 mote = new Mote(id,innNavn1,innType1, innDato1,innSted1);
+                 mote = new Mote(id,innNavn1,innType1, innDato1,innSted1,innTid);
 
                 db.OppdatereMote(mote);
                 Intent intent1 = new Intent(getBaseContext(), MainActivity.class);
