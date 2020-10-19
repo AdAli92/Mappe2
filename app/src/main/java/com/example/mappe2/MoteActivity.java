@@ -144,6 +144,10 @@ public class MoteActivity extends AppCompatActivity {
                 intent.putExtra("sted",innSted);
                 intent.putExtra("dato",innDato);
                 intent.putExtra("tid",innTid);
+                if(id!=0){
+                    intent.putExtra("id",id);;
+
+                }
 
                 startActivity(intent);
 

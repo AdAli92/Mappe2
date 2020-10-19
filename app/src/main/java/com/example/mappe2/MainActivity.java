@@ -50,13 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
         db = new DatabaseHandler(getApplicationContext());
 
-        Log.d("Tag Name","Her er jeg ");
-List<Person>personerUnerEtmote = db.HenteAllePersonerIMote(1);
 
 
-        for (Person person: personerUnerEtmote) {
-            Log.d("Tag Name", "person_id"+person.getPersonId());
-        }
+
+
         db.closeDB();
 
         toolbar = findViewById(R.id.toolbar);

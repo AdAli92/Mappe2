@@ -269,6 +269,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_Mote, Mote_ID + " = ?",
                 new String[] { String.valueOf(mote_id) });
+        db.delete(TABLE_Person_Mote, Mote_ID + " = ?",
+                new String[] { String.valueOf(mote_id) });
 
     }
 
@@ -382,11 +384,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public int SletteMotetilPerson(long id,long mote_id){
         SQLiteDatabase db = this.getWritableDatabase();
 
+      //  String selectQuery =
 
         ContentValues values = new ContentValues();
         values.put(Mote_ID,mote_id);
 
-        return db.update(TABLE_Person, values, Person_ID+ " = ?",
+
+        return db.update(TABLE_Person_Mote, values, Person_ID+ " = ?",
                 new String[] { String.valueOf(id) });
     }
 

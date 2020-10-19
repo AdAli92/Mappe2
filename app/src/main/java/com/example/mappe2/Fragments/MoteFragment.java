@@ -6,12 +6,14 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +23,11 @@ import android.widget.TextView;
 import com.example.mappe2.Adapters.MoteRvAdapter;
 import com.example.mappe2.Controller.DatabaseHandler;
 import com.example.mappe2.Modul.Mote;
+import com.example.mappe2.Modul.Person;
 import com.example.mappe2.MoteActivity;
 import com.example.mappe2.R;
 import com.example.mappe2.RecyclerViewInterface;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +40,7 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
     Dialog dialog;
     DatabaseHandler db;
     Mote mote;
+    List<Person> personerUnderMote;
 
     public MoteFragment() {
     }
@@ -45,13 +50,13 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         db = new DatabaseHandler(getActivity().getApplicationContext());
 
-        view =inflater.inflate(R.layout.fragment_mote, container, false);
-        recyclerView =view.findViewById(R.id.rv_mote);
+        view = inflater.inflate(R.layout.fragment_mote, container, false);
+        recyclerView = view.findViewById(R.id.rv_mote);
 
-        moter =db.HenteAlleMoter();
+        moter = db.HenteAlleMoter();
 
 
-        adapter = new MoteRvAdapter(getContext() , moter, this);
+        adapter = new MoteRvAdapter(getContext(), moter, this);
 
         RecyclerView.LayoutManager layoutManager;
         layoutManager = new LinearLayoutManager(getContext());
@@ -66,18 +71,17 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
     public void onItemClick(int position) {
 
         Mote mote = moter.get(position);
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 
             Intent intent = new Intent(getContext(), MoteActivity.class);
-            intent.putExtra("id",mote.getMoteId());
+            intent.putExtra("id", mote.getMoteId());
             intent.putExtra("navn", mote.getNavn());
             intent.putExtra("type", mote.getType());
             intent.putExtra("sted", mote.getSted());
             intent.putExtra("dato", mote.getDato());
 
             getContext().startActivity(intent);
-        }
-        else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+        } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
             Bundle bundle = new Bundle();
             bundle.putString("navn8", mote.getNavn());
@@ -100,7 +104,7 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
     @Override
     public void onLongItemClick(final int position) {
 
-         mote = moter.get(position);
+        mote = moter.get(position);
 
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog);
@@ -117,12 +121,11 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
             @Override
             public void onClick(View view) {
                 moter.remove(position);
-              db.SletteMote(mote.getMoteId());
+                db.SletteMote(mote.getMoteId());
                 adapter.notifyItemRemoved(position);
                 dialog.cancel();
             }
         });
-
 
 
     }

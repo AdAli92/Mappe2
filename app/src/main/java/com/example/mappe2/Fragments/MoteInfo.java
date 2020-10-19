@@ -101,13 +101,13 @@ public class MoteInfo extends Fragment {
 
         Bundle bundle = this.getArguments();
 
-        //Log.e("value Fragment get Argument", "friendsID :" + navn);
+
 
         if(bundle != null){
             navn.setText(bundle.get("navn8").toString());
             type.setText(bundle.get("type8").toString());
             sted.setText(bundle.get("sted8").toString());
-            dato.setText(bundle.get("dato8").toString());
+            dato.setText(bundle.get("dato8").toString());//Todo legge til Tid
         }
 
         return v;
