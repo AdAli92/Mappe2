@@ -22,6 +22,7 @@ import com.example.mappe2.Fragments.MoteFragment;
 import com.example.mappe2.Fragments.MoteInfo;
 import com.example.mappe2.Fragments.PersonFragment;
 import com.example.mappe2.Fragments.PersonInfo;
+import com.example.mappe2.Fragments.PrefranserFragment;
 import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.Modul.Person;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private MoteFragment moteFragment;
     private PersonFragment personFragment;
+    private PrefranserFragment prefranserFragment;
     private FloatingActionButton fab;
     DatabaseHandler db;
     MoteRvAdapter adapter;
@@ -67,16 +69,19 @@ public class MainActivity extends AppCompatActivity {
 
         moteFragment = new MoteFragment();
         personFragment = new PersonFragment();
+        prefranserFragment = new PrefranserFragment();
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(moteFragment, "Møter");
         viewPagerAdapter.addFragment(personFragment, "Personer");
+        viewPagerAdapter.addFragment(prefranserFragment, "Prefranser");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             tabLayout.getTabAt(0).setIcon(R.drawable.mote);
             tabLayout.getTabAt(1).setIcon(R.drawable.person);
+            tabLayout.getTabAt(2).setIcon(R.drawable.prefranser);
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -107,15 +112,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    if (tabLayout.getSelectedTabPosition() == 1) {
-                        fab.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(getBaseContext(), PersonActivity.class);
-                                startActivity(intent);
-                            }
-                        });
-                    } else {
+
+                    if(tabLayout.getSelectedTabPosition() == 0) {
+                        fab.setEnabled(true);
+                        fab.setVisibility(View.VISIBLE);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -123,6 +123,21 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         });
+                    }
+                    if (tabLayout.getSelectedTabPosition() == 1) {
+                        fab.setEnabled(true);
+                        fab.setVisibility(View.VISIBLE);
+                        fab.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getBaseContext(), PersonActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+
+                    if(tabLayout.getSelectedTabPosition() == 2){
+                        fab.setVisibility(View.GONE);
                     }
                 }
             }
