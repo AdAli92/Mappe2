@@ -17,7 +17,8 @@ import com.google.android.material.textfield.TextInputEditText;
 public class PersonInfo extends Fragment {
 
     TextInputEditText navn, telfonnr;
-    private Button lagre;
+    private Button lagre,endre;
+    private int id ;
     private DatabaseHandler db;
     View v;
 
@@ -27,18 +28,23 @@ public class PersonInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         v = inflater.inflate(R.layout.fragment_person_info, container, false);
 
         navn = v.findViewById(R.id.navn2);
         telfonnr = v.findViewById(R.id.telefonnr2);
         lagre =v.findViewById(R.id.lagre);
+        endre =v.findViewById(R.id.endre);
         db = new DatabaseHandler(getActivity().getApplicationContext());
+
 
         Bundle bundle = this.getArguments();
 
         if(bundle != null){
             navn.setText(bundle.getString("navn2"));
             telfonnr.setText(bundle.getString("telefonnr2"));
+            id=bundle.getInt("id");
+
         }
         lagre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +56,18 @@ public class PersonInfo extends Fragment {
                 Intent intent = new Intent(getActivity().getBaseContext(),
                         MainActivity.class);
                 getActivity().startActivity(intent);
+            }
+        });
+
+        endre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String innNavn1 = navn.getText().toString();
+                String innTel = telfonnr.getText().toString();
+              Person  person = new Person(id,innNavn1,innTel);
+                db.OppdaterePerson(person);
+                Intent intent1 = new Intent(getActivity().getBaseContext(), MainActivity.class);
+                startActivity(intent1);
             }
         });
 

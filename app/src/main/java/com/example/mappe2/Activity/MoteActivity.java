@@ -195,6 +195,9 @@ public class MoteActivity extends AppCompatActivity {
                 String innSted1 = sted.getText().toString();
                 String innDato1 = dato.getText().toString();
                 String innTid =tid.getText().toString();
+                if(! validerNavn() | ! validerType() | ! validerSted() | ! validerDato() | ! validerTid()){
+                    return false;
+                }
                 //int moteId, String navn, String type, String dato, String sted
                  mote = new Mote(id,innNavn1,innType1, innDato1,innSted1,innTid);
 

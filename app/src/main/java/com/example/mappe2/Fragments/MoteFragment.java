@@ -84,10 +84,13 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
         } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
             Bundle bundle = new Bundle();
+            bundle.putInt("id",mote.getMoteId());
             bundle.putString("navn8", mote.getNavn());
             bundle.putString("type8", mote.getType());
             bundle.putString("sted8", mote.getSted());
             bundle.putString("dato8", mote.getDato());
+            bundle.putString("tid8", mote.getTid());
+
 
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

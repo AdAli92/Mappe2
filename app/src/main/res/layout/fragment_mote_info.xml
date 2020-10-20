@@ -150,21 +150,7 @@
              >
         </com.google.android.material.button.MaterialButton>
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            app:icon="@drawable/add"
-            app:strokeWidth="2dp"
-            android:paddingLeft="6dp"
-            app:strokeColor="@color/colorPrimary"
-            app:elevation="5dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-           >
 
-
-        </com.google.android.material.button.MaterialButton>
         <com.google.android.material.button.MaterialButton
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -173,6 +159,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             app:strokeWidth="2dp"
+            android:id="@+id/endre"
             android:paddingLeft="6dp"
             app:strokeColor="@color/colorPrimary"
             app:elevation="5dp"
