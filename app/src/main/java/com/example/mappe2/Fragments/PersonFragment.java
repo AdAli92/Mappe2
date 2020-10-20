@@ -79,6 +79,7 @@ public class PersonFragment extends Fragment implements RecyclerViewInterface {
             Bundle bundle = new Bundle();
             bundle.putString("navn2", person.getNavn());
             bundle.putString("telefonnr2", person.getTelefonnr());
+            bundle.putInt("id",person.getPersonId());
 
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
