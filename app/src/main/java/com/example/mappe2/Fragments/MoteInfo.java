@@ -174,4 +174,90 @@ public class MoteInfo extends Fragment {
         return v;
     }
 
+    private  boolean validerNavn(){
+        String navnet = navn.getText().toString().trim();
+
+        if(navnet.isEmpty()){
+            navn.setError("Du må fylle møte navn!");
+            return false;
+        }
+        else if (navn.length() > 15){
+            navn.setError("Navnet for møtet er langt!");
+            return false;
+        }
+        else if(!navnet.matches("[a-zA-Z ]+"))
+        {
+            navn.setError("Bruk bare bokstaver!");
+            return false;
+        }
+        else {
+            navn.setError(null);
+            return true;
+        }
+    }
+
+    private  boolean validerType(){
+        String typen = type.getText().toString().trim();
+        if(typen.isEmpty()){
+            type.setError("Du må fylle typen!");
+            return false;
+        }
+        else if (type.length() > 15){
+            type.setError("Navnet på typen er langt!");
+            return false;
+        }
+        else if(!typen.matches("[a-zA-Z ]+"))
+        {
+            type.setError("Bruk bare bokstaver!");
+            return false;
+        }
+        else {
+            type.setError(null);
+            return true;
+        }
+    }
+
+    private  boolean validerSted(){
+        String stedet = sted.getText().toString().trim();
+        if(stedet.isEmpty()){
+            sted.setError("Du må fylle her!");
+            return false;
+        }
+        else if (sted.length() > 15){
+            sted.setError("Navnet for stedet er langt!");
+            return false;
+        }
+        else if(!stedet.matches("[a-zA-Z ]+"))
+        {
+            sted.setError("Bruk bare bokstaver!");
+            return false;
+        }
+        else {
+            sted.setError(null);
+            return true;
+        }
+    }
+
+    private  boolean validerDato() {
+        String datoen = dato.getText().toString().trim();
+        if (datoen.isEmpty()) {
+            dato.setError("Du må fyle dato!");
+            return false;
+        } else {
+            dato.setError(null);
+            return true;
+        }
+    }
+
+    private  boolean validerTid() {
+        String stedet = tid.getText().toString().trim();
+        if (stedet.isEmpty()) {
+            tid.setError("Du må fyle tid!");
+            return false;
+        } else{
+            tid.setError(null);
+            return true;
+        }
+    }
+
 }
