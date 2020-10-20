@@ -66,6 +66,7 @@ public class PersonActivity extends AppCompatActivity {
             slette.setVisible(true);
         }else{
             endre.setVisible(false);
+            slette.setVisible(false);
         }
 
 
@@ -86,6 +87,7 @@ public class PersonActivity extends AppCompatActivity {
              db.createPerson(person);
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.meny_endre:
                 String innNavn1 = navn.getText().toString();
@@ -97,6 +99,7 @@ public class PersonActivity extends AppCompatActivity {
                 db.OppdaterePerson(person);
                 Intent intent1 = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent1);
+                finish();
                 return true;
             case R.id.meny_slette:
                 db.SlettePerson(id);

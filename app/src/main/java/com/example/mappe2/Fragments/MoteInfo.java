@@ -12,23 +12,34 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.mappe2.Activity.ListActivity;
+import com.example.mappe2.Activity.MainActivity;
+import com.example.mappe2.Controller.DatabaseHandler;
+import com.example.mappe2.Modul.Mote;
+import com.example.mappe2.Modul.Person;
 import com.example.mappe2.R;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.List;
 
 public class MoteInfo extends Fragment {
 
     private TextInputEditText navn, type, sted, dato, tid;
-    private Button button;
+    private Button button,endre;
     private Calendar calendar;
+    private TextView personer_view;
+    private DatabaseHandler db;
     View v;
+    private int id ;
 
     public MoteInfo() {
     }
@@ -45,7 +56,10 @@ public class MoteInfo extends Fragment {
         sted = v.findViewById(R.id.sted1);
         dato = v.findViewById(R.id.dato1);
         tid = v.findViewById(R.id.tid1);
+        endre = v.findViewById(R.id.endre);
         button = v.findViewById(R.id.add_personer2);
+        personer_view=v.findViewById(R.id.person_view);
+        db =  new DatabaseHandler(getActivity().getApplicationContext());
 
         dato.setShowSoftInputOnFocus(false);
         tid.setShowSoftInputOnFocus(false);
@@ -94,11 +108,49 @@ public class MoteInfo extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ListActivity.class);
+                String innNavn = navn.getText().toString();
+                String innType = type.getText().toString();
+                String innSted = sted.getText().toString();
+                String innDato = dato.getText().toString();
+                String innTid = tid.getText().toString();
+
+                //  mote= new Mote(innNavn, innType, innDato, innSted);
+                //  db.createMote(mote);
+
+
+                intent.putExtra("navn",innNavn);
+                intent.putExtra("type",innType);
+                intent.putExtra("sted",innSted);
+                intent.putExtra("dato",innDato);
+                intent.putExtra("tid",innTid);
+                if(id!=0){
+                    intent.putExtra("id",id);;
+                }
                 startActivity(intent);
             }
         });
 
         Bundle bundle = this.getArguments();
+
+        endre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String innNavn1 = navn.getText().toString();
+                String innType1 = type.getText().toString();
+                String innSted1 = sted.getText().toString();
+                String innDato1 = dato.getText().toString();
+                String innTid =tid.getText().toString();
+                //int moteId, String navn, String type, String dato, String sted
+                if(id !=0) {
+                    Mote mote = new Mote(id, innNavn1, innType1, innDato1, innSted1, innTid);
+                    db.OppdatereMote(mote);
+                    Intent intent1 = new Intent(getActivity().getBaseContext(), MainActivity.class);
+                    startActivity(intent1);
+                }
+
+
+            }
+        });
 
 
 
@@ -106,7 +158,17 @@ public class MoteInfo extends Fragment {
             navn.setText(bundle.get("navn8").toString());
             type.setText(bundle.get("type8").toString());
             sted.setText(bundle.get("sted8").toString());
-            dato.setText(bundle.get("dato8").toString());//Todo legge til Tid
+            dato.setText(bundle.get("dato8").toString());
+            tid.setText(bundle.getString("tid8"));
+            id=bundle.getInt("id");//Todo legge til Tid
+            if(id!=0){
+                List<Person> personerUnerEtmote = db.HenteAllePersonerIMote(id);
+                for (Person person: personerUnerEtmote) {
+                    Log.d("Tag Name", "person_id"+person.getPersonId());
+                    personer_view.append(person.getNavn());
+                    personer_view.append(", ");
+                }
+            }
         }
 
         return v;
