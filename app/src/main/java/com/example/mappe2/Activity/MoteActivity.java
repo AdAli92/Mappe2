@@ -71,6 +71,7 @@ public class MoteActivity extends AppCompatActivity {
             type.setText(extras.getString("type"));
             sted.setText(extras.getString("sted"));
             dato.setText(extras.getString("dato"));
+            tid.setText(extras.getString("tid"));
             id=extras.getInt("id");
             List<Person> personerUnerEtmote = db.HenteAllePersonerIMote(id);
             for (Person person: personerUnerEtmote) {
@@ -150,7 +151,6 @@ public class MoteActivity extends AppCompatActivity {
                 intent.putExtra("tid",innTid);
                 if(id!=0){
                     intent.putExtra("id",id);;
-
                 }
 
                 startActivity(intent);
@@ -170,7 +170,7 @@ public class MoteActivity extends AppCompatActivity {
         slette = menu.findItem(R.id.meny_slette);
        if(forEndre){
            lagre.setVisible(false);
-           slette.setVisible(false);
+           slette.setVisible(true);
        }else{
            endre.setVisible(false);
            lagre.setVisible(false);
@@ -201,9 +201,14 @@ public class MoteActivity extends AppCompatActivity {
                 db.OppdatereMote(mote);
                 Intent intent1 = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent1);
+                finish();
 
                 return true;
             case R.id.meny_slette:
+                db.SletteMote(id);
+                Intent intent2 = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent2);
+                finish();
                 return true;
         }
         return false;

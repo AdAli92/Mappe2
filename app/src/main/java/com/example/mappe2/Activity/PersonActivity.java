@@ -63,7 +63,7 @@ public class PersonActivity extends AppCompatActivity {
         slette = menu.findItem(R.id.meny_slette);
         if(forEndre){
             lagre.setVisible(false);
-            slette.setVisible(false);
+            slette.setVisible(true);
         }else{
             endre.setVisible(false);
         }
@@ -97,9 +97,12 @@ public class PersonActivity extends AppCompatActivity {
                 db.OppdaterePerson(person);
                 Intent intent1 = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent1);
-
                 return true;
             case R.id.meny_slette:
+                db.SlettePerson(id);
+                Intent intent2 = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent2);
+                finish();
                 return true;
         }
         return false;

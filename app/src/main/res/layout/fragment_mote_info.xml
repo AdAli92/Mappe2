@@ -143,49 +143,25 @@
             android:id="@+id/add_personer2"
             android:text="Add Personer"
             android:textSize="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
              >
         </com.google.android.material.button.MaterialButton>
-        <ScrollView
-            android:id="@+id/person_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="1">
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            app:icon="@drawable/ic_lagre"
-            app:strokeWidth="2dp"
-            android:paddingLeft="6dp"
-            app:strokeColor="@color/colorPrimary"
-            app:elevation="5dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp">
-
-
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
             app:icon="@drawable/add"
             app:strokeWidth="2dp"
             android:paddingLeft="6dp"
             app:strokeColor="@color/colorPrimary"
             app:elevation="5dp"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-            android:layout_marginRight="25dp">
+           >
 
 
         </com.google.android.material.button.MaterialButton>
@@ -194,6 +170,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             app:icon="@drawable/ic_endre"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             app:strokeWidth="2dp"
             android:paddingLeft="6dp"
             app:strokeColor="@color/colorPrimary"
@@ -203,21 +181,35 @@
             >
 
         </com.google.android.material.button.MaterialButton>
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Personer:"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"/>
 
-            app:strokeWidth="2dp"
-            android:paddingLeft="6dp"
-            app:strokeColor="@color/colorPrimary"
-            app:elevation="5dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-            app:icon="@drawable/ic_slette"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp">
-
-        </com.google.android.material.button.MaterialButton>
+        <TextView
+            android:id="@+id/person_view"
+            android:layout_width="match_parent"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_gravity="center"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_height="match_parent"></TextView>
 
     </LinearLayout>
 
