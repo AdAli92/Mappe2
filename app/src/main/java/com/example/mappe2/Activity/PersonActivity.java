@@ -51,7 +51,7 @@ public class PersonActivity extends AppCompatActivity {
         else{
             forEndre = false;
         }
-
+//fgbfb
     }
 
     @Override
