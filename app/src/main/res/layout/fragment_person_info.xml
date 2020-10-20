@@ -25,7 +25,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Navn"
+                android:hint="@string/Navn"
                 android:textSize="14dp"
                 android:id="@+id/navn2"
                 />
@@ -45,7 +45,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Telefonnummer"
+                android:hint="@string/Tel"
                 android:textSize="14dp"
                 android:id="@+id/telefonnr2"
                 />

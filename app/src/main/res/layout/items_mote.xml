@@ -62,7 +62,7 @@
                             <TextView
                                 android:layout_width="40dp"
                                 android:layout_height="match_parent"
-                                android:text="Sted: "
+                                android:text="@string/Sted"
                                 android:textStyle="bold"
                                 android:textColor="#054F56"/>
 
@@ -86,7 +86,7 @@
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="match_parent"
-                            android:text="Type: "
+                            android:text="@string/Type"
                             android:textStyle="bold"
                             android:textColor="#054F56"/>
 
@@ -114,7 +114,7 @@
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="match_parent"
-                            android:text="Dato: "
+                            android:text="@string/Dato"
                             android:textStyle="bold"
                             android:textColor="#054F56"
                             />
@@ -135,7 +135,7 @@
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="match_parent"
-                            android:text="Tid: "
+                            android:text="@string/Tid"
                             android:textStyle="bold"
                             android:textColor="#054F56"
 

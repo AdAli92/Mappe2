@@ -19,7 +19,7 @@
             android:id="@+id/dialog_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Navn"
+            android:text="@string/slettBekrftelse"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:textSize="24dp"
@@ -31,7 +31,17 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            android:text="Slett"
+            android:text="@string/Slett"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_marginTop="10dp"/>
+        <Button
+            android:id="@+id/dialog_ikke"
+            android:textAlignment="textEnd"
+            android:drawableRight="@drawable/mote_rom"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/Avbryt"
             android:textColor="@android:color/holo_red_dark"
             android:layout_marginTop="10dp"/>
         
