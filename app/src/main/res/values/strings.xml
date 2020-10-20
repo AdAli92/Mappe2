@@ -11,6 +11,9 @@
     <!-- Sync Preferences -->
     <string name="sms_boks">Slå på SMS</string>
     <string name="attachment_title">Download incoming attachments</string>
+
+
+
     <string name="møtenavn">Møte tittel</string>
     <string name="Type">Type: </string>
     <string name="Sted">Sted: </string>
@@ -23,4 +26,20 @@
     <string name="Avbryt">Avbryt</string>
     <string name="Navn">Navn</string>
     <string name="Tel">Tel</string>
+
+    <!-- Feil melding -->
+    <string name="fylleNavn">Du må fylle møte navn!</string>
+    <string name="fylleType">Du må fylle typen!</string>
+    <string name="fylleSted">Du må fylle sted</string>
+    <string name="fylleDato">Du må fyle dato</string>
+    <string name="fylleTid">Du må fyle tid</string>
+    <string name="barebokstav">Bruk bare bokstaver</string>
+    <string name="forlangtmøtenavn">"Navnet for møtet er  for langt!"</string>
+    <string name="forlangtType">"Navnet på type er  for langt!"</string>
+    <string name="forlangtStedet">"Navnet for stedet er langt!"</string>
+
+
+
+
+
 </resources>

@@ -222,16 +222,17 @@ public class MoteActivity extends AppCompatActivity {
         String navnet = navn.getText().toString().trim();
 
         if(navnet.isEmpty()){
-            navn.setError("Du må fylle møte navn!");
+
+            navn.setError(  getResources().getString(R.string.fylleNavn));
             return false;
         }
         else if (navn.length() > 15){
-            navn.setError("Navnet for møtet er langt!");
+            navn.setError( getResources().getString(R.string.forlangtmøtenavn));
             return false;
         }
         else if(!navnet.matches("[a-zA-Z ]+"))
         {
-            navn.setError("Bruk bare bokstaver!");
+            navn.setError(getResources().getString(R.string.barebokstav));
             return false;
         }
         else {
@@ -243,16 +244,16 @@ public class MoteActivity extends AppCompatActivity {
     private  boolean validerType(){
         String typen = type.getText().toString().trim();
         if(typen.isEmpty()){
-            type.setError("Du må fylle typen!");
+            type.setError(   getResources().getString(R.string.fylleType));
             return false;
         }
         else if (type.length() > 15){
-            type.setError("Navnet på typen er langt!");
+            type.setError(getResources().getString(R.string.forlangtType));
             return false;
         }
         else if(!typen.matches("[a-zA-Z ]+"))
         {
-            type.setError("Bruk bare bokstaver!");
+            type.setError(getResources().getString(R.string.barebokstav));
             return false;
         }
         else {
@@ -264,16 +265,16 @@ public class MoteActivity extends AppCompatActivity {
     private  boolean validerSted(){
         String stedet = sted.getText().toString().trim();
         if(stedet.isEmpty()){
-            sted.setError("Du må fylle her!");
+            sted.setError(getResources().getString(R.string.fylleSted));
             return false;
         }
         else if (sted.length() > 15){
-            sted.setError("Navnet for stedet er langt!");
+            sted.setError(getResources().getString(R.string.forlangtStedet));
             return false;
         }
         else if(!stedet.matches("[a-zA-Z ]+"))
         {
-            sted.setError("Bruk bare bokstaver!");
+            sted.setError(getResources().getString(R.string.barebokstav));
             return false;
         }
         else {
@@ -285,7 +286,7 @@ public class MoteActivity extends AppCompatActivity {
     private  boolean validerDato() {
         String datoen = dato.getText().toString().trim();
         if (datoen.isEmpty()) {
-            dato.setError("Du må fyle dato!");
+            dato.setError(getResources().getString(R.string.fylleDato));
             return false;
         } else {
             dato.setError(null);
@@ -296,7 +297,7 @@ public class MoteActivity extends AppCompatActivity {
     private  boolean validerTid() {
         String stedet = tid.getText().toString().trim();
         if (stedet.isEmpty()) {
-            tid.setError("Du må fyle tid!");
+            tid.setError(getResources().getString(R.string.fylleTid));
             return false;
         } else{
             tid.setError(null);
