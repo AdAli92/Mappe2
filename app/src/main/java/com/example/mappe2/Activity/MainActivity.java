@@ -8,6 +8,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -74,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
             tabLayout.getTabAt(0).setIcon(R.drawable.mote);
             tabLayout.getTabAt(1).setIcon(R.drawable.person);
             tabLayout.getTabAt(2).setIcon(R.drawable.prefranser);
+            tabLayout.getTabAt(0).getIcon().setColorFilter(Color.rgb(24,78,109), PorterDuff.Mode.SRC_IN);
+            tabLayout.getTabAt(1).getIcon().setColorFilter(Color.rgb(24,78,109), PorterDuff.Mode.SRC_IN);
+            tabLayout.getTabAt(2).getIcon().setColorFilter(Color.rgb(24,78,109), PorterDuff.Mode.SRC_IN);
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
