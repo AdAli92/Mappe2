@@ -75,9 +75,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // Lage Tabeller
-        db.execSQL(CREATE_TABLE_Person);
-        db.execSQL(CREATE_TABLE_Mote);
-        db.execSQL(CREATE_TABLE_PERSON_MOTE);
+
+            db.execSQL(CREATE_TABLE_Person);
+            db.execSQL(CREATE_TABLE_Mote);
+            db.execSQL(CREATE_TABLE_PERSON_MOTE);
+
     }
 
     @Override

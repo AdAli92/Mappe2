@@ -57,7 +57,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Møte navn"
+                    android:hint="@string/møtenavn"
                     android:id="@+id/navn1"
                     />
 
@@ -85,7 +85,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Type"
+                        android:hint="@string/Type"
                         android:id="@+id/type1"
                         />
 
@@ -107,7 +107,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Sted"
+                        android:hint="@string/Sted"
                         android:id="@+id/sted1"
                         />
 
@@ -138,7 +138,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:focusableInTouchMode="false"
-                        android:hint="Dato"
+                        android:hint="@string/Dato"
                         android:id="@+id/dato1"
                         />
 
@@ -161,7 +161,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:focusableInTouchMode="false"
-                        android:hint="Tid"
+                        android:hint="@string/Tid"
                         android:id="@+id/tid1"
                         />
 
@@ -180,7 +180,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/add_personer"
                         android:background="@drawable/add"
-                        android:text="Add Personer"
+                        android:text="@string/Add_Personer"
                         android:layout_width="wrap_content"
                         android:layout_height="55dp"
                         android:layout_gravity="center"

@@ -112,13 +112,16 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
+/*
         TextView title = dialog.findViewById(R.id.dialog_title);
         title.setText(mote.getNavn());
+
+ */
 
         dialog.show();
 
         Button btn = dialog.findViewById(R.id.dialog_btn);
+        Button dialog_ikke = dialog.findViewById(R.id.dialog_ikke);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +132,14 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
                 dialog.cancel();
             }
         });
+        dialog_ikke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
 
+
+            }
+        });
 
     }
 }

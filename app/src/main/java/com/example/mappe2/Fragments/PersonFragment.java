@@ -102,13 +102,16 @@ public class PersonFragment extends Fragment implements RecyclerViewInterface {
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
+/*
         TextView title = dialog.findViewById(R.id.dialog_title);
         title.setText(person.getNavn());
+        
+ */
 
         dialog.show();
 
         Button btn = dialog.findViewById(R.id.dialog_btn);
+        Button dialog_ikke = dialog.findViewById(R.id.dialog_ikke);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +119,13 @@ public class PersonFragment extends Fragment implements RecyclerViewInterface {
                 personer.remove(position);
                 db.SlettePerson(person.getPersonId());
                 personRvAdapter.notifyItemRemoved(position);
+                dialog.cancel();
+            }
+        });
+        dialog_ikke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
                 dialog.cancel();
             }
         });
