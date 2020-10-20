@@ -1,4 +1,4 @@
-package com.example.mappe2;
+package com.example.mappe2.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,11 +10,9 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.mappe2.Adapters.MoteRvAdapter;
 import com.example.mappe2.Adapters.ViewPagerAdapter;
@@ -23,15 +21,11 @@ import com.example.mappe2.Fragments.MoteInfo;
 import com.example.mappe2.Fragments.PersonFragment;
 import com.example.mappe2.Fragments.PersonInfo;
 import com.example.mappe2.Fragments.PrefranserFragment;
-import com.example.mappe2.Modul.Mote;
-import com.example.mappe2.Modul.Person;
+import com.example.mappe2.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import com.example.mappe2.Controller.DatabaseHandler;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = new DatabaseHandler(getApplicationContext());
-
-
-
 
 
         db.closeDB();
@@ -116,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     if(tabLayout.getSelectedTabPosition() == 0) {
                         fab.setEnabled(true);
                         fab.setVisibility(View.VISIBLE);
+                        fab.setImageResource(R.drawable.addmote);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -127,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     if (tabLayout.getSelectedTabPosition() == 1) {
                         fab.setEnabled(true);
                         fab.setVisibility(View.VISIBLE);
+                        fab.setImageResource(R.drawable.addperson);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

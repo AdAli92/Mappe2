@@ -19,8 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import com.example.mappe2.ListActivity;
-import com.example.mappe2.MoteActivity;
+import com.example.mappe2.Activity.ListActivity;
 import com.example.mappe2.R;
 import com.google.android.material.textfield.TextInputEditText;
 

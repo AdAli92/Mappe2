@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#8fa9ac"
-    tools:context=".MoteActivity">
+    tools:context=".Activity.MoteActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -46,13 +46,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_margin="5dp"
-                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/personer"
+                app:startIconTint="@color/colorPrimary"
+                app:errorEnabled="true"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="text"
                     android:hint="Navn"
                     android:id="@+id/navn2"
                     />
@@ -63,13 +68,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_margin="5dp"
-                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/telefon"
+                app:startIconTint="@color/colorPrimary"
+                app:errorEnabled="true"
+                app:counterEnabled="true"
+                app:counterMaxLength="8"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="number"
                     android:hint="Telefonnummer"
                     android:id="@+id/telefonnr2"
                     />

@@ -1,4 +1,4 @@
-package com.example.mappe2;
+package com.example.mappe2.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,10 +10,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.mappe2.Activity.MainActivity;
 import com.example.mappe2.Controller.DatabaseHandler;
-import com.example.mappe2.Fragments.PersonFragment;
-import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.Modul.Person;
+import com.example.mappe2.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class PersonActivity extends AppCompatActivity {
@@ -74,6 +74,9 @@ public class PersonActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if( ! validerNavn() | ! validerTelefonnr()){
+            return false;
+        }
         switch (item.getItemId()) {
             case R.id.meny_lagre:
                 String innNavn = navn.getText().toString();
@@ -102,5 +105,49 @@ public class PersonActivity extends AppCompatActivity {
         return false;
     }
 
+
+    private  boolean validerNavn(){
+        String navnet = navn.getText().toString().trim();
+
+        if(navnet.isEmpty()){
+            navn.setError("Du må fylle person navn!");
+            return false;
+        }
+        else if (navn.length() > 15){
+            navn.setError("Navnet for personen er langt!");
+            return false;
+        }
+        else if(!navnet.matches("[a-zA-Z ]+"))
+        {
+            navn.setError("Bruk bare bokstaver!");
+            return false;
+        }
+        else {
+            navn.setError(null);
+            return true;
+        }
+    }
+
+    private  boolean validerTelefonnr(){
+        String tel = telfonnr.getText().toString().trim();
+
+        if(tel.isEmpty()){
+            telfonnr.setError("Du må skrive telefonnummer!");
+            return false;
+        }
+        else if(telfonnr.length() != 8){
+            telfonnr.setError("Telefonnummer må være på 8 tall");
+            return false;
+        }
+       /* else if(!tel.matches("/^[0-9]{1,8}$/"))
+        {
+            telfonnr.setError("Bruk bare tall!");
+            return false;
+        }*/
+        else {
+            telfonnr.setError(null);
+            return true;
+        }
+    }
 
 }

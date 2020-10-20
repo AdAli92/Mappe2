@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#8fa9ac"
-    tools:context=".MoteActivity">
+    tools:context=".Activity.MoteActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -46,7 +46,11 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/mote_rom"
+                app:startIconTint="@color/colorPrimary"
+                app:errorEnabled="true"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
 
@@ -70,7 +74,11 @@
                     android:layout_height="55dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:endIconMode="clear_text"
+                    app:startIconDrawable="@drawable/type"
+                    app:startIconTint="@color/colorPrimary"
+                    app:errorEnabled="true"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="15"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
 
@@ -88,7 +96,11 @@
                     android:layout_height="55dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:endIconMode="clear_text"
+                    app:startIconDrawable="@drawable/sted"
+                    app:startIconTint="@color/colorPrimary"
+                    app:errorEnabled="true"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="15"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
 
@@ -115,10 +127,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     app:startIconDrawable="@drawable/dato"
+                    app:errorEnabled="true"
                     app:startIconCheckable="false"
                     android:focusableInTouchMode="false"
                     app:startIconTint="@color/colorPrimary"
-                    app:endIconMode="clear_text"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
 
@@ -138,6 +150,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     app:startIconDrawable="@drawable/tid"
+                    app:errorEnabled="true"
                     android:focusableInTouchMode="false"
                     app:startIconCheckable="false"
                     app:startIconTint="@color/colorPrimary"
@@ -182,10 +195,13 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="55dp"
-                    >   <TextView
+                    >
+                    <TextView
                     android:id="@+id/person_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></TextView></ScrollView>
+                    android:layout_height="match_parent"/>
+
+                </ScrollView>
             </LinearLayout>
 
 

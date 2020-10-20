@@ -19,13 +19,11 @@ import android.widget.TextView;
 
 import com.example.mappe2.Adapters.PersonRvAdapter;
 import com.example.mappe2.Controller.DatabaseHandler;
-import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.Modul.Person;
-import com.example.mappe2.PersonActivity;
+import com.example.mappe2.Activity.PersonActivity;
 import com.example.mappe2.R;
 import com.example.mappe2.RecyclerViewInterface;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PersonFragment extends Fragment implements RecyclerViewInterface {

@@ -24,11 +24,10 @@ import com.example.mappe2.Adapters.MoteRvAdapter;
 import com.example.mappe2.Controller.DatabaseHandler;
 import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.Modul.Person;
-import com.example.mappe2.MoteActivity;
+import com.example.mappe2.Activity.MoteActivity;
 import com.example.mappe2.R;
 import com.example.mappe2.RecyclerViewInterface;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MoteFragment extends Fragment implements RecyclerViewInterface {

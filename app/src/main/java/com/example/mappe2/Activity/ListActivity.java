@@ -1,4 +1,4 @@
-package com.example.mappe2;
+package com.example.mappe2.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,9 +6,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,12 +16,11 @@ import android.widget.Toast;
 
 import com.example.mappe2.Adapters.ListePrsonerAdapter;
 import com.example.mappe2.Controller.DatabaseHandler;
-import com.example.mappe2.Fragments.MoteFragment;
 import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.Modul.Person;
+import com.example.mappe2.R;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
