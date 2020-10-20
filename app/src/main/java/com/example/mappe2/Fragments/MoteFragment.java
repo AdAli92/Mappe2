@@ -78,6 +78,7 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
             intent.putExtra("type", mote.getType());
             intent.putExtra("sted", mote.getSted());
             intent.putExtra("dato", mote.getDato());
+            intent.putExtra("tid",mote.getTid());
 
             getContext().startActivity(intent);
         } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {

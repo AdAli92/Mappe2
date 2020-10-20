@@ -51,9 +51,11 @@ public class MoteRvAdapter extends RecyclerView.Adapter<MoteRvAdapter.ViewHolder
 
         Mote mote = moteList.get(position);
         holder.navn.setText(mote.getNavn());
-        holder.type.setText(mote.getType());
-        holder.sted.setText(mote.getSted());
-        holder.dato.setText(mote.getDato());
+        holder.type.setText("Type: "+mote.getType());
+        holder.sted.setText("Sted: "+mote.getSted());
+        holder.dato.setText("Dato: "+mote.getDato());
+        holder.tid.setText("Tid: "+mote.getTid());
+
         holder.imageView.setImageResource(mote.getImg());
     }
 
@@ -63,7 +65,7 @@ public class MoteRvAdapter extends RecyclerView.Adapter<MoteRvAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView navn, type, sted, dato;
+        TextView navn, type, sted, dato,tid;
         ImageView imageView;
         public ViewHolder(View itemView){
             super(itemView);
@@ -71,6 +73,8 @@ public class MoteRvAdapter extends RecyclerView.Adapter<MoteRvAdapter.ViewHolder
             type = itemView.findViewById(R.id.type);
             sted = itemView.findViewById(R.id.sted);
             dato = itemView.findViewById(R.id.dato);
+            tid=itemView.findViewById(R.id.tid);
+
             imageView = itemView.findViewById(R.id.imageView);
 
             itemView.setOnClickListener(new View.OnClickListener() {

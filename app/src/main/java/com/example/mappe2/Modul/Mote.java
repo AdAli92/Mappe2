@@ -14,13 +14,14 @@ public class Mote {
         this.moteId = moteId;
     }
 
-    public Mote(String navn, String type, String dato, String sted, String tid) {
+    public Mote(String navn, String type, String sted,String dato , String tid) {
         this.navn = navn;
         this.type = type;
         this.dato = dato;
         this.sted = sted;
         this.tid = tid;
     }
+
 
     public Mote(int moteId, String navn, String type, String dato, String sted, String tid) {
         this.moteId = moteId;
