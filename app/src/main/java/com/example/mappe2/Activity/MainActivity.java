@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         db = new DatabaseHandler(getApplicationContext());
+        //Add komentar
 
 
         db.closeDB();
