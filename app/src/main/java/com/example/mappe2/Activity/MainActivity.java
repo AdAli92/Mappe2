@@ -151,47 +151,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_meny, menu);
-        SearchView searchView = (SearchView) menu.findItem(R.id.soke).getActionView();
-        searchView.setSubmitButtonEnabled(true);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                /*
-                ArrayList<Mote> mote = db.getMote(query);
-                adapter.setMoteList(mote);
-                adapter.notifyDataSetChanged();*/
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-               /* ArrayList<Mote> mote = db.getMote(newText);
-                adapter.setMoteList(mote);
-                adapter.notifyDataSetChanged();*/
-                return false;
-            }
-        });
-
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-               /* List<Mote> mote = db.HenteAlleMoter();
-                adapter.setMoteList(mote);
-                adapter.notifyDataSetChanged();*/
-                return false;
-            }
-        });
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
-
 }
