@@ -1,6 +1,8 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/sms_tittle">
+    <PreferenceCategory app:title="@string/sms_tittle"
+        app:icon="@drawable/ic_baseline_message_24">
+
 
         <SwitchPreferenceCompat
             app:key="sms"
@@ -14,13 +16,6 @@
             app:title="@string/signature_title"
             app:useSimpleSummaryProvider="true" />
 
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
