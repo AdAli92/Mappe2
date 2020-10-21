@@ -36,7 +36,6 @@ public class ListActivity extends AppCompatActivity {
     private int id;
     private boolean finnes;  //Pass på å ikke gå til hjemmesiden  ,hvis man legger samme person til møte.
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +44,13 @@ public class ListActivity extends AppCompatActivity {
         LageView(); // metoden som lage adapter , og sette Recycleview på den.
         extras = getIntent().getExtras();
         if (extras != null) {
-            mote = new Mote(extras.getString("navn"), extras.getString("type"),
-                    extras.getString("sted"), extras.getString("dato"), extras.getString("tid"));
+            mote = new Mote(
+                    extras.getString("navn"),
+                    extras.getString("type"),
+                    extras.getString("sted"),
+                    extras.getString("dato"),
+                    extras.getString("tid"));
             id = extras.getInt("id");
-
         }
     }
 
@@ -81,30 +83,27 @@ public class ListActivity extends AppCompatActivity {
 
                 } else if (id != 0) { //Endre et møte.
                     List<Person> personerIMote = db.HenteAllePersonerIMote(id);
-
-
                     //Sjekke hvis person ligger i et møte allerede.
                     for (int i = 0; i < presoner_ider.length; i++) { //Todo sjekke om det er riktig alltid denne algoritmen
                         for (int j = 0; j < personerIMote.size(); j++) {
-                            Log.d("personer", "den sjekker");
-                            Log.d("personer", presoner_ider[i] + "==" + personerIMote.get(j).getPersonId());
                             if (presoner_ider[i] == personerIMote.get(j).getPersonId()) {
                                 finnes = true;
                                 break;
                             } else {
                                 finnes = false;
-
                             }
                         }
                         if (!finnes) {
-
-                            db.createMotePerson(id, presoner_ider[i]);
+                            try {
+                                db.createMotePerson(id, presoner_ider[i]);
+                            } catch (Exception e) {
+                                Toast.makeText(this, "Kan ikke lage møtet ", Toast.LENGTH_SHORT).show();
+                            }
 
                         } else {
                             Toast.makeText(this, "Du kan ikke legge til samme person til møte", Toast.LENGTH_LONG).show();
                         }
                     }
-
                 }
                 if (!finnes) {
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
@@ -112,7 +111,6 @@ public class ListActivity extends AppCompatActivity {
                     finish();
                 }
             }
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -124,7 +122,11 @@ public class ListActivity extends AppCompatActivity {
         checked = new ArrayList<>();
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
-        personer = db.HenteAllePersoner();
+        try {
+            personer = db.HenteAllePersoner();
+        } catch (Exception e) {
+            Toast.makeText(this, "Kan ikke hente personer", Toast.LENGTH_SHORT).show();
+        }
         adapter = new ListePrsonerAdapter(getApplicationContext(), personer);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         recyclerView.setHasFixedSize(true);

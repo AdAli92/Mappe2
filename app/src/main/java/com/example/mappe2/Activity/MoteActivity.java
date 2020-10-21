@@ -39,11 +39,12 @@ public class MoteActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Calendar calendar;
     private DatabaseHandler db;
-    private int id ;
+    private int id;
     Mote mote;
     TextView personer_view;
-    MenuItem lagre,endre,slette;
-    private boolean forEndre = false ;
+    MenuItem lagre, endre, slette;
+    private boolean forEndre = false; //Boolean som sjeker om vi kommer til å endre eller legge til
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,36 +60,33 @@ public class MoteActivity extends AppCompatActivity {
         dato.setShowSoftInputOnFocus(false);
         tid.setShowSoftInputOnFocus(false);
         toolbar = findViewById(R.id.toolbar1);
-        personer_view=findViewById(R.id.person_view);
-        db =  new DatabaseHandler(getApplicationContext());
+        personer_view = findViewById(R.id.person_view);
+        db = new DatabaseHandler(getApplicationContext());
         setSupportActionBar(toolbar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
 
         extras = getIntent().getExtras();
-        if(extras != null){
+        if (extras != null) {
             forEndre = true;
-            try{
+            try {
                 navn.setText(extras.getString("navn"));
                 type.setText(extras.getString("type"));
                 sted.setText(extras.getString("sted"));
                 dato.setText(extras.getString("dato"));
                 tid.setText(extras.getString("tid"));
-                id=extras.getInt("id");
-            }
-            catch (Exception e){
+                id = extras.getInt("id");
+            } catch (Exception e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             List<Person> personerUnerEtmote = db.HenteAllePersonerIMote(id);
-            for (Person person: personerUnerEtmote) {
-                Log.d("Tag Name", "person_id"+person.getPersonId());
+            for (Person person : personerUnerEtmote) {
+                Log.d("Tag Name", "person_id" + person.getPersonId());
                 personer_view.append(person.getNavn());
                 personer_view.append(", ");
             }
-//alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 5*60*1000, pendingIntent);
 
-
-        }else {
+        } else {
             forEndre = false;
         }
 
@@ -106,8 +104,8 @@ public class MoteActivity extends AppCompatActivity {
                         MoteActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
-                        month = month+1;
-                        String date = day+"/"+month+"/"+year;
+                        month = month + 1;
+                        String date = day + "/" + month + "/" + year;
                         dato.setText(date);
                     }
                 }, aar, moneder, dag);
@@ -118,16 +116,15 @@ public class MoteActivity extends AppCompatActivity {
         tid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 TimePickerDialog timePickerDialog = new TimePickerDialog(
                         MoteActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hour, int min) {
-                        hour = hour+1;
-                        String tiden = hour+":"+min;
+                        hour = hour + 1;
+                        String tiden = hour + ":" + min;
                         tid.setText(tiden);
                     }
-                }, hour, minut,  DateFormat.is24HourFormat(getApplicationContext()));
+                }, hour, minut, DateFormat.is24HourFormat(getApplicationContext()));
                 timePickerDialog.show();
 
             }
@@ -136,31 +133,25 @@ public class MoteActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(! validerNavn() | ! validerType() | ! validerSted() | ! validerDato() | ! validerTid()){
+                if (!validerNavn() | !validerType() | !validerSted() | !validerDato() | !validerTid()) {
                     return;
                 }
-
                 String innNavn = navn.getText().toString();
                 String innType = type.getText().toString();
                 String innSted = sted.getText().toString();
                 String innDato = dato.getText().toString();
                 String innTid = tid.getText().toString();
 
-                //  mote= new Mote(innNavn, innType, innDato, innSted);
-                //  db.createMote(mote);
-
                 Intent intent = new Intent(getBaseContext(), ListActivity.class);
-                intent.putExtra("navn",innNavn);
-                intent.putExtra("type",innType);
-                intent.putExtra("sted",innSted);
-                intent.putExtra("dato",innDato);
-                intent.putExtra("tid",innTid);
-                if(id!=0){
-                    intent.putExtra("id",id);;
+                intent.putExtra("navn", innNavn);
+                intent.putExtra("type", innType);
+                intent.putExtra("sted", innSted);
+                intent.putExtra("dato", innDato);
+                intent.putExtra("tid", innTid);
+                if (id != 0) { //Hvis id!=0 det betyr at vi er her til å endre , og ikke lage ny møte
+                    intent.putExtra("id", id);
                 }
-
                 startActivity(intent);
-
             }
         });
 
@@ -169,20 +160,18 @@ public class MoteActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.andre_meny, menu);
-      lagre = menu.findItem(R.id.meny_lagre);
-      endre = menu.findItem(R.id.meny_endre);
+        lagre = menu.findItem(R.id.meny_lagre);
+        endre = menu.findItem(R.id.meny_endre);
         slette = menu.findItem(R.id.meny_slette);
-       if(forEndre){
-           lagre.setVisible(false);
-           slette.setVisible(true);
-       }else{
-           endre.setVisible(false);
-           lagre.setVisible(false);
-           slette.setVisible(false);
-
-       }
+        if (forEndre) {
+            lagre.setVisible(false);
+            slette.setVisible(true);
+        } else {
+            endre.setVisible(false);
+            lagre.setVisible(false);
+            slette.setVisible(false);
+        }
 
         return true;
     }
@@ -195,101 +184,87 @@ public class MoteActivity extends AppCompatActivity {
 
                 return true;
             case R.id.meny_endre:
-
                 String innNavn1 = navn.getText().toString();
                 String innType1 = type.getText().toString();
                 String innSted1 = sted.getText().toString();
                 String innDato1 = dato.getText().toString();
-                String innTid =tid.getText().toString();
-                if(! validerNavn() | ! validerType() | ! validerSted() | ! validerDato() | ! validerTid()){
+                String innTid = tid.getText().toString();
+                if (!validerNavn() | !validerType() | !validerSted() | !validerDato() | !validerTid()) {
                     return false;
                 }
-                //int moteId, String navn, String type, String dato, String sted
-                 mote = new Mote(id,innNavn1,innType1, innDato1,innSted1,innTid);
-
+                mote = new Mote(id, innNavn1, innType1, innDato1, innSted1, innTid);
                 db.OppdatereMote(mote);
                 Intent intent1 = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent1);
+                db.closeDB();
                 finish();
-
                 return true;
             case R.id.meny_slette:
                 db.SletteMote(id);
                 Intent intent2 = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent2);
+                db.closeDB();
                 finish();
                 return true;
         }
         return false;
     }
 
-
-    private  boolean validerNavn(){
+    //Validering metoder
+    private boolean validerNavn() {
         String navnet = navn.getText().toString().trim();
 
-        if(navnet.isEmpty()){
+        if (navnet.isEmpty()) {
 
-            navn.setError(  getResources().getString(R.string.fylleNavn));
+            navn.setError(getResources().getString(R.string.fylleNavn));
             return false;
-        }
-        else if (navn.length() > 15){
-            navn.setError( getResources().getString(R.string.forlangtmøtenavn));
+        } else if (navn.length() > 15) {
+            navn.setError(getResources().getString(R.string.forlangtmøtenavn));
             return false;
-        }
-        else if(!navnet.matches("[a-zA-Z ]+"))
-        {
+        } else if (!navnet.matches("[a-zA-Z ]+")) {
             navn.setError(getResources().getString(R.string.barebokstav));
             return false;
-        }
-        else {
+        } else {
             navn.setError(null);
             return true;
         }
     }
 
-    private  boolean validerType(){
+    private boolean validerType() {
         String typen = type.getText().toString().trim();
-        if(typen.isEmpty()){
-            type.setError(   getResources().getString(R.string.fylleType));
+        if (typen.isEmpty()) {
+            type.setError(getResources().getString(R.string.fylleType));
             return false;
-        }
-        else if (type.length() > 15){
+        } else if (type.length() > 15) {
             type.setError(getResources().getString(R.string.forlangtType));
             return false;
-        }
-        else if(!typen.matches("[a-zA-Z ]+"))
-        {
+        } else if (!typen.matches("[a-zA-Z ]+")) {
             type.setError(getResources().getString(R.string.barebokstav));
             return false;
-        }
-        else {
+        } else {
             type.setError(null);
             return true;
         }
     }
 
-    private  boolean validerSted(){
+    private boolean validerSted() {
         String stedet = sted.getText().toString().trim();
-        if(stedet.isEmpty()){
+        if (stedet.isEmpty()) {
             sted.setError(getResources().getString(R.string.fylleSted));
             return false;
-        }
-        else if (sted.length() > 15){
+        } else if (sted.length() > 15) {
             sted.setError(getResources().getString(R.string.forlangtStedet));
             return false;
-        }
-        else if(!stedet.matches("[a-zA-Z ]+"))
-        {
+        } else if (!stedet.matches("[a-zA-Z ]+")) {
             sted.setError(getResources().getString(R.string.barebokstav));
             return false;
-        }
-        else {
+        } else {
             sted.setError(null);
             return true;
         }
     }
 
-    private  boolean validerDato() {
+    private boolean validerDato() {
         String datoen = dato.getText().toString().trim();
         if (datoen.isEmpty()) {
             dato.setError(getResources().getString(R.string.fylleDato));
@@ -300,17 +275,15 @@ public class MoteActivity extends AppCompatActivity {
         }
     }
 
-    private  boolean validerTid() {
+    private boolean validerTid() {
         String stedet = tid.getText().toString().trim();
         if (stedet.isEmpty()) {
             tid.setError(getResources().getString(R.string.fylleTid));
             return false;
-        } else{
+        } else {
             tid.setError(null);
             return true;
         }
     }
-
-
 
 }

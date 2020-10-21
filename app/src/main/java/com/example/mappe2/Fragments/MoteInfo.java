@@ -12,7 +12,6 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,14 +32,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.List;
 
 public class MoteInfo extends Fragment {
-
     private TextInputEditText navn, type, sted, dato, tid;
-    private Button button,endre;
+    private Button button, endre;
     private Calendar calendar;
     private TextView personer_view;
     private DatabaseHandler db;
     View v;
-    private int id ;
+    private int id;
 
     public MoteInfo() {
     }
@@ -51,7 +49,6 @@ public class MoteInfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_mote_info, container, false);
-
         navn = v.findViewById(R.id.navn1);
         type = v.findViewById(R.id.type1);
         sted = v.findViewById(R.id.sted1);
@@ -59,9 +56,8 @@ public class MoteInfo extends Fragment {
         tid = v.findViewById(R.id.tid1);
         endre = v.findViewById(R.id.endre);
         button = v.findViewById(R.id.add_personer2);
-        personer_view=v.findViewById(R.id.person_view);
-        db =  new DatabaseHandler(getActivity().getApplicationContext());
-
+        personer_view = v.findViewById(R.id.person_view);
+        db = new DatabaseHandler(getActivity().getApplicationContext());
         dato.setShowSoftInputOnFocus(false);
         tid.setShowSoftInputOnFocus(false);
         calendar = Calendar.getInstance();
@@ -70,7 +66,6 @@ public class MoteInfo extends Fragment {
         final int dag = calendar.get(Calendar.DAY_OF_MONTH);
         final int hour = calendar.get(java.util.Calendar.HOUR_OF_DAY);
         final int minut = calendar.get(java.util.Calendar.MINUTE);
-
         dato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,8 +73,8 @@ public class MoteInfo extends Fragment {
                         getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
-                        month = month+1;
-                        String date = day+"/"+month+"/"+year;
+                        month = month + 1;
+                        String date = day + "/" + month + "/" + year;
                         dato.setText(date);
                     }
                 }, aar, moneder, dag);
@@ -95,11 +90,11 @@ public class MoteInfo extends Fragment {
                         getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hour, int min) {
-                        hour = hour+1;
-                        String tiden = hour+":"+min;
+                        hour = hour + 1;
+                        String tiden = hour + ":" + min;
                         tid.setText(tiden);
                     }
-                }, hour, minut,  DateFormat.is24HourFormat(getContext()));
+                }, hour, minut, DateFormat.is24HourFormat(getContext()));
                 timePickerDialog.show();
 
             }
@@ -114,25 +109,20 @@ public class MoteInfo extends Fragment {
                 String innSted = sted.getText().toString();
                 String innDato = dato.getText().toString();
                 String innTid = tid.getText().toString();
-
-                //  mote= new Mote(innNavn, innType, innDato, innSted);
-                //  db.createMote(mote);
-
-
-                intent.putExtra("navn",innNavn);
-                intent.putExtra("type",innType);
-                intent.putExtra("sted",innSted);
-                intent.putExtra("dato",innDato);
-                intent.putExtra("tid",innTid);
-                if(id!=0){
-                    intent.putExtra("id",id);;
+                //Sette tekst i elementer
+                intent.putExtra("navn", innNavn);
+                intent.putExtra("type", innType);
+                intent.putExtra("sted", innSted);
+                intent.putExtra("dato", innDato);
+                intent.putExtra("tid", innTid);
+                if (id != 0) {
+                    intent.putExtra("id", id);
+                    ;
                 }
                 startActivity(intent);
             }
         });
-
         Bundle bundle = this.getArguments();
-
         endre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,22 +130,19 @@ public class MoteInfo extends Fragment {
                 String innType1 = type.getText().toString();
                 String innSted1 = sted.getText().toString();
                 String innDato1 = dato.getText().toString();
-                String innTid =tid.getText().toString();
+                String innTid = tid.getText().toString();
                 //int moteId, String navn, String type, String dato, String sted
-                if(id !=0) {
+                if (id != 0) {
                     Mote mote = new Mote(id, innNavn1, innType1, innDato1, innSted1, innTid);
                     db.OppdatereMote(mote);
                     Intent intent1 = new Intent(getActivity().getBaseContext(), MainActivity.class);
                     startActivity(intent1);
                 }
-
-
             }
         });
 
 
-
-        if(bundle != null){
+        if (bundle != null) {
             try {
                 navn.setText(bundle.get("navn8").toString());
                 type.setText(bundle.get("type8").toString());
@@ -163,14 +150,12 @@ public class MoteInfo extends Fragment {
                 dato.setText(bundle.get("dato8").toString());
                 tid.setText(bundle.getString("tid8"));
                 id = bundle.getInt("id");//Todo legge til Tid
-            }
-            catch (Exception e ){
+            } catch (Exception e) {
                 Toast.makeText(this.getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-            if(id!=0){
+            if (id != 0) {
                 List<Person> personerUnerEtmote = db.HenteAllePersonerIMote(id);
-                for (Person person: personerUnerEtmote) {
-                    Log.d("Tag Name", "person_id"+person.getPersonId());
+                for (Person person : personerUnerEtmote) {
                     personer_view.append(person.getNavn());
                     personer_view.append(", ");
                 }
@@ -180,71 +165,61 @@ public class MoteInfo extends Fragment {
         return v;
     }
 
-    private  boolean validerNavn(){
+
+    //Validering metoder
+    private boolean validerNavn() {
         String navnet = navn.getText().toString().trim();
 
-        if(navnet.isEmpty()){
+        if (navnet.isEmpty()) {
             navn.setError("Du må fylle møte navn!");
             return false;
-        }
-        else if (navn.length() > 15){
+        } else if (navn.length() > 15) {
             navn.setError("Navnet for møtet er langt!");
             return false;
-        }
-        else if(!navnet.matches("[a-zA-Z ]+"))
-        {
+        } else if (!navnet.matches("[a-zA-Z ]+")) {
             navn.setError("Bruk bare bokstaver!");
             return false;
-        }
-        else {
+        } else {
             navn.setError(null);
             return true;
         }
     }
 
-    private  boolean validerType(){
+    private boolean validerType() {
         String typen = type.getText().toString().trim();
-        if(typen.isEmpty()){
+        if (typen.isEmpty()) {
             type.setError("Du må fylle typen!");
             return false;
-        }
-        else if (type.length() > 15){
+        } else if (type.length() > 15) {
             type.setError("Navnet på typen er langt!");
             return false;
-        }
-        else if(!typen.matches("[a-zA-Z ]+"))
-        {
+        } else if (!typen.matches("[a-zA-Z ]+")) {
             type.setError("Bruk bare bokstaver!");
             return false;
-        }
-        else {
+        } else {
             type.setError(null);
             return true;
         }
     }
 
-    private  boolean validerSted(){
+    private boolean validerSted() {
         String stedet = sted.getText().toString().trim();
-        if(stedet.isEmpty()){
+        if (stedet.isEmpty()) {
             sted.setError("Du må fylle her!");
             return false;
-        }
-        else if (sted.length() > 15){
+        } else if (sted.length() > 15) {
             sted.setError("Navnet for stedet er langt!");
             return false;
-        }
-        else if(!stedet.matches("[a-zA-Z ]+"))
-        {
+        } else if (!stedet.matches("[a-zA-Z ]+")) {
             sted.setError("Bruk bare bokstaver!");
             return false;
-        }
-        else {
+        } else {
             sted.setError(null);
             return true;
         }
     }
 
-    private  boolean validerDato() {
+    private boolean validerDato() {
         String datoen = dato.getText().toString().trim();
         if (datoen.isEmpty()) {
             dato.setError("Du må fyle dato!");
@@ -255,12 +230,12 @@ public class MoteInfo extends Fragment {
         }
     }
 
-    private  boolean validerTid() {
+    private boolean validerTid() {
         String stedet = tid.getText().toString().trim();
         if (stedet.isEmpty()) {
             tid.setError("Du må fyle tid!");
             return false;
-        } else{
+        } else {
             tid.setError(null);
             return true;
         }
