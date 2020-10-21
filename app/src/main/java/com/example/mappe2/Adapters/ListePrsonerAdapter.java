@@ -16,8 +16,7 @@ import com.example.mappe2.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapter.PersonViewHolder>
-{
+public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapter.PersonViewHolder> {
     Context context;
     private List<Person> personer;
     ArrayList<Person> checked = new ArrayList<>();
@@ -30,8 +29,6 @@ public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapte
     @NonNull
     @Override
     public PersonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.items_liste_personer, null, false);
         PersonViewHolder personViewHolder = new PersonViewHolder(view);
@@ -40,25 +37,19 @@ public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PersonViewHolder holder, int position) {
-
         Person person = personer.get(position);
         holder.navn.setText(person.getNavn());
         holder.tel.setText(person.getTelefonnr());
         holder.navn.setTag(person.getPersonId());
-
         holder.setItemClickListener(new ItemClick() {
             @Override
             public void onItemClick(View v, int position) {
-
                 CheckBox checkBox = (CheckBox) v;
-
-                if(checkBox.isChecked()){
+                if (checkBox.isChecked()) {
                     checked.add(personer.get(position));
-                }
-                else if(!checkBox.isChecked()){
+                } else if (!checkBox.isChecked()) {
                     checked.remove(personer.get(position));
                 }
-
             }
         });
 
@@ -69,11 +60,9 @@ public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapte
         return personer.size();
     }
 
-    class PersonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-        TextView navn , tel;
+    class PersonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView navn, tel;
         CheckBox checkBox;
-
         ItemClick itemClick;
 
         public PersonViewHolder(@NonNull View itemView) {
@@ -81,22 +70,20 @@ public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapte
             navn = itemView.findViewById(R.id.person2);
             tel = itemView.findViewById(R.id.telefonnr2);
             checkBox = itemView.findViewById(R.id.checkbox);
-
             checkBox.setOnClickListener(this);
-
         }
 
-        public void setItemClickListener(ItemClick rv){
+        public void setItemClickListener(ItemClick rv) {
             this.itemClick = rv;
         }
 
         @Override
         public void onClick(View view) {
-
             this.itemClick.onItemClick(view, getLayoutPosition());
         }
     }
-    public ArrayList<Person> returnChecked(){
+
+    public ArrayList<Person> returnChecked() {
         return checked;
     }
 

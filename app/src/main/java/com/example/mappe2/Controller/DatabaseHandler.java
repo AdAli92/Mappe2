@@ -13,53 +13,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-
-
     // Database Version
-    private static final int DATABASE_VERSION =3;
-
+    private static final int DATABASE_VERSION = 3;
     // Database Navn
     private static final String DATABASE_NAME = "MotePersonDb";
-
-
     // Tabller Navn
     private static final String TABLE_Person = "Person";
     private static final String TABLE_Mote = "Mote";
-    private static final String TABLE_Person_Mote= "Person_Mote";
-
-
-  //Kolennene navn til Person Tabell
-
-    private static final String Person_ID ="person_ID";
-    private static final String Navn ="navn";
-    private static final String Telefonnr ="telefonnr";
-  //  private static final String img ="img";
-
+    private static final String TABLE_Person_Mote = "Person_Mote";
+    //Kolennene navn til Person Tabell
+    private static final String Person_ID = "person_ID";
+    private static final String Navn = "navn";
+    private static final String Telefonnr = "telefonnr";
     //Kolennene navn til Mote Tabell
-
-    private static final String Mote_ID ="Mote_ID";
-    private static final String Tittel="Tittel";
-    private static final String Type="Type";
-    private static final String Dato="Dato";
-    private static final String Tid="Tid";
-    private static final String Sted="Sted";
-
-
-
+    private static final String Mote_ID = "Mote_ID";
+    private static final String Tittel = "Tittel";
+    private static final String Type = "Type";
+    private static final String Dato = "Dato";
+    private static final String Tid = "Tid";
+    private static final String Sted = "Sted";
     //Kolennene til koblingstabell
-    private static final String Person_Mote_ID ="P_M_ID";
-
-
+    private static final String Person_Mote_ID = "P_M_ID";
     // Table Create Statements
     private static final String CREATE_TABLE_Person = "CREATE TABLE "
-            + TABLE_Person  + "(" +  Person_ID + " INTEGER PRIMARY KEY," + Navn
-            + " TEXT,"+Telefonnr + " TEXT" + ")";
+            + TABLE_Person + "(" + Person_ID + " INTEGER PRIMARY KEY," + Navn
+            + " TEXT," + Telefonnr + " TEXT" + ")";
 
     // Møte table create statement
-    private static final String CREATE_TABLE_Mote= "CREATE TABLE " + TABLE_Mote
-            + "(" + Mote_ID + " INTEGER PRIMARY KEY," + Tittel + " TEXT,"+ Type + " TEXT,"+Sted + " TEXT,"
-            + Dato + " DATETIME,"+ Tid +" TEXT" + ")";
-
+    private static final String CREATE_TABLE_Mote = "CREATE TABLE " + TABLE_Mote
+            + "(" + Mote_ID + " INTEGER PRIMARY KEY," + Tittel + " TEXT," + Type + " TEXT," + Sted + " TEXT,"
+            + Dato + " DATETIME," + Tid + " TEXT" + ")";
 
     // Person_tag table create statement
     private static final String CREATE_TABLE_PERSON_MOTE = "CREATE TABLE "
@@ -67,105 +50,72 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             + Person_ID + " INTEGER," + Mote_ID + " INTEGER"
             + ")";
 
-
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         // Lage Tabeller
-
-            db.execSQL(CREATE_TABLE_Person);
-            db.execSQL(CREATE_TABLE_Mote);
-            db.execSQL(CREATE_TABLE_PERSON_MOTE);
-
+        db.execSQL(CREATE_TABLE_Person);
+        db.execSQL(CREATE_TABLE_Mote);
+        db.execSQL(CREATE_TABLE_PERSON_MOTE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // on upgrade drop older tables
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Person);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_Mote );
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_Mote);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Person_Mote);
-
         // lage nye tabeller
         onCreate(db);
     }
 
 
-//Legge Til Person
+    //Legge Til Person
     public long LeggeTilPerson(Person person, long[] moter_ider) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(Navn, person.getNavn());
-        values.put(Telefonnr , person.getTelefonnr());
-    //    values.put(img, person.getImg());
-
-
+        values.put(Telefonnr, person.getTelefonnr());
+        //    values.put(img, person.getImg());
         long Person_id = db.insert(TABLE_Person, null, values);
-
-
         for (long id : moter_ider) {
             createMotePerson(Person_id, id);
         }
-
         return Person_id;
     }
 
 
-
     public int LageMote(Mote mote, int[] personer_ider) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
-        values.put(Tid,mote.getTid());
-        values.put(Tittel,mote.getNavn());
+        values.put(Tid, mote.getTid());
+        values.put(Tittel, mote.getNavn());
         values.put(Type, mote.getType());
         values.put(Dato, mote.getDato());
-        values.put(Sted,mote.getSted());
-
-        //    values.put(img, person.getImg());
-
-
-        int Mote_id =(int) db.insert(TABLE_Mote, null, values);
-
-
+        values.put(Sted, mote.getSted());
+        int Mote_id = (int) db.insert(TABLE_Mote, null, values);
         for (int id : personer_ider) {
             createMotePerson(Mote_id, id);
         }
-
-        return Mote_id ;
+        return Mote_id;
     }
 
 
-
-
-
-
-
-
-
     //Hente Person
-    public Person getPerson(long person_id){
+    public Person getPerson(long person_id) {
         SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT * FROM "+TABLE_Person+"WHERE"+Person_ID+"="+person_id;
-
-        Cursor c = db.rawQuery(selectQuery,null);
-
-        if(c != null)
+        String selectQuery = "SELECT * FROM " + TABLE_Person + "WHERE" + Person_ID + "=" + person_id;
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c != null)
             c.moveToFirst();
-
         Person person = new Person();
         person.setPersonId(c.getInt(c.getColumnIndex(Person_ID)));
         person.setNavn(c.getString(c.getColumnIndex(Navn)));
         person.setTelefonnr(c.getString(c.getColumnIndex(Telefonnr)));
-       // person.setImg(c.getInt(c.getColumnIndex(img)));
-
         return person;
-
     }
 
 
@@ -174,11 +124,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<Person> HenteAllePersoner() {
         List<Person> personer = new ArrayList<Person>();
         String selectQuery = "SELECT  * FROM " + TABLE_Person;
-
-
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
-
 
         //går gjennom alle rader og legge til listen
         if (c.moveToFirst()) {
@@ -187,9 +134,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 person.setPersonId(c.getInt(c.getColumnIndex(Person_ID)));
                 person.setNavn(c.getString(c.getColumnIndex(Navn)));
                 person.setTelefonnr(c.getString(c.getColumnIndex(Telefonnr)));
-        //        person.setImg(c.getInt(c.getColumnIndex(img)));
-
-
                 personer.add(person);
             } while (c.moveToNext());
         }
@@ -198,47 +142,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-
     //Henter alle personer under en møte
-    public List<Person> HenteAllePersonerIMote(int  moteId) {
+    public List<Person> HenteAllePersonerIMote(int moteId) {
         List<Person> personer = new ArrayList<Person>();
-
-
-
-
-
-
-        String selectQuery = "SELECT * FROM " +TABLE_Person+" , " +TABLE_Mote+" , "+TABLE_Person_Mote+" WHERE "+TABLE_Mote+"."+
-                Mote_ID+"= '"+moteId +"'"+ " AND "+TABLE_Person+"."+Person_ID+" = "+TABLE_Person_Mote+"."+Person_ID+" AND "+TABLE_Mote+"."+Mote_ID+" ="+TABLE_Person_Mote+"."+Mote_ID;
-
-
-
-
-
-
-
-
+        String selectQuery = "SELECT * FROM " + TABLE_Person + " , " + TABLE_Mote + " , " + TABLE_Person_Mote + " WHERE " + TABLE_Mote + "." +
+                Mote_ID + "= '" + moteId + "'" + " AND " + TABLE_Person + "." + Person_ID + " = " + TABLE_Person_Mote + "." + Person_ID + " AND " + TABLE_Mote + "." + Mote_ID + " =" + TABLE_Person_Mote + "." + Mote_ID;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
-
-
         if (c.moveToFirst()) {
             do {
-
                 Person person = new Person();
                 person.setPersonId(c.getInt(c.getColumnIndex(Person_ID)));
                 person.setNavn(c.getString(c.getColumnIndex(Navn)));
                 person.setTelefonnr(c.getString(c.getColumnIndex(Telefonnr)));
-           //     person.setImg(c.getInt(c.getColumnIndex(img)));
-
-
                 personer.add(person);
             } while (c.moveToNext());
         }
 
         return personer;
     }
-
 
 
     /*
@@ -246,33 +168,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
     public int OppdaterePerson(Person person) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(Navn, person.getNavn());
         values.put(Telefonnr, person.getTelefonnr());
-     //   values.put(img, person.getImg());
         // Oppdatere raden
         return db.update(TABLE_Person, values, Person_ID + " = ?",
-                new String[] { String.valueOf(person.getPersonId()) });
+                new String[]{String.valueOf(person.getPersonId())});
     }
-
 
 
     //Slette en person
     public void SlettePerson(long person_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_Person, Person_ID + " = ?",
-                new String[] { String.valueOf(person_id) });
+                new String[]{String.valueOf(person_id)});
     }
 
     //Slette et møte
 
-    public void SletteMote(long mote_id){
+    public void SletteMote(long mote_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_Mote, Mote_ID + " = ?",
-                new String[] { String.valueOf(mote_id) });
+                new String[]{String.valueOf(mote_id)});
         db.delete(TABLE_Person_Mote, Mote_ID + " = ?",
-                new String[] { String.valueOf(mote_id) });
+                new String[]{String.valueOf(mote_id)});
 
     }
 
@@ -280,47 +199,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public long createMote(Mote mote) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
-        values.put(Tittel,mote.getNavn());
+        values.put(Tittel, mote.getNavn());
         values.put(Type, mote.getType());
         values.put(Dato, mote.getDato());
-        values.put(Sted,mote.getSted());
-
+        values.put(Sted, mote.getSted());
         // insert row
         long mote_id = db.insert(TABLE_Mote, null, values);
-
         return mote_id;
     }
 
     //Legge Til Person
     public int createPerson(Person person) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
-        values.put(Navn,person.getNavn());
-        values.put(Telefonnr,person.getTelefonnr());
-
-
+        values.put(Navn, person.getNavn());
+        values.put(Telefonnr, person.getTelefonnr());
         // insert row
-        int person_id =(int) db.insert(TABLE_Person, null, values);
-
+        int person_id = (int) db.insert(TABLE_Person, null, values);
         return person_id;
     }
 
-
-
     //Hente alle Mæter
-
-
     public List<Mote> HenteAlleMoter() {
         List<Mote> moter = new ArrayList<Mote>();
         String selectQuery = "SELECT  * FROM " + TABLE_Mote;
-
-
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
-
         // looping through all rows and adding to list
         if (c.moveToFirst()) {
             do {
@@ -331,9 +236,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 mote.setType(c.getString(c.getColumnIndex(Type)));
                 mote.setDato(c.getString(c.getColumnIndex(Dato)));
                 mote.setTid(c.getString(c.getColumnIndex(Tid)));
-
-
-
                 // legge til  moter list
                 moter.add(mote);
             } while (c.moveToNext());
@@ -343,110 +245,52 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     //Oppdatere en møte
-
     public int OppdatereMote(Mote mote) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(Tittel, mote.getNavn());
-        values.put(Type,mote.getType());
-        values.put(Dato,mote.getDato());
-        values.put(Sted,mote.getSted());
-        values.put(Tid,mote.getTid());
-
-
-
+        values.put(Type, mote.getType());
+        values.put(Dato, mote.getDato());
+        values.put(Sted, mote.getSted());
+        values.put(Tid, mote.getTid());
         // updating row
         return db.update(TABLE_Mote, values, Mote_ID + " = ?",
-                new String[] { String.valueOf(mote.getMoteId()) });
+                new String[]{String.valueOf(mote.getMoteId())});
     }
 
 
-
-
-
-
-
-
-    public long createMotePerson( long mote_id,long person_id) {
+    public long createMotePerson(long mote_id, long person_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
-       values.put(Person_ID, person_id);
+        values.put(Person_ID, person_id);
         values.put(Mote_ID, mote_id);
-
-
         long id = db.insert(TABLE_Person_Mote, null, values);
-
         return id;
     }
 
     //Slette et møte til en person
-
-    public int SletteMotetilPerson(long id,long mote_id){
+    public int SletteMotetilPerson(long id, long mote_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-
-      //  String selectQuery =
-
-        ContentValues values = new ContentValues();
-        values.put(Mote_ID,mote_id);
-
-
-        return db.update(TABLE_Person_Mote, values, Person_ID+ " = ?",
-                new String[] { String.valueOf(id) });
-    }
-
-
-    //Oppdater et møte til en person
-
-
-    public int OppdaterMoteTilPerson(long id, long mote_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(Mote_ID, mote_id);
+        return db.update(TABLE_Person_Mote, values, Person_ID + " = ?",
+                new String[]{String.valueOf(id)});
+    }
 
+    //Oppdater et møte til en person
+    public int OppdaterMoteTilPerson(long id, long mote_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Mote_ID, mote_id);
         // updating row
         return db.update(TABLE_Person, values, Person_ID + " = ?",
-                new String[] { String.valueOf(id) });
+                new String[]{String.valueOf(id)});
     }
-
-
-
 
     //Slutte Databasen
-
-    public void closeDB(){
+    public void closeDB() {
         SQLiteDatabase db = this.getReadableDatabase();
-        if(db != null && db.isOpen())
+        if (db != null && db.isOpen())
             db.close();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

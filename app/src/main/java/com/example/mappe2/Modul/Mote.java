@@ -1,10 +1,8 @@
 package com.example.mappe2.Modul;
 
 public class Mote {
-
     private int moteId;
     private String navn, type, dato, sted, tid;
-    private int img;
 
     public int getMoteId() {
         return moteId;
@@ -14,7 +12,7 @@ public class Mote {
         this.moteId = moteId;
     }
 
-    public Mote(String navn, String type, String sted,String dato , String tid) {
+    public Mote(String navn, String type, String sted, String dato, String tid) {
         this.navn = navn;
         this.type = type;
         this.dato = dato;
@@ -31,34 +29,8 @@ public class Mote {
         this.sted = sted;
         this.tid = tid;
     }
-/*    public Mote(String navn, String type, String dato, String sted, int img) {
-        this.navn = navn;
-        this.type = type;
-        this.dato = dato;
-        this.sted = sted;
-        this.img = img;
-        this.tid = tid;
-    }
 
-    public Mote(String navn, String type, String dato, String sted) {
-        this.navn = navn;
-        this.type = type;
-        this.dato = dato;
-        this.sted = sted;
-        this.tid = tid;
-
-    }
-
-    public Mote( String navn, String type, String dato, String sted,String tid) {
-        this.moteId = moteId;
-        this.navn = navn;
-        this.type = type;
-        this.dato = dato;
-        this.sted = sted;
-        this.tid = tid;
-    }*/
-
-    public Mote(){
+    public Mote() {
 
     }
 
@@ -102,11 +74,4 @@ public class Mote {
         this.tid = tid;
     }
 
-    public int getImg() {
-        return img;
-    }
-
-    public void setImg(int img) {
-        this.img = img;
-    }
 }
