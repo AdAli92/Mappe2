@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.mappe2.Activity.MainActivity;
 import com.example.mappe2.Controller.DatabaseHandler;
@@ -41,9 +42,14 @@ public class PersonInfo extends Fragment {
         Bundle bundle = this.getArguments();
 
         if(bundle != null){
-            navn.setText(bundle.getString("navn2"));
-            telfonnr.setText(bundle.getString("telefonnr2"));
-            id=bundle.getInt("id");
+            try {
+                navn.setText(bundle.getString("navn2"));
+                telfonnr.setText(bundle.getString("telefonnr2"));
+                id = bundle.getInt("id");
+            }
+            catch (Exception e){
+                Toast.makeText(this.getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
 
         }
         lagre.setOnClickListener(new View.OnClickListener() {

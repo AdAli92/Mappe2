@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.mappe2.Activity.MainActivity;
 import com.example.mappe2.Controller.DatabaseHandler;
@@ -43,9 +44,14 @@ public class PersonActivity extends AppCompatActivity {
 
         if(bundle != null){
             forEndre = true;
-            navn.setText(bundle.getString("navn1"));
-            telfonnr.setText(bundle.getString("telefonnr1"));
-            id=bundle.getInt("id");
+            try {
+                navn.setText(bundle.getString("navn1"));
+                telfonnr.setText(bundle.getString("telefonnr1"));
+                id = bundle.getInt("id");
+            }
+            catch (Exception e){
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
 
         }
         else{

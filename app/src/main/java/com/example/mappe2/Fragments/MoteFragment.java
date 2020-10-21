@@ -39,7 +39,7 @@ public class MoteFragment extends Fragment implements RecyclerViewInterface {
     Dialog dialog;
     DatabaseHandler db;
     Mote mote;
-    List<Person> personerUnderMote;
+
 
     public MoteFragment() {
     }
