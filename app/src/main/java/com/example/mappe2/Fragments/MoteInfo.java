@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.mappe2.Activity.ListActivity;
 import com.example.mappe2.Activity.MainActivity;
@@ -155,12 +156,17 @@ public class MoteInfo extends Fragment {
 
 
         if(bundle != null){
-            navn.setText(bundle.get("navn8").toString());
-            type.setText(bundle.get("type8").toString());
-            sted.setText(bundle.get("sted8").toString());
-            dato.setText(bundle.get("dato8").toString());
-            tid.setText(bundle.getString("tid8"));
-            id=bundle.getInt("id");//Todo legge til Tid
+            try {
+                navn.setText(bundle.get("navn8").toString());
+                type.setText(bundle.get("type8").toString());
+                sted.setText(bundle.get("sted8").toString());
+                dato.setText(bundle.get("dato8").toString());
+                tid.setText(bundle.getString("tid8"));
+                id = bundle.getInt("id");//Todo legge til Tid
+            }
+            catch (Exception e ){
+                Toast.makeText(this.getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             if(id!=0){
                 List<Person> personerUnerEtmote = db.HenteAllePersonerIMote(id);
                 for (Person person: personerUnerEtmote) {

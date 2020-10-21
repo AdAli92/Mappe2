@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.mappe2.Controller.DatabaseHandler;
 import com.example.mappe2.Modul.Mote;
@@ -66,13 +67,18 @@ public class MoteActivity extends AppCompatActivity {
         extras = getIntent().getExtras();
         if(extras != null){
             forEndre = true;
+            try{
+                navn.setText(extras.getString("navn"));
+                type.setText(extras.getString("type"));
+                sted.setText(extras.getString("sted"));
+                dato.setText(extras.getString("dato"));
+                tid.setText(extras.getString("tid"));
+                id=extras.getInt("id");
+            }
+            catch (Exception e){
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
 
-            navn.setText(extras.getString("navn"));
-            type.setText(extras.getString("type"));
-            sted.setText(extras.getString("sted"));
-            dato.setText(extras.getString("dato"));
-            tid.setText(extras.getString("tid"));
-            id=extras.getInt("id");
             List<Person> personerUnerEtmote = db.HenteAllePersonerIMote(id);
             for (Person person: personerUnerEtmote) {
                 Log.d("Tag Name", "person_id"+person.getPersonId());
