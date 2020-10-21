@@ -59,6 +59,7 @@
                     app:tabTextColor="#064467"
                     app:tabSelectedTextColor="#000000"
                     app:tabIndicatorColor="@color/colorPrimaryDark"
+                    app:tabTextAppearance="@style/TabLayoutTextSize"
                     app:tabMode="fixed"
                     app:tabMaxWidth="0dp"
                     android:background="#8fa9ac"

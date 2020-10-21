@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -12,9 +13,11 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.mappe2.Adapters.MoteRvAdapter;
 import com.example.mappe2.Adapters.ViewPagerAdapter;
@@ -92,16 +95,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            fab.setEnabled(false);
-            fab.setVisibility(View.GONE);
+            CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
+            lp.gravity = Gravity.BOTTOM;
+            fab.setLayoutParams(lp);
         }
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    fab.setEnabled(false);
-                    fab.setVisibility(View.GONE);
+
                     if (tabLayout.getSelectedTabPosition() == 0) {
 
                         getSupportFragmentManager().beginTransaction().replace(R.id.frag, new MoteInfo()).addToBackStack(null).commit();
