@@ -2,10 +2,10 @@
     <string name="app_name">JoinMeet</string>
     <!-- Preference Titles -->
     <string name="melding_tittle">Melding</string>
-    <string name="sms_tittle">SMS</string>
+    <string name="sms_tittle">SMS tillatelse</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
+    <string name="signature_title">Din melding</string>
     <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->

@@ -210,7 +210,7 @@ public class MoteActivity extends AppCompatActivity {
         return false;
     }
 
-    //Validering metoder
+   //Validering metoder
     private boolean validerNavn() {
         String navnet = navn.getText().toString().trim();
 
@@ -285,5 +285,6 @@ public class MoteActivity extends AppCompatActivity {
             return true;
         }
     }
+
 
 }
