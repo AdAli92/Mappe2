@@ -103,6 +103,9 @@ public class MoteInfo extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!validerNavn() | !validerType() | !validerSted() | !validerDato() | !validerTid()) {
+                    return;
+                }
                 Intent intent = new Intent(getContext(), ListActivity.class);
                 String innNavn = navn.getText().toString();
                 String innType = type.getText().toString();
@@ -122,10 +125,14 @@ public class MoteInfo extends Fragment {
                 startActivity(intent);
             }
         });
+
         Bundle bundle = this.getArguments();
         endre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!validerNavn() | !validerType() | !validerSted() | !validerDato() | !validerTid()) {
+                    return;
+                }
                 String innNavn1 = navn.getText().toString();
                 String innType1 = type.getText().toString();
                 String innSted1 = sted.getText().toString();

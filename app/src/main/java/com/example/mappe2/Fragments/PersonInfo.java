@@ -52,6 +52,9 @@ public class PersonInfo extends Fragment {
         lagre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!validerNavn() | !validerTelefonnr()) {
+                    return;
+                }
                 String innNavn = navn.getText().toString();
                 String innTel = telfonnr.getText().toString();
                 Person person = new Person(innNavn, innTel);
@@ -65,6 +68,9 @@ public class PersonInfo extends Fragment {
         endre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!validerNavn() | !validerTelefonnr()) {
+                    return ;
+                }
                 String innNavn1 = navn.getText().toString();
                 String innTel = telfonnr.getText().toString();
                 Person person = new Person(id, innNavn1, innTel);
@@ -75,5 +81,37 @@ public class PersonInfo extends Fragment {
             }
         });
         return v;
+    }
+
+    //Validering metoder
+    private boolean validerNavn() {
+        String navnet = navn.getText().toString().trim();
+        if (navnet.isEmpty()) {
+            navn.setError("Du må fylle person navn!");
+            return false;
+        } else if (navn.length() > 15) {
+            navn.setError("Navnet for personen er langt!");
+            return false;
+        } else if (!navnet.matches("[a-zA-Z ]+")) {
+            navn.setError("Bruk bare bokstaver!");
+            return false;
+        } else {
+            navn.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validerTelefonnr() {
+        String tel = telfonnr.getText().toString().trim();
+        if (tel.isEmpty()) {
+            telfonnr.setError("Du må skrive telefonnummer!");
+            return false;
+        } else if (telfonnr.length() != 8) {
+            telfonnr.setError("Telefonnummer må være på 8 tall");
+            return false;
+        } else {
+            telfonnr.setError(null);
+            return true;
+        }
     }
 }
