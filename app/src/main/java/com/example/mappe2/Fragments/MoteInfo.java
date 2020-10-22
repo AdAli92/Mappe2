@@ -168,6 +168,13 @@ public class MoteInfo extends Fragment {
                 }
             }
         }
+        else {
+            navn.setFocusable(false);
+            type.setFocusable(false);
+            sted.setFocusable(false);
+            dato.setFocusable(false);
+            tid.setFocusable(false);
+        }
 
         return v;
     }
