@@ -1,17 +1,10 @@
 <resources>
     <string name="app_name">JoinMeet</string>
-    <!-- Preference Titles -->
     <string name="melding_tittle">Melding</string>
     <string name="sms_tittle">SMS tillatelse</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Din melding</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
     <string name="sms_boks">Slå på SMS</string>
-    <string name="attachment_title">Download incoming attachments</string>
-
+    <string name="notification">Notifikasjon</string>
+    <string name="velgTid">Velg tid:</string>
 
 
     <string name="møtenavn">Møte tittel</string>
@@ -20,12 +13,14 @@
     <string name="Dato">Dato: </string>
     <string name="Tid">Tid: </string>
     <string name="Add_Personer">Legg til personer</string>
-    <string name="PersonerImøtet">Personer</string>
+    <string name="PersonerImøtet">Personer:</string>
     <string name="slettBekrftelse">Er du sikker at du vil slette den?</string>
     <string name="Slett">Slett</string>
     <string name="Avbryt">Avbryt</string>
     <string name="Navn">Navn</string>
     <string name="Tel">Tel</string>
+    <string name="telefon">Tel: </string>
+    <string name="klikk">Klikk her</string>
 
     <!-- Feil melding -->
     <string name="fylleNavn">Du må fylle møte navn!</string>
@@ -37,8 +32,6 @@
     <string name="forlangtmøtenavn">"Navnet for møtet er  for langt!"</string>
     <string name="forlangtType">"Navnet på type er  for langt!"</string>
     <string name="forlangtStedet">"Navnet for stedet er langt!"</string>
-
-
 
 
 

@@ -37,7 +37,7 @@
         <Button
             android:id="@+id/dialog_ikke"
             android:textAlignment="textEnd"
-            android:drawableRight="@drawable/mote_rom"
+            android:drawableRight="@drawable/avbryt"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"

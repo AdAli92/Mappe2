@@ -41,7 +41,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.2"
                     android:gravity="center"
                     android:orientation="horizontal">
                     <TextView
@@ -49,6 +49,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="20dp"
+                        android:textColor="@color/colorPrimary"
                         android:textStyle="bold"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         android:id="@+id/person2"
@@ -64,8 +65,17 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/telefon"
+                        android:paddingRight="2dp"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                    <TextView
                         android:id="@+id/telefonnr2"
                         android:layout_width="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>

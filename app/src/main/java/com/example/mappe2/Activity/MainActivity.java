@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -14,13 +13,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-
 import com.example.mappe2.Adapters.ViewPagerAdapter;
+import com.example.mappe2.Fragments.BlankFragment;
 import com.example.mappe2.Fragments.MoteFragment;
 import com.example.mappe2.Fragments.MoteInfo;
 import com.example.mappe2.Fragments.PersonFragment;
 import com.example.mappe2.Fragments.PersonInfo;
-import com.example.mappe2.Fragments.PrefranserFragment;
+import com.example.mappe2.Fragments.SettingFragment;
 import com.example.mappe2.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private MoteFragment moteFragment;
     private PersonFragment personFragment;
-    private PrefranserFragment prefranserFragment;
+    private SettingFragment settingFragment;
     private FloatingActionButton fab;
 
     @Override
@@ -48,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
         //Fragmenter som skal vi sitte i viewpager
         moteFragment = new MoteFragment();
         personFragment = new PersonFragment();
-        prefranserFragment = new PrefranserFragment();
+        settingFragment = new SettingFragment();
         //Lage Viewpager som skal ha alle fragmenter.
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(moteFragment, "Møter");
         viewPagerAdapter.addFragment(personFragment, "Personer");
-        viewPagerAdapter.addFragment(prefranserFragment, "Prefranser");
+        viewPagerAdapter.addFragment(settingFragment, "Prefranser");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -84,9 +83,18 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     if (tabLayout.getSelectedTabPosition() == 0) {
+                        fab.setEnabled(true);
+                        fab.setVisibility(View.VISIBLE);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frag, new MoteInfo()).addToBackStack(null).commit();
-                    } else {
+                    }
+                    if (tabLayout.getSelectedTabPosition() == 1) {
+                        fab.setEnabled(true);
+                        fab.setVisibility(View.VISIBLE);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frag, new PersonInfo()).addToBackStack(null).commit();
+                    }
+                    if (tabLayout.getSelectedTabPosition() == 2) {
+                        fab.setVisibility(View.GONE);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frag, new BlankFragment()).addToBackStack(null).commit();
                     }
                 }
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
