@@ -9,8 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mappe2.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class BlankFragment extends Fragment {
+
+    private TextInputEditText melding;
+    View v ;
 
     public BlankFragment() {
     }
@@ -18,6 +22,12 @@ public class BlankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_blank, container, false);
+        v = inflater.inflate(R.layout.fragment_blank, container, false);
+
+        melding = v.findViewById(R.id.melding);
+
+
+
+        return v;
     }
 }

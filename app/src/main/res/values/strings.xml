@@ -6,13 +6,13 @@
     <string name="notification">Notifikasjon</string>
     <string name="velgTid">Velg tid:</string>
 
-
     <string name="møtenavn">Møte tittel</string>
     <string name="Type">Type: </string>
     <string name="Sted">Sted: </string>
     <string name="Dato">Dato: </string>
     <string name="Tid">Tid: </string>
     <string name="Add_Personer">Legg til personer</string>
+    <string name="Add_Person">Legg til personen</string>
     <string name="PersonerImøtet">Personer:</string>
     <string name="slettBekrftelse">Er du sikker at du vil slette den?</string>
     <string name="Slett">Slett</string>
@@ -21,6 +21,7 @@
     <string name="Tel">Tel</string>
     <string name="telefon">Tel: </string>
     <string name="klikk">Klikk her</string>
+    <string name="Lagre">Lagre</string>
 
     <!-- Feil melding -->
     <string name="fylleNavn">Du må fylle møte navn!</string>

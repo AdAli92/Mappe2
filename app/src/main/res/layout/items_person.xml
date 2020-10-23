@@ -23,13 +23,17 @@
                 android:layout_weight="1.5"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/imageView1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/personlist"
+                    app:civ_border_width="2dp"
                     android:scaleType="centerCrop"
-                    android:padding="15dp"
-                    android:layout_height="wrap_content"
-                    />
+                    app:civ_border_color="#276281"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"/>
             </LinearLayout>
 
             <LinearLayout
@@ -56,7 +60,13 @@
                         >
                     </TextView>
                 </LinearLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_weight="0.03"
+                    android:background="@color/colorPrimary" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

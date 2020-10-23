@@ -174,6 +174,8 @@ public class MoteInfo extends Fragment {
             sted.setFocusable(false);
             dato.setFocusable(false);
             tid.setFocusable(false);
+            dato.setEnabled(false);
+            tid.setEnabled(false);
         }
 
         return v;
