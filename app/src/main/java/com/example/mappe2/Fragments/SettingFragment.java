@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -40,13 +41,14 @@ public class SettingFragment extends Fragment {
 
     private SwitchMaterial slo_sms;
     private TextInputEditText noti, melding;
-    boolean sjekk;
     View v ;
     SharedPreferences.Editor endre;
     String smsInnhold;
     boolean aktivert;
     private Calendar calendar;
     SharedPreferences sp;
+    String tid ;
+    boolean sjekk ;
 
     public SettingFragment(){
     }
@@ -71,13 +73,18 @@ public class SettingFragment extends Fragment {
         calendar = Calendar.getInstance();
         smsInnhold=sp.getString("melding","Husk! vi har et møte. Takk");
         Log.d(TAG, "onCreate: "+smsInnhold);
-        aktivert =sp.getBoolean("aktivert",false);
 
+        aktivert=smsPermission();
+
+
+
+        tid=sp.getString("tid","10:00");
 
             melding.setText(smsInnhold);
 
 
             slo_sms.setChecked(aktivert);
+            noti.setText(tid);
 
 
 
@@ -91,14 +98,14 @@ public class SettingFragment extends Fragment {
                         getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hour, int min) {
-                        hour = hour + 1;
-                        String tiden = hour + ":" + min;
-                        noti.setText(tiden);
+                        tid = hour + ":" + min;
+                        noti.setText(tid);
                     }
                 }, hour, minut, DateFormat.is24HourFormat(getContext()));
                 timePickerDialog.show();
-
+                restartReminderService();
             }
+
         });
 
 
@@ -107,11 +114,15 @@ public class SettingFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b==true){
+                    if (!smsPermission()) {
+                        requestSmsPermission();
+                        slo_sms.setChecked(aktivert);
+                        return;
+                    }
 
+                    aktivert =sp.getBoolean("aktivert",false);
 
-
-
-
+                    slo_sms.setChecked(aktivert);
 
                 }else{
                     Toast.makeText(getActivity(), "Du har false", Toast.LENGTH_SHORT).show();
@@ -124,6 +135,11 @@ public class SettingFragment extends Fragment {
 
         return v;
     }
+    private void restartReminderService() {
+        Intent intent = new Intent();
+        intent.setAction("com.example.mappe2.service.NotificationBrodcastReceiver");//try to endre
+        getActivity().sendBroadcast(intent);
+    }
 
     @Override
     public void onDestroy() {
@@ -134,7 +150,28 @@ public class SettingFragment extends Fragment {
         endre.apply();
         endre.putBoolean("aktivert",aktivert);
         endre.apply();
+        endre.putString("tid",tid);
+        endre.apply();;
 
+    }
+    private void requestSmsPermission() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle("SMS Permission Needed")
+                .setMessage("We need your permission to send SMS in order to turn this on")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(SettingFragment.this.getActivity(), new String[]{Manifest.permission.SEND_SMS}, 1);
+                    }
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create()
+                .show();
     }
 
     @Override
@@ -146,7 +183,16 @@ public class SettingFragment extends Fragment {
         Log.d(TAG, "onDestroy: "+smsInnhold);
         endre.putString("melding",smsInnhold);
         endre.apply();
-        endre.putBoolean("aktivert",aktivert);
-        endre.apply();
+     /*   endre.putBoolean("aktivert",aktivert);
+        endre.apply();*/
+
+        endre.putString("tid",tid);
+        endre.apply();;
+        Log.d(TAG, "onDestroy: tid "+tid);
+
+    }
+
+    private boolean smsPermission() {
+        return !ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.SEND_SMS);
     }
 }
