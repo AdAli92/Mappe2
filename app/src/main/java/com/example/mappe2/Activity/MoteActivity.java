@@ -73,6 +73,7 @@ public class MoteActivity extends AppCompatActivity {
                 type.setText(extras.getString("type"));
                 sted.setText(extras.getString("sted"));
                 dato.setText(extras.getString("dato"));
+
                 tid.setText(extras.getString("tid"));
                 id = extras.getInt("id");
             } catch (Exception e) {
@@ -105,7 +106,7 @@ public class MoteActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month = month + 1;
-                        String date = day + "/" + month + "/" + year;
+                        String date = day + "-" + month + "-" + year;
                         dato.setText(date);
                     }
                 }, aar, moneder, dag);
@@ -120,7 +121,7 @@ public class MoteActivity extends AppCompatActivity {
                         MoteActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hour, int min) {
-                        hour = hour + 1;
+
                         String tiden = hour + ":" + min;
                         tid.setText(tiden);
                     }
@@ -140,6 +141,7 @@ public class MoteActivity extends AppCompatActivity {
                 String innType = type.getText().toString();
                 String innSted = sted.getText().toString();
                 String innDato = dato.getText().toString();
+
                 String innTid = tid.getText().toString();
 
                 Intent intent = new Intent(getBaseContext(), ListActivity.class);

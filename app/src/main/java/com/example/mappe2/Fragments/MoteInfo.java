@@ -74,7 +74,7 @@ public class MoteInfo extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month = month + 1;
-                        String date = day + "/" + month + "/" + year;
+                        String date = day + "-" + month + "-" + year;
                         dato.setText(date);
                     }
                 }, aar, moneder, dag);
@@ -90,7 +90,6 @@ public class MoteInfo extends Fragment {
                         getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hour, int min) {
-                        hour = hour + 1;
                         String tiden = hour + ":" + min;
                         tid.setText(tiden);
                     }

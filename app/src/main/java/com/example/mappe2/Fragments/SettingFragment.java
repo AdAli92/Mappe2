@@ -49,6 +49,7 @@ public class SettingFragment extends Fragment {
     SharedPreferences sp;
     String tid ;
     boolean sjekk ;
+    boolean valgt;
 
     public SettingFragment(){
     }
@@ -90,6 +91,7 @@ public class SettingFragment extends Fragment {
 
         final int hour = calendar.get(java.util.Calendar.HOUR_OF_DAY);
         final int minut = calendar.get(java.util.Calendar.MINUTE);
+       valgt = false ;
 
         noti.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,15 +100,22 @@ public class SettingFragment extends Fragment {
                         getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hour, int min) {
-                        tid = hour + ":" + min;
-                        noti.setText(tid);
+                     String tiden = hour + ":" + min;
+                        noti.setText(tiden);
+                        endre.putString("tid",tiden);
+                        endre.apply();
                     }
                 }, hour, minut, DateFormat.is24HourFormat(getContext()));
                 timePickerDialog.show();
+
                 restartReminderService();
+
+
             }
 
         });
+
+
 
 
 
