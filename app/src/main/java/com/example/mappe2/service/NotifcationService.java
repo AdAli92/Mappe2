@@ -1,4 +1,4 @@
-package service;
+package com.example.mappe2.service;
 
 import android.app.Service;
 import android.content.Intent;
