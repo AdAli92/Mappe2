@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
@@ -85,11 +86,12 @@ public class MainActivity extends AppCompatActivity {
                     if (tabLayout.getSelectedTabPosition() == 0) {
                         fab.setEnabled(true);
                         fab.setVisibility(View.VISIBLE);
+                        fab.setImageResource(R.drawable.add_fore);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frag, new MoteInfo()).addToBackStack(null).commit();
                     }
                     if (tabLayout.getSelectedTabPosition() == 1) {
-                        fab.setEnabled(true);
-                        fab.setVisibility(View.VISIBLE);
+                        fab.setEnabled(false);
+                        fab.setVisibility(View.GONE);
                         getSupportFragmentManager().beginTransaction().replace(R.id.frag, new PersonInfo()).addToBackStack(null).commit();
                     }
                     if (tabLayout.getSelectedTabPosition() == 2) {
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     if (tabLayout.getSelectedTabPosition() == 0) {
                         fab.setEnabled(true);
                         fab.setVisibility(View.VISIBLE);
-                        fab.setImageResource(R.drawable.addmote);
+                        fab.setImageResource(R.drawable.add_fore);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

@@ -49,6 +49,9 @@ public class PersonInfo extends Fragment {
             }
 
         }
+        else {
+            endre.setVisibility(View.INVISIBLE);
+        }
         lagre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

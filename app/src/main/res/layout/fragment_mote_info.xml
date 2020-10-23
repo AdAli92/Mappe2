@@ -146,26 +146,22 @@
             android:id="@+id/add_personer2"
             android:text="@string/Add_Personer"
             android:textSize="10dp"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_marginLeft="5dp"
             android:layout_height="match_parent"
+            app:elevation="5dp"
              >
         </com.google.android.material.button.MaterialButton>
 
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
-            app:icon="@drawable/ic_endre"
+            android:text="@string/Lagre"
+            android:textSize="10dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            app:strokeWidth="2dp"
             android:id="@+id/endre"
-            android:paddingLeft="30dp"
-            app:strokeColor="@color/colorPrimary"
             app:elevation="5dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-
             >
 
         </com.google.android.material.button.MaterialButton>

@@ -55,7 +55,7 @@
         android:src="@drawable/meeting"
         android:padding="10dp"
         app:civ_border_width="2dp"
-        app:civ_border_color="#276281"
+        app:civ_border_color="@color/colorPrimaryDark"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"/>
     
