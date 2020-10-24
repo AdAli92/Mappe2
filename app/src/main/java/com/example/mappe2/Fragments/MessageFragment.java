@@ -1,8 +1,10 @@
 package com.example.mappe2.Fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,8 @@ public class MessageFragment extends Fragment {
 
     private TextInputEditText melding;
     View v ;
+    SharedPreferences sp;
+    String  smsInnhold;
 
     public MessageFragment() {
     }
@@ -24,7 +28,11 @@ public class MessageFragment extends Fragment {
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_message, container, false);
 
-        melding = v.findViewById(R.id.melding);
+        melding = v.findViewById(R.id.melding1);
+        sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        smsInnhold = sp.getString("melding", "Husk! vi har et møte. Takk");
+        melding.setText(smsInnhold);
 
 
 
