@@ -54,7 +54,9 @@ public class NotifcationService extends Service {
 
       for (Mote mote : moter) {
             if (mote.getDato().equals(currentDate)) {
+                Log.d("Vi er inni løkke",mote.getDato());
                 buildNotification(pIntent, notificationManager);
+                Log.d("Vi er etter notifcation",mote.getDato());
                 if (sjekk) {
                     List<Person> personList = db.HenteAllePersonerIMote(mote.getMoteId());
                     if (personList != null) {
