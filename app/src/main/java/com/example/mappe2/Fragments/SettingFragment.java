@@ -51,6 +51,7 @@ public class SettingFragment extends Fragment {
     private Calendar calendar;
     SharedPreferences sp;
     String tid;
+    private   static int send;
 
 
     public SettingFragment() {
@@ -64,6 +65,9 @@ public class SettingFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_setting, container, false);
         sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         endre = sp.edit();
+      send = (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.SEND_SMS));
+
+
 
 
         slo_sms = v.findViewById(R.id.slo_SMS);
@@ -75,10 +79,13 @@ public class SettingFragment extends Fragment {
         smsInnhold = sp.getString("melding", "Husk! vi har et møte. Takk");
         Log.d(TAG, "onCreate: " + smsInnhold);
 
-        aktivert = smsPermission();
+       // aktivert = smsPermission();
+
+        aktivert=sp.getBoolean("aktivert",false );
 
 
-        tid = sp.getString("tid", "10:00");
+
+        tid = sp.getString("tid", "23:59");
 
         melding.setText(smsInnhold);
 
@@ -87,6 +94,9 @@ public class SettingFragment extends Fragment {
         noti.setText(tid);
 
 
+        if(aktivert==false){
+            send= -1;
+        }
         final int hour = calendar.get(java.util.Calendar.HOUR_OF_DAY);
         final int minut = calendar.get(java.util.Calendar.MINUTE);
 
@@ -118,19 +128,22 @@ public class SettingFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b == true) {
-                    if (!smsPermission()) {
-                        requestSmsPermission();
-                        slo_sms.setChecked(aktivert);
-                        return;
-                    }
+                    Log.d("inside onCheckedChanged","inside onCheckedChanged når den er true");
+              //      ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
+                //   if (!(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.SEND_SMS))) {
+                        if (send == -1) {
+                            requestSmsPermission();
 
-                    aktivert = sp.getBoolean("aktivert", false);
+                            return;
+                        }
 
-                    slo_sms.setChecked(aktivert);
 
-                } else {
-                    Toast.makeText(getActivity(), "Du har false", Toast.LENGTH_SHORT).show();
+
                 }
+                else if (b==false){
+                    send = -1;
+                }
+
             }
         });
 
@@ -156,7 +169,7 @@ public class SettingFragment extends Fragment {
         endre.apply();
         endre.putBoolean("aktivert", aktivert);
         endre.apply();
-        Log.d(TAG, "onDestroy: " + sp.getString("tid", "10:00"));
+        Log.d(TAG, "onDestroy: " + sp.getString("tid", "23:59"));
         restartReminderService();
 
     }
@@ -168,13 +181,19 @@ public class SettingFragment extends Fragment {
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ActivityCompat.requestPermissions(SettingFragment.this.getActivity(), new String[]{Manifest.permission.SEND_SMS}, 1);
+                      ActivityCompat.requestPermissions(SettingFragment.this.getActivity(), new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE}, 1);
+                        aktivert=true;
                     }
                 })
+
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(SettingFragment.this.getActivity(), new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE}, 0);
+                        aktivert=false;
+                        send=-1;
                         dialog.dismiss();
+
                     }
                 })
                 .create()
@@ -190,12 +209,12 @@ public class SettingFragment extends Fragment {
         Log.d(TAG, "onDestroy: " + smsInnhold);
         endre.putString("melding", smsInnhold);
         endre.apply();
-        Log.d(TAG, "onpause: " + sp.getString("tid", "10:00"));
+        endre.putBoolean("aktivert", aktivert);
+        endre.apply();
+
         restartReminderService();
 
     }
 
-    private boolean smsPermission() {
-        return !ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.SEND_SMS);
-    }
+
 }

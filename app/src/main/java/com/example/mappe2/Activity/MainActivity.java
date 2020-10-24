@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private SettingFragment settingFragment;
     private FloatingActionButton fab;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,12 +134,13 @@ public class MainActivity extends AppCompatActivity {
                             fab.setVisibility(View.GONE);
                         }
                     }
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
+
             }
+
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
@@ -151,5 +153,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
     }
+    public void Sendsms(View view){
+
+
+}
 }
