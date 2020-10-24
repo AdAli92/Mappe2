@@ -90,6 +90,7 @@ public class NotifcationService extends Service {
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phonenumber, null, message, null, null);
+            Toast.makeText(getApplicationContext(), " fungerer ", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Ikke fungerer ", Toast.LENGTH_SHORT).show();
         }

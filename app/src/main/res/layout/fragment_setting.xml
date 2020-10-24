@@ -99,6 +99,19 @@
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="140dp"
+                android:layout_height="match_parent"
+                app:boxStrokeWidth="3dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                android:focusableInTouchMode="false"
+                android:paddingBottom="7dp"
+                android:paddingTop="2dp"
+                android:layout_marginLeft="10dp"
+                app:errorEnabled="true"
+                app:startIconTint="@color/colorPrimary"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
