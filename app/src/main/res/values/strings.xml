@@ -33,7 +33,7 @@
     <string name="forlangtmøtenavn">"Navnet for møtet er  for langt!"</string>
     <string name="forlangtType">"Navnet på type er  for langt!"</string>
     <string name="forlangtStedet">"Navnet for stedet er langt!"</string>
-
+    <string name="hello_blank_fragment">Klikk på en møte for Edit eller add personer til møtet</string>
 
 
 </resources>

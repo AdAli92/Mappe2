@@ -13,13 +13,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
+
 import com.example.mappe2.Adapters.ViewPagerAdapter;
-import com.example.mappe2.Fragments.BlankFragment;
+import com.example.mappe2.Fragments.MessageFragment;
 import com.example.mappe2.Fragments.MoteFragment;
 import com.example.mappe2.Fragments.MoteInfo;
 import com.example.mappe2.Fragments.PersonFragment;
 import com.example.mappe2.Fragments.PersonInfo;
 import com.example.mappe2.Fragments.SettingFragment;
+import com.example.mappe2.Fragments.TekstFragment;
 import com.example.mappe2.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         //Lage Viewpager som skal ha alle fragmenter.
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(moteFragment, "Møter");
-        viewPagerAdapter.addFragment(personFragment, "Personer");
+        viewPagerAdapter.addFragment(personFragment, "Kontakter");
         viewPagerAdapter.addFragment(settingFragment, "Prefranser");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -81,54 +84,60 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    if (tabLayout.getSelectedTabPosition() == 0) {
-                        fab.setEnabled(true);
-                        fab.setVisibility(View.VISIBLE);
-                        fab.setImageResource(R.drawable.add_fore);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frag, new MoteInfo()).addToBackStack(null).commit();
+                try {
+                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        if (tabLayout.getSelectedTabPosition() == 0) {
+                            fab.setEnabled(true);
+                            fab.setVisibility(View.VISIBLE);
+                            fab.setImageResource(R.drawable.add_fore);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.frag, new MoteInfo()).addToBackStack(null).commit();
+                        }
+                        if (tabLayout.getSelectedTabPosition() == 1) {
+                            fab.setEnabled(false);
+                            fab.setVisibility(View.GONE);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.frag, new PersonInfo()).addToBackStack(null).commit();
+                        }
+                        if (tabLayout.getSelectedTabPosition() == 2) {
+                            fab.setVisibility(View.GONE);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.frag, new MessageFragment()).addToBackStack(null).commit();
+                        }
                     }
-                    if (tabLayout.getSelectedTabPosition() == 1) {
-                        fab.setEnabled(false);
-                        fab.setVisibility(View.GONE);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frag, new PersonInfo()).addToBackStack(null).commit();
-                    }
-                    if (tabLayout.getSelectedTabPosition() == 2) {
-                        fab.setVisibility(View.GONE);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frag, new BlankFragment()).addToBackStack(null).commit();
-                    }
-                }
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 
-                    if (tabLayout.getSelectedTabPosition() == 0) {
-                        fab.setEnabled(true);
-                        fab.setVisibility(View.VISIBLE);
-                        fab.setImageResource(R.drawable.add_fore);
-                        fab.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(getBaseContext(), MoteActivity.class);
-                                startActivity(intent);
-                            }
-                        });
-                    }
-                    if (tabLayout.getSelectedTabPosition() == 1) {
-                        fab.setEnabled(true);
-                        fab.setVisibility(View.VISIBLE);
-                        fab.setImageResource(R.drawable.addperson);
-                        fab.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(getBaseContext(), PersonActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        });
-                    }
-                    if (tabLayout.getSelectedTabPosition() == 2) {
-                        fab.setVisibility(View.GONE);
+                        if (tabLayout.getSelectedTabPosition() == 0) {
+                            fab.setEnabled(true);
+                            fab.setVisibility(View.VISIBLE);
+                            fab.setImageResource(R.drawable.add_fore);
+                            fab.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getBaseContext(), MoteActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                        if (tabLayout.getSelectedTabPosition() == 1) {
+                            fab.setEnabled(true);
+                            fab.setVisibility(View.VISIBLE);
+                            fab.setImageResource(R.drawable.addperson);
+                            fab.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getBaseContext(), PersonActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                        }
+                        if (tabLayout.getSelectedTabPosition() == 2) {
+                            fab.setVisibility(View.GONE);
+                        }
                     }
                 }
+                catch (Exception e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override

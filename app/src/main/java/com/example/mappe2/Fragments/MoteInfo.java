@@ -166,15 +166,8 @@ public class MoteInfo extends Fragment {
                     personer_view.append(", ");
                 }
             }
-        }
-        else {
-            navn.setFocusable(false);
-            type.setFocusable(false);
-            sted.setFocusable(false);
-            dato.setFocusable(false);
-            tid.setFocusable(false);
-            dato.setEnabled(false);
-            tid.setEnabled(false);
+        }else {
+            getFragmentManager().beginTransaction().replace(R.id.frag, new TekstFragment()).addToBackStack(null).commit();
         }
 
         return v;
