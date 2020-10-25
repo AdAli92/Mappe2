@@ -46,16 +46,14 @@ public class NotifcationService extends Service {
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         db = new DatabaseHandler(getApplicationContext());
         boolean sjekk = sp.getBoolean("aktivert", false);
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        String dagensDato = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         List<Mote> moter = db.HenteAlleMoter();
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent notificationIntent = new Intent(this, MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
-        Log.d("Vi er før for løkke", currentDate);
-
         for (Mote mote : moter) {
-            if (mote.getDato().equals(currentDate)) {
+            if (mote.getDato().equals(dagensDato)) {
                 buildNotification(pIntent, notificationManager);
                 if (sjekk) {
                     List<Person> personList = db.HenteAllePersonerIMote(mote.getMoteId());
@@ -67,6 +65,7 @@ public class NotifcationService extends Service {
                 }
             }
         }
+        db.closeDB();
         return super.onStartCommand(intent, flags, startId);
     }
 
