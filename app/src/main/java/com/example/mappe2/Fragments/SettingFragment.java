@@ -129,6 +129,7 @@ public class SettingFragment extends Fragment {
                         ActivityCompat.requestPermissions(SettingFragment.this.getActivity(),
                                 new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE}, 0);
                         aktivert = false;
+                        slo_sms.setChecked(aktivert);
                         send = -1;
                         dialog.dismiss();
 

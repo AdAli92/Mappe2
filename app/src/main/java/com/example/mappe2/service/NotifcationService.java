@@ -59,7 +59,7 @@ public class NotifcationService extends Service {
                     List<Person> personList = db.HenteAllePersonerIMote(mote.getMoteId());
                     if (personList != null) {
                         for (Person person : personList) {
-                            sendSms(person.getTelefonnr());
+                            sendSms(person.getTelefonnr(),person.getNavn());
                         }
                     }
                 }
@@ -85,7 +85,7 @@ public class NotifcationService extends Service {
     }
 
     @SuppressLint("LongLogTag")
-    private void sendSms(String phonenumber) {
+    private void sendSms(String phonenumber,String name) {
         SharedPreferences.Editor endre;
         endre = sp.edit();
         //nullstille tiden etter notification
@@ -102,7 +102,7 @@ public class NotifcationService extends Service {
             SmsManager smsMan = SmsManager.getDefault();
             smsMan.sendTextMessage(phonenumber,
                     null, message, null, null);
-            Toast.makeText(this, "Har sendt sms", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Har sendt sms til: "+name, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Har ikke sendt sms", Toast.LENGTH_SHORT).show();
         }
