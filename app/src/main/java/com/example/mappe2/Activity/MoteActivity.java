@@ -148,6 +148,7 @@ public class MoteActivity extends AppCompatActivity {
                     intent.putExtra("id", id);
                 }
                 startActivity(intent);
+                finish();
             }
         });
 
