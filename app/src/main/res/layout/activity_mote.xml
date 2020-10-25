@@ -47,7 +47,7 @@
                 android:layout_height="65dp"
                 android:layout_margin="5dp"
                 app:counterEnabled="true"
-                app:counterMaxLength="15"
+                app:counterMaxLength="25"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/mote_rom"
                 app:startIconTint="@color/colorPrimary">
@@ -67,7 +67,7 @@
                 android:layout_height="65dp"
                 android:layout_margin="5dp"
                 app:counterEnabled="true"
-                app:counterMaxLength="15"
+                app:counterMaxLength="25"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/type"
                 app:startIconTint="@color/colorPrimary">
@@ -88,7 +88,7 @@
                 android:layout_height="65dp"
                 android:layout_margin="5dp"
                 app:counterEnabled="true"
-                app:counterMaxLength="15"
+                app:counterMaxLength="25"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/sted"
                 app:startIconTint="@color/colorPrimary">

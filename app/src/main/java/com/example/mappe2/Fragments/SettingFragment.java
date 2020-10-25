@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +25,6 @@ import android.widget.TimePicker;
 import com.example.mappe2.R;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class SettingFragment extends Fragment {
     private SwitchMaterial slo_sms;
@@ -63,11 +60,13 @@ public class SettingFragment extends Fragment {
         melding.setText(smsInnhold);
         slo_sms.setChecked(aktivert);
         noti.setText(tid);
-        if (aktivert == false) { //Hvis slo_sms er disblet,så det byter at man ikke aktivert send sms
+        //Hvis slo_sms er disblet,så det byter at man ikke aktivert send sms
+        if (aktivert == false) {
             send = -1;
         }
         final int hour = calendar.get(java.util.Calendar.HOUR_OF_DAY);
         final int minut = calendar.get(java.util.Calendar.MINUTE);
+
         noti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,8 +74,9 @@ public class SettingFragment extends Fragment {
                         getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hour, int min) {
+                        String tiden = hour + ":" + min;
+                        noti.setText(tiden);
                         tid = hour + ":" + min;
-                        noti.setText(tid);
                         endre.putString("tid", tid);
                         endre.apply();
                     }
@@ -108,7 +108,6 @@ public class SettingFragment extends Fragment {
         intent.setAction("com.example.mappe2.service.NotificationBrodcastReceiver");
         getActivity().sendBroadcast(intent);
     }
-
 
     private void beOmTillatelse() {
         new AlertDialog.Builder(getActivity())
@@ -157,8 +156,8 @@ public class SettingFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
 
-            smsInnhold = melding.getText().toString();
-        if(smsInnhold !=null) {
+        smsInnhold = melding.getText().toString();
+        if (smsInnhold != null) {
             endre.putString("melding", smsInnhold);
             endre.apply();
         }

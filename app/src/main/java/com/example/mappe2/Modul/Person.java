@@ -1,11 +1,11 @@
 package com.example.mappe2.Modul;
 
 public class Person {
+
     private int personId;
     private String navn, telefonnr;
 
-    public Person() {
-    }
+    public Person() { }
 
     public Person(int personId, String navn, String telefonnr) {
         this.personId = personId;

@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
 public class MoteContentProvider extends ContentProvider {
+
     private static final String Mote_ID = "Mote_ID";
     private static final String Tittel = "Tittel";
     private static final String Type = "Type";
@@ -23,11 +24,12 @@ public class MoteContentProvider extends ContentProvider {
     private static final String PROVIDER = "com.example.mappe2";
     private static final int Mote = 1;
     private static final int MMote = 2;
-    MoteContentProvider.DatabaseHelper DBhelper;
     private SQLiteDatabase db;
-
     public static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER + "/Mote");
     private static final UriMatcher uriMatcher;
+    MoteContentProvider.DatabaseHelper DBhelper;
+
+    public MoteContentProvider() { }
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -55,9 +57,6 @@ public class MoteContentProvider extends ContentProvider {
             db.execSQL("drop table if exists " + TABLE);
             onCreate(db);
         }
-    }
-
-    public MoteContentProvider() {
     }
 
     @Override

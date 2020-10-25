@@ -1,6 +1,7 @@
 package com.example.mappe2.Modul;
 
 public class Mote {
+
     private int moteId;
     private String navn, type, dato, sted, tid;
 
@@ -29,8 +30,7 @@ public class Mote {
         this.tid = tid;
     }
 
-    public Mote() {
-    }
+    public Mote() { }
 
     public String getNavn() {
         return navn;

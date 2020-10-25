@@ -177,10 +177,10 @@ public class MoteInfo extends Fragment {
         if (navnet.isEmpty()) {
             navn.setError("Du må fylle møte navn!");
             return false;
-        } else if (navn.length() > 15) {
+        } else if (navn.length() > 25) {
             navn.setError("Navnet for møtet er langt!");
             return false;
-        } else if (!navnet.matches("[a-zA-Z ]+")) {
+        } else if (!navnet.matches("[a-zæøÅA-ZÆØÅ ]+")) {
             navn.setError("Bruk bare bokstaver!");
             return false;
         } else {
@@ -194,10 +194,10 @@ public class MoteInfo extends Fragment {
         if (typen.isEmpty()) {
             type.setError("Du må fylle typen!");
             return false;
-        } else if (type.length() > 15) {
+        } else if (type.length() > 25) {
             type.setError("Navnet på typen er langt!");
             return false;
-        } else if (!typen.matches("[a-zA-Z ]+")) {
+        } else if (!typen.matches("[a-zæøÅA-ZÆØÅ ]+")) {
             type.setError("Bruk bare bokstaver!");
             return false;
         } else {
@@ -211,10 +211,10 @@ public class MoteInfo extends Fragment {
         if (stedet.isEmpty()) {
             sted.setError("Du må fylle her!");
             return false;
-        } else if (sted.length() > 15) {
+        } else if (sted.length() > 25) {
             sted.setError("Navnet for stedet er langt!");
             return false;
-        } else if (!stedet.matches("[a-zA-Z ]+")) {
+        } else if (!stedet.matches("[a-zæøÅA-ZÆØÅ ]+")) {
             sted.setError("Bruk bare bokstaver!");
             return false;
         } else {

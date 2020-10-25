@@ -45,7 +45,7 @@
                 android:layout_height="55dp"
                 android:layout_margin="5dp"
                 app:counterEnabled="true"
-                app:counterMaxLength="15"
+                app:counterMaxLength="25"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/personer"
                 app:startIconTint="@color/colorPrimary">

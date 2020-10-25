@@ -3,6 +3,7 @@ package com.example.mappe2.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
@@ -211,10 +212,10 @@ public class MoteActivity extends AppCompatActivity {
         if (navnet.isEmpty()) {
             navn.setError(getResources().getString(R.string.fylleNavn));
             return false;
-        } else if (navn.length() > 15) {
+        } else if (navn.length() > 25) {
             navn.setError(getResources().getString(R.string.forlangtmøtenavn));
             return false;
-        } else if (!navnet.matches("[a-zA-Z ]+")) {
+        } else if (!navnet.matches("[a-zæøÅA-ZÆØÅ ]+")) {
             navn.setError(getResources().getString(R.string.barebokstav));
             return false;
         } else {
@@ -228,10 +229,10 @@ public class MoteActivity extends AppCompatActivity {
         if (typen.isEmpty()) {
             type.setError(getResources().getString(R.string.fylleType));
             return false;
-        } else if (type.length() > 15) {
+        } else if (type.length() > 25) {
             type.setError(getResources().getString(R.string.forlangtType));
             return false;
-        } else if (!typen.matches("[a-zA-Z ]+")) {
+        } else if (!typen.matches("[a-zæøÅA-ZÆØÅ ]+")) {
             type.setError(getResources().getString(R.string.barebokstav));
             return false;
         } else {
@@ -245,10 +246,10 @@ public class MoteActivity extends AppCompatActivity {
         if (stedet.isEmpty()) {
             sted.setError(getResources().getString(R.string.fylleSted));
             return false;
-        } else if (sted.length() > 15) {
+        } else if (sted.length() > 25) {
             sted.setError(getResources().getString(R.string.forlangtStedet));
             return false;
-        } else if (!stedet.matches("[a-zA-Z ]+")) {
+        } else if (!stedet.matches("[a-zæøÅA-ZÆØÅ ]+")) {
             sted.setError(getResources().getString(R.string.barebokstav));
             return false;
         } else {

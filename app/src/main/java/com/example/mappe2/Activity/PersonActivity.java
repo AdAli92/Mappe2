@@ -112,10 +112,10 @@ public class PersonActivity extends AppCompatActivity {
         if (navnet.isEmpty()) {
             navn.setError("Du må fylle person navn!");
             return false;
-        } else if (navn.length() > 15) {
+        } else if (navn.length() > 25) {
             navn.setError("Navnet for personen er langt!");
             return false;
-        } else if (!navnet.matches("[a-zA-Z ]+")) {
+        } else if (!navnet.matches("[a-zæøÅA-ZÆØÅ ]+")) {
             navn.setError("Bruk bare bokstaver!");
             return false;
         } else {
