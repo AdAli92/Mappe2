@@ -6,21 +6,25 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import com.example.mappe2.Adapters.PersonRvAdapter;
 import com.example.mappe2.Controller.DatabaseHandler;
 import com.example.mappe2.Modul.Person;
 import com.example.mappe2.Activity.PersonActivity;
 import com.example.mappe2.R;
 import com.example.mappe2.RecyclerViewInterface;
+
 import java.util.List;
 
 public class PersonFragment extends Fragment implements RecyclerViewInterface {

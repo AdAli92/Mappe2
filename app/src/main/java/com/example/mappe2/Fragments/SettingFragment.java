@@ -58,7 +58,6 @@ public class SettingFragment extends Fragment {
         noti.setShowSoftInputOnFocus(false);
         calendar = Calendar.getInstance();
         smsInnhold = sp.getString("melding", "Husk! vi har et møte. Takk");
-        Log.d(TAG, "onCreate: " + smsInnhold);
         aktivert = sp.getBoolean("aktivert", false);
         tid = sp.getString("tid", "23:59");
         melding.setText(smsInnhold);
@@ -83,7 +82,6 @@ public class SettingFragment extends Fragment {
                     }
                 }, hour, minut, DateFormat.is24HourFormat(getContext()));
                 timePickerDialog.show();
-                Log.d(TAG, "inni noti onclicklistner: tid " + tid);
             }
 
         });
@@ -93,7 +91,6 @@ public class SettingFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b == true) {
-                    Log.d("inside onCheckedChanged", "inni onCheckedChanged når den er true");
                     if (send == -1) {
                         beOmTillatelse();
                     }
@@ -140,7 +137,6 @@ public class SettingFragment extends Fragment {
                 .create()
                 .show();
     }
-
 
     // Vi lager alle attributer i sharedpreferanser i distroy og pause.
     @Override

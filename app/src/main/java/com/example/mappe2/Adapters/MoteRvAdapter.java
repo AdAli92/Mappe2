@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.R;
 import com.example.mappe2.RecyclerViewInterface;
+
 import java.util.List;
 
 public class MoteRvAdapter extends RecyclerView.Adapter<MoteRvAdapter.ViewHolder> {

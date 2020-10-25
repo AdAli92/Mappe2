@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
 import com.example.mappe2.Activity.ListActivity;
 import com.example.mappe2.Activity.MainActivity;
 import com.example.mappe2.Controller.DatabaseHandler;
@@ -25,6 +28,7 @@ import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.Modul.Person;
 import com.example.mappe2.R;
 import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.List;
 
 public class MoteInfo extends Fragment {
@@ -150,7 +154,7 @@ public class MoteInfo extends Fragment {
                 sted.setText(bundle.get("sted8").toString());
                 dato.setText(bundle.get("dato8").toString());
                 tid.setText(bundle.getString("tid8"));
-                id = bundle.getInt("id");//Todo legge til Tid
+                id = bundle.getInt("id");
             } catch (Exception e) {
                 Toast.makeText(this.getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }

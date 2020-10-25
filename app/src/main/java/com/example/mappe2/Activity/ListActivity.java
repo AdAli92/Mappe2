@@ -64,7 +64,6 @@ public class ListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.meny_lagre: {
-                Toast.makeText(this, "Hei from list", Toast.LENGTH_SHORT).show();
                 //Array som ble returnet fra adapter med checked true value.
                 checked = adapter.returnChecked();
 

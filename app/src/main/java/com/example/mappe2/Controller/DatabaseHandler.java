@@ -39,8 +39,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Møte table create statement
     private static final String CREATE_TABLE_Mote = "CREATE TABLE " + TABLE_Mote
-            + "(" + Mote_ID + " INTEGER PRIMARY KEY," + Tittel + " TEXT," + Type + " TEXT," + Sted + " TEXT,"
-            + Dato + " DATETIME," + Tid + " TEXT" + ")";
+            + "(" + Mote_ID + " INTEGER PRIMARY KEY," + Tittel + " TEXT," + Type + " TEXT," +
+            Sted + " TEXT," + Dato + " DATETIME," + Tid + " TEXT" + ")";
 
     // Person_tag table create statement
     private static final String CREATE_TABLE_PERSON_MOTE = "CREATE TABLE "
@@ -109,8 +109,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //Henter alle personer under en møte
     public List<Person> HenteAllePersonerIMote(int moteId) {
         List<Person> personer = new ArrayList<Person>();
-        String selectQuery = "SELECT * FROM " + TABLE_Person + " , " + TABLE_Mote + " , " + TABLE_Person_Mote + " WHERE " + TABLE_Mote + "." +
-                Mote_ID + "= '" + moteId + "'" + " AND " + TABLE_Person + "." + Person_ID + " = " + TABLE_Person_Mote + "." + Person_ID + " AND " + TABLE_Mote + "." + Mote_ID + " =" + TABLE_Person_Mote + "." + Mote_ID;
+        String selectQuery = "SELECT * FROM " + TABLE_Person + " , " + TABLE_Mote + " , " +
+                TABLE_Person_Mote + " WHERE " + TABLE_Mote + "." +
+                Mote_ID + "= '" + moteId + "'" + " AND " + TABLE_Person + "." + Person_ID + " = " +
+                TABLE_Person_Mote + "." + Person_ID + " AND " + TABLE_Mote + "." + Mote_ID + " =" +
+                TABLE_Person_Mote + "." + Mote_ID;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
@@ -211,6 +214,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         long id = db.insert(TABLE_Person_Mote, null, values);
         return id;
     }
+
     //Slutte Databasen
     public void closeDB() {
         SQLiteDatabase db = this.getReadableDatabase();

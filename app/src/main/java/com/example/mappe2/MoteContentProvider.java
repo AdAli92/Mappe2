@@ -24,7 +24,7 @@ public class MoteContentProvider extends ContentProvider {
     private static final int Mote = 1;
     private static final int MMote = 2;
     MoteContentProvider.DatabaseHelper DBhelper;
-    SQLiteDatabase db;
+    private SQLiteDatabase db;
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER + "/Mote");
     private static final UriMatcher uriMatcher;
@@ -43,7 +43,8 @@ public class MoteContentProvider extends ContentProvider {
         @Override
         public void onCreate(SQLiteDatabase db) {
             String sql = "CREATE TABLE " + TABLE
-                    + "(" + Mote_ID + " INTEGER PRIMARY KEY," + Tittel + " TEXT," + Type + " TEXT," + Sted + " TEXT,"
+                    + "(" + Mote_ID + " INTEGER PRIMARY KEY," + Tittel + " TEXT," +
+                    Type + " TEXT," + Sted + " TEXT,"
                     + Dato + " DATETIME," + Tid + " TEXT" + ")";
             ;
             db.execSQL(sql);
@@ -54,7 +55,6 @@ public class MoteContentProvider extends ContentProvider {
             db.execSQL("drop table if exists " + TABLE);
             onCreate(db);
         }
-
     }
 
     public MoteContentProvider() {
@@ -72,18 +72,20 @@ public class MoteContentProvider extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
         Cursor cur = null;
         if (uriMatcher.match(uri) == Mote) {
-            cur = db.query(TABLE, projection, Mote_ID + "=" + uri.getPathSegments().get(1), selectionArgs, null, null, sortOrder);
+            cur = db.query(TABLE, projection, Mote_ID + "=" + uri.getPathSegments().get(1),
+                    selectionArgs, null, null, sortOrder);
             return cur;
         } else {
-            cur = db.query(TABLE, null, null, null, null, null, null);
+            cur = db.query(TABLE, null, null,
+                    null, null, null, null);
             return cur;
         }
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        if (uriMatcher.match(uri) == Mote) {
-            db.delete(TABLE, Mote_ID + " = " + uri.getPathSegments().get(1), selectionArgs);
+        if (uriMatcher.match(uri) == Mote) { db.delete(TABLE, Mote_ID + " = " +
+                uri.getPathSegments().get(1), selectionArgs);
             getContext().getContentResolver().notifyChange(uri, null);
             return 1;
         }
@@ -112,7 +114,8 @@ public class MoteContentProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
         SQLiteDatabase db = DBhelper.getWritableDatabase();
         db.insert(TABLE, null, values);
-        Cursor c = db.query(TABLE, null, null, null, null, null, null);
+        Cursor c = db.query(TABLE, null, null,
+                null, null, null, null);
         c.moveToLast();
         long minid = c.getLong(0);
         getContext().getContentResolver().notifyChange(uri, null);
@@ -123,7 +126,8 @@ public class MoteContentProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
         if (uriMatcher.match(uri) == Mote) {
-            db.update(TABLE, values, Mote_ID + " = " + uri.getPathSegments().get(1), null);
+            db.update(TABLE, values, Mote_ID + " = " +
+                    uri.getPathSegments().get(1), null);
             getContext().getContentResolver().notifyChange(uri, null);
             return 1;
         }

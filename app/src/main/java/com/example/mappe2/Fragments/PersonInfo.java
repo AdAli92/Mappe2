@@ -2,12 +2,15 @@ package com.example.mappe2.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.example.mappe2.Activity.MainActivity;
 import com.example.mappe2.Controller.DatabaseHandler;
 import com.example.mappe2.Modul.Person;
@@ -15,11 +18,12 @@ import com.example.mappe2.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class PersonInfo extends Fragment {
-    TextInputEditText navn, telfonnr;
+    private TextInputEditText navn, telfonnr;
     private Button lagre, endre;
     private int id;
     private DatabaseHandler db;
     private View v;
+
     public PersonInfo() {
     }
 
@@ -43,8 +47,7 @@ public class PersonInfo extends Fragment {
                 Toast.makeText(this.getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
-        }
-        else {
+        } else {
             endre.setVisibility(View.INVISIBLE);
         }
 
@@ -68,7 +71,7 @@ public class PersonInfo extends Fragment {
             @Override
             public void onClick(View view) {
                 if (!validerNavn() | !validerTelefonnr()) {
-                    return ;
+                    return;
                 }
                 String innNavn1 = navn.getText().toString();
                 String innTel = telfonnr.getText().toString();

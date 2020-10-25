@@ -13,6 +13,7 @@ import com.example.mappe2.R;
 public class TekstFragment extends Fragment {
     public TekstFragment() {
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

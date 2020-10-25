@@ -80,7 +80,6 @@ public class MoteActivity extends AppCompatActivity {
 
             List<Person> personerUnerEtmote = db.HenteAllePersonerIMote(id);
             for (Person person : personerUnerEtmote) {
-                Log.d("Tag Name", "person_id" + person.getPersonId());
                 personer_view.append(person.getNavn());
                 personer_view.append(", ");
             }
