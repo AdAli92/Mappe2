@@ -8,10 +8,10 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="20dp"
         android:layout_margin="5dp"
-        >
+        app:cardCornerRadius="20dp"
+        app:cardElevation="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -20,22 +20,22 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1.5"
                 android:layout_height="match_parent"
+                android:layout_weight="1.5"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkbox"
                     android:layout_width="match_parent"
-                    android:scaleType="center"
-                    android:layout_margin="10dp"
                     android:layout_height="match_parent"
-                    />
+                    android:layout_margin="10dp"
+                    android:scaleType="center" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="6"
                 android:layout_height="match_parent"
+                android:layout_weight="6"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -44,17 +44,16 @@
                     android:layout_weight="1.2"
                     android:gravity="center"
                     android:orientation="horizontal">
+
                     <TextView
+                        android:id="@+id/person2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textSize="20dp"
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="bold"
                         android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:id="@+id/person2"
-                        >
-                    </TextView>
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -67,17 +66,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/telefon"
                         android:paddingRight="2dp"
+                        android:text="@string/telefon"
                         android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textColor="@color/colorPrimaryDark" />
 
                     <TextView
                         android:id="@+id/telefonnr2"
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_height="wrap_content"
                         android:textAppearance="?attr/textAppearanceBody2"
-                        android:layout_height="wrap_content"/>
+                        android:textColor="@color/colorPrimaryDark" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

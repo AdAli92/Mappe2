@@ -4,26 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="20dp"
         android:layout_margin="5dp"
-        >
+        app:cardCornerRadius="20dp"
+        app:cardElevation="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#f6f5e7"
             android:orientation="horizontal">
 
-
-
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="6"
                 android:layout_height="match_parent"
+                android:layout_weight="6"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -32,24 +30,24 @@
                     android:layout_weight="1.3"
                     android:gravity="center"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textColor="@color/colorPrimary"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
                         android:id="@+id/navn"
-                        >
-                    </TextView>
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginRight="50dp"
                     android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
                     android:layout_weight="0.05"
                     android:background="@color/colorPrimary" />
 
@@ -58,102 +56,108 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:orientation="horizontal">
+
                     <LinearLayout
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:paddingLeft="6dp"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingLeft="6dp">
 
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="match_parent"
-                                android:text="@string/Sted"
-                                android:textStyle="bold"
-                                android:textColor="#054F56"/>
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:text="@string/Sted"
+                            android:textColor="#054F56"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/sted"
-                                android:textAppearance="?attr/textAppearanceBody2"
-                                android:layout_width="0dp"
-                                android:textColor="#054F56"
-                                android:layout_weight="1"
-                                android:layout_height="match_parent"/>
+                        <TextView
+                            android:id="@+id/sted"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textAppearance="?attr/textAppearanceBody2"
+                            android:textColor="#054F56" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:paddingLeft="15dp"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp">
 
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="match_parent"
                             android:text="@string/Type"
-                            android:textStyle="bold"
-                            android:textColor="#054F56"/>
+                            android:textColor="#054F56"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/type"
                             android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:textColor="#054F56"
                             android:textAppearance="?attr/textAppearanceBody2"
-                            android:layout_height="match_parent"/>
+                            android:textColor="#054F56" />
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingLeft="6dp"
                         android:layout_height="match_parent"
-                        android:gravity="start">
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:paddingLeft="6dp">
+
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="match_parent"
                             android:text="@string/Dato"
-                            android:textStyle="bold"
                             android:textColor="#054F56"
-                            />
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/dato"
                             android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:textColor="#054F56"
                             android:textAppearance="?attr/textAppearanceBody2"
-                            android:layout_height="match_parent"/>
+                            android:textColor="#054F56" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingLeft="15dp"
                         android:layout_height="match_parent"
-                        android:gravity="start">
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:paddingLeft="15dp">
+
                         <TextView
                             android:layout_width="40dp"
                             android:layout_height="match_parent"
                             android:text="@string/Tid"
-                            android:textStyle="bold"
                             android:textColor="#054F56"
+                            android:textStyle="bold"
 
                             />
+
                         <TextView
                             android:id="@+id/tid"
                             android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:textColor="#054F56"
                             android:textAppearance="?attr/textAppearanceBody2"
-                            android:layout_height="match_parent"/>
+                            android:textColor="#054F56" />
                     </LinearLayout>
 
                 </LinearLayout>

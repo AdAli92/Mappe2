@@ -155,11 +155,12 @@ public class SettingFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (melding != null) {
+
             smsInnhold = melding.getText().toString();
+        if(smsInnhold !=null) {
+            endre.putString("melding", smsInnhold);
+            endre.apply();
         }
-        endre.putString("melding", smsInnhold);
-        endre.apply();
         endre.putBoolean("aktivert", aktivert);
         endre.apply();
         EnableNotificationService();

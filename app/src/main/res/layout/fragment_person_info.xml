@@ -1,107 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".Fragments.PersonInfo">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="0dp"
-        android:layout_weight="4">
+        android:layout_weight="4"
+        android:orientation="vertical">
+
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
             app:startIconDrawable="@drawable/personer"
-            app:startIconTint="@color/colorPrimary"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            >
+            app:startIconTint="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/navn2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/Navn"
-                android:textSize="14dp"
-                android:id="@+id/navn2"
-                />
+                android:textSize="14dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginRight="5dp"
-            app:startIconDrawable="@drawable/telefon"
-            app:startIconTint="@color/colorPrimary"
             android:layout_marginLeft="5dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            >
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            app:startIconDrawable="@drawable/telefon"
+            app:startIconTint="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/telefonnr2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/Tel"
-                android:textSize="14dp"
-                android:id="@+id/telefonnr2"
-                />
+                android:textSize="14dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_weight="2">
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
         android:layout_gravity="center"
         android:layout_weight="2"
+        android:gravity="center">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
         android:orientation="horizontal">
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/lagre"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
             android:text="@string/Add_Person"
             android:textSize="10dp"
-            android:layout_width="100dp"
-            android:layout_marginLeft="5dp"
-            android:layout_height="match_parent"
-            app:elevation="5dp"
-            >
+            app:elevation="5dp">
+
         </com.google.android.material.button.MaterialButton>
 
-
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/endre"
             android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
             android:text="@string/Lagre"
             android:textSize="10dp"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/endre"
-            app:elevation="5dp"
-            >
+            app:elevation="5dp">
 
         </com.google.android.material.button.MaterialButton>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
 
     </LinearLayout>
-
-
 
 </LinearLayout>

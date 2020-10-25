@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#8fa9ac"
+    android:orientation="vertical"
     tools:context=".Activity.MoteActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -18,21 +18,20 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar1"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            >
+            android:layout_height="?actionBarSize">
 
         </androidx.appcompat.widget.Toolbar>
 
 
     </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:cardUseCompatPadding="true"
-        android:elevation="20dp"
         android:layout_margin="5dp"
-        >
+        android:elevation="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,25 +40,23 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
-                app:startIconDrawable="@drawable/mote_rom"
-                app:startIconTint="@color/colorPrimary"
-                app:errorEnabled="true"
                 app:counterEnabled="true"
                 app:counterMaxLength="15"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/mote_rom"
+                app:startIconTint="@color/colorPrimary">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/navn1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/møtenavn"
-                    android:id="@+id/navn1"
-                    />
+                    android:hint="@string/møtenavn" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,47 +66,44 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="55dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:startIconDrawable="@drawable/type"
-                    app:startIconTint="@color/colorPrimary"
-                    app:errorEnabled="true"
+                    android:layout_weight="1"
                     app:counterEnabled="true"
                     app:counterMaxLength="15"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    >
+                    app:errorEnabled="true"
+                    app:startIconDrawable="@drawable/type"
+                    app:startIconTint="@color/colorPrimary">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/type1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/Type"
-                        android:id="@+id/type1"
-                        />
+                        android:hint="@string/Type" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="55dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:startIconDrawable="@drawable/sted"
-                    app:startIconTint="@color/colorPrimary"
-                    app:errorEnabled="true"
+                    android:layout_weight="1"
                     app:counterEnabled="true"
                     app:counterMaxLength="15"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    >
+                    app:errorEnabled="true"
+                    app:startIconDrawable="@drawable/sted"
+                    app:startIconTint="@color/colorPrimary">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sted1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/Sted"
-                        android:id="@+id/sted1"
-                        />
+                        android:hint="@string/Sted" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -121,71 +115,70 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="55dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:startIconDrawable="@drawable/dato"
+                    android:layout_weight="1"
+                    android:focusableInTouchMode="false"
                     app:errorEnabled="true"
                     app:startIconCheckable="false"
-                    android:focusableInTouchMode="false"
-                    app:startIconTint="@color/colorPrimary"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    >
+                    app:startIconDrawable="@drawable/dato"
+                    app:startIconTint="@color/colorPrimary">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dato1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:focusableInTouchMode="false"
-                        android:hint="@string/Dato"
-                        android:id="@+id/dato1"
-                        />
+                        android:hint="@string/Dato" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="55dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    app:startIconDrawable="@drawable/tid"
-                    app:errorEnabled="true"
+                    android:layout_weight="1"
                     android:focusableInTouchMode="false"
+                    app:errorEnabled="true"
                     app:startIconCheckable="false"
-                    app:startIconTint="@color/colorPrimary"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    >
+                    app:startIconDrawable="@drawable/tid"
+                    app:startIconTint="@color/colorPrimary">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tid1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:focusableInTouchMode="false"
-                        android:hint="@string/Tid"
-                        android:id="@+id/tid1"
-                        />
+                        android:hint="@string/Tid" />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_margin="5dp"
                 android:orientation="horizontal">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="55dp"
-                    android:gravity="center"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:gravity="center">
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/add_personer"
-                        android:background="@drawable/add"
-                        android:text="@string/Add_Personer"
                         android:layout_width="wrap_content"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
+                        android:background="@drawable/add"
                         android:gravity="center"
-                        >
+                        android:text="@string/Add_Personer">
 
                     </com.google.android.material.button.MaterialButton>
                 </LinearLayout>
@@ -193,27 +186,22 @@
 
                 <ScrollView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="55dp"
-                    >
+                    android:layout_weight="1">
+
                     <TextView
-                    android:id="@+id/person_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                        android:id="@+id/person_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
                 </ScrollView>
             </LinearLayout>
-
 
 
         </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
-
-
-
-
 
 
 </LinearLayout>

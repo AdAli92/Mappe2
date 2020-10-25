@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#8fa9ac"
+    android:orientation="vertical"
     tools:context=".Activity.MoteActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:popupTheme="@color/colorPrimaryDark"
-        android:fitsSystemWindows="true">
-
+        android:fitsSystemWindows="true"
+        app:popupTheme="@color/colorPrimaryDark">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="match_parent"
-            app:popupTheme="@color/colorPrimaryDark"
             android:layout_height="?actionBarSize"
-            >
+            app:popupTheme="@color/colorPrimaryDark">
 
         </androidx.appcompat.widget.Toolbar>
 
-
     </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        android:elevation="20dp"
-        app:cardUseCompatPadding="true"
         android:layout_margin="15dp"
-        >
+        android:elevation="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,58 +40,47 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:layout_margin="5dp"
-                app:startIconDrawable="@drawable/personer"
-                app:startIconTint="@color/colorPrimary"
-                app:errorEnabled="true"
                 app:counterEnabled="true"
                 app:counterMaxLength="15"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/personer"
+                app:startIconTint="@color/colorPrimary">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/navn2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text"
                     android:hint="Navn"
-                    android:id="@+id/navn2"
-                    />
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:layout_margin="5dp"
-                app:startIconDrawable="@drawable/telefon"
-                app:startIconTint="@color/colorPrimary"
-                app:errorEnabled="true"
                 app:counterEnabled="true"
                 app:counterMaxLength="8"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/telefon"
+                app:startIconTint="@color/colorPrimary">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/telefonnr2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="number"
                     android:hint="Telefonnummer"
-                    android:id="@+id/telefonnr2"
-                    />
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
         </LinearLayout>
 
-
     </androidx.cardview.widget.CardView>
-
-
-
-
-
 
 </LinearLayout>

@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:popupTheme="@color/colorPrimaryDark"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        app:popupTheme="@color/colorPrimaryDark">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="match_parent"
-            app:popupTheme="@color/colorPrimaryDark"
             android:layout_height="?actionBarSize"
-            >
-        </androidx.appcompat.widget.Toolbar>
+            app:popupTheme="@color/colorPrimaryDark"/>
 
     </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.recyclerview.widget.RecyclerView
 
+        android:id="@+id/rv_liste_personer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv_liste_personer"
         tools:context=".Activity.ListActivity">
 
     </androidx.recyclerview.widget.RecyclerView>

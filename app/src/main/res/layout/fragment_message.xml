@@ -1,50 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.MessageFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start|center"
             android:layout_marginTop="10dp"
             android:background="#808FA8AC"
+            android:gravity="start|center"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:paddingLeft="10dp"
-                android:textStyle="bold"
+                android:text="@string/melding_tittle"
                 android:textColor="@color/colorPrimary"
-                android:text="@string/melding_tittle"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:gravity="start"
-                app:startIconDrawable="@drawable/ic_baseline_message_24"
-                app:startIconTint="@color/colorPrimary"
-                app:errorEnabled="true"
                 android:layout_margin="20dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                android:gravity="start"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_baseline_message_24"
+                app:startIconTint="@color/colorPrimary">
+
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/melding1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Skriv sms"
-                    android:id="@+id/melding1"
-                    />
+                    android:hint="Skriv sms" />
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

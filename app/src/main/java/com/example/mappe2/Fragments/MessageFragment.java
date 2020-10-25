@@ -15,7 +15,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class MessageFragment extends Fragment {
 
-    private TextInputEditText melding;
+    private TextInputEditText melding1,melding;
     private View v;
     private SharedPreferences sp;
     private String smsInnhold;
@@ -28,10 +28,11 @@ public class MessageFragment extends Fragment {
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_message, container, false);
 
-        melding = v.findViewById(R.id.melding1);
+        melding1 = v.findViewById(R.id.melding1);
+        melding = v.findViewById(R.id.melding);
         sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         smsInnhold = sp.getString("melding", "Husk! vi har et møte. Takk");
-        melding.setText(smsInnhold);
+        melding1.setText(smsInnhold);
 
         return v;
     }

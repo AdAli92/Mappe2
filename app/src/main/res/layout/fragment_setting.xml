@@ -1,157 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.SettingFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Fragments.SettingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start|center"
             android:layout_marginTop="10dp"
             android:background="#808FA8AC"
+            android:gravity="start|center"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:paddingLeft="10dp"
-                android:textStyle="bold"
+                android:text="@string/sms_tittle"
                 android:textColor="@color/colorPrimary"
-                android:text="@string/sms_tittle"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="73dp"
             android:gravity="start|center"
-            android:paddingLeft="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/slo_SMS"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/colorPrimaryDark"
                 android:fontFamily="@font/alike"
-                android:text="@string/sms_boks"/>
+                android:text="@string/sms_boks"
+                android:textColor="@color/colorPrimaryDark" />
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#808FA8AC"
             android:gravity="start|center"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
                 android:layout_margin="10dp"
                 android:paddingLeft="10dp"
-                android:text="@string/notification"/>
+                android:text="@string/notification"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="73dp"
             android:gravity="start|center"
-            android:paddingLeft="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
             <TextView
                 android:layout_width="wrap_content"
-                android:gravity="center|start"
-                android:layout_margin="10dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="@string/velgTid"/>
+                android:layout_margin="10dp"
+                android:gravity="center|start"
+                android:text="@string/velgTid"
+                android:textColor="@color/colorPrimaryDark" />
+
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="140dp"
                 android:layout_height="match_parent"
-                app:boxStrokeWidth="3dp"
-                app:boxStrokeColor="@color/colorPrimaryDark"
-                app:startIconDrawable="@drawable/tid"
                 android:focusableInTouchMode="false"
-                android:paddingBottom="7dp"
                 android:paddingTop="2dp"
+                android:paddingBottom="7dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
-                app:startIconTint="@color/colorPrimary"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                app:startIconDrawable="@drawable/tid"
+                app:startIconTint="@color/colorPrimary">
+
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/not_tid"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:focusableInTouchMode="false"
                     android:hint="@string/klikk"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/not_tid"
-                    />
+                    android:textColor="@color/colorPrimaryDark" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="140dp"
                 android:layout_height="match_parent"
-                app:boxStrokeWidth="3dp"
-                app:boxStrokeColor="@color/colorPrimaryDark"
-                android:focusableInTouchMode="false"
-                android:paddingBottom="7dp"
-                android:paddingTop="2dp"
                 android:layout_marginLeft="10dp"
+                android:focusableInTouchMode="false"
+                android:paddingTop="2dp"
+                android:paddingBottom="7dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
-                app:startIconTint="@color/colorPrimary"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                />
+                app:startIconTint="@color/colorPrimary" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="start|center"
             android:background="#808FA8AC"
+            android:gravity="start|center"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:paddingLeft="10dp"
-                android:textStyle="bold"
+                android:text="@string/melding_tittle"
                 android:textColor="@color/colorPrimary"
-                android:text="@string/melding_tittle"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:startIconDrawable="@drawable/ic_baseline_message_24"
-                app:startIconTint="@color/colorPrimary"
-                app:errorEnabled="true"
                 android:layout_margin="20dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_baseline_message_24"
+                app:startIconTint="@color/colorPrimary">
+
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/melding"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Skriv sms"
-                    android:id="@+id/melding"
-                    />
+                    android:hint="Skriv sms" />
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
