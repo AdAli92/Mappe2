@@ -39,7 +39,6 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_list);
         LageView(); // metoden som lage adapter , og sette Recycleview på den.
         extras = getIntent().getExtras();
@@ -84,7 +83,7 @@ public class ListActivity extends AppCompatActivity {
                 } else if (id != 0) { //Endre et møte.
                     List<Person> personerIMote = db.HenteAllePersonerIMote(id);
                     //Sjekke hvis person ligger i et møte allerede.
-                    for (int i = 0; i < presoner_ider.length; i++) { //Todo sjekke om det er riktig alltid denne algoritmen
+                    for (int i = 0; i < presoner_ider.length; i++) {
                         for (int j = 0; j < personerIMote.size(); j++) {
                             if (presoner_ider[i] == personerIMote.get(j).getPersonId()) {
                                 finnes = true;
@@ -132,5 +131,6 @@ public class ListActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(lm);
         recyclerView.setAdapter(adapter);
+        db.closeDB();//Lukker databasen
     }
 }

@@ -5,10 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.Modul.Person;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,22 +70,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
-    //Legge Til Person
-    public long LeggeTilPerson(Person person, long[] moter_ider) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(Navn, person.getNavn());
-        values.put(Telefonnr, person.getTelefonnr());
-        //    values.put(img, person.getImg());
-        long Person_id = db.insert(TABLE_Person, null, values);
-        for (long id : moter_ider) {
-            createMotePerson(Person_id, id);
-        }
-        return Person_id;
-    }
-
-
     public int LageMote(Mote mote, int[] personer_ider) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -103,24 +85,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return Mote_id;
     }
 
-
-    //Hente Person
-    public Person getPerson(long person_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + TABLE_Person + "WHERE" + Person_ID + "=" + person_id;
-        Cursor c = db.rawQuery(selectQuery, null);
-        if (c != null)
-            c.moveToFirst();
-        Person person = new Person();
-        person.setPersonId(c.getInt(c.getColumnIndex(Person_ID)));
-        person.setNavn(c.getString(c.getColumnIndex(Navn)));
-        person.setTelefonnr(c.getString(c.getColumnIndex(Telefonnr)));
-        return person;
-    }
-
-
     //Hente alle Personer
-
     public List<Person> HenteAllePersoner() {
         List<Person> personer = new ArrayList<Person>();
         String selectQuery = "SELECT  * FROM " + TABLE_Person;
@@ -140,7 +105,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return personer;
     }
-
 
     //Henter alle personer under en møte
     public List<Person> HenteAllePersonerIMote(int moteId) {
@@ -163,9 +127,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    /*
-     * Oppdater en Person
-     */
+    // Oppdater en Person
     public int OppdaterePerson(Person person) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -176,7 +138,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[]{String.valueOf(person.getPersonId())});
     }
 
-
     //Slette en person
     public void SlettePerson(long person_id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -185,7 +146,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //Slette et møte
-
     public void SletteMote(long mote_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_Mote, Mote_ID + " = ?",
@@ -193,20 +153,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.delete(TABLE_Person_Mote, Mote_ID + " = ?",
                 new String[]{String.valueOf(mote_id)});
 
-    }
-
-    //Lage en møte
-
-    public long createMote(Mote mote) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(Tittel, mote.getNavn());
-        values.put(Type, mote.getType());
-        values.put(Dato, mote.getDato());
-        values.put(Sted, mote.getSted());
-        // insert row
-        long mote_id = db.insert(TABLE_Mote, null, values);
-        return mote_id;
     }
 
     //Legge Til Person
@@ -243,7 +189,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return moter;
     }
 
-
     //Oppdatere en møte
     public int OppdatereMote(Mote mote) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -258,7 +203,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[]{String.valueOf(mote.getMoteId())});
     }
 
-
     public long createMotePerson(long mote_id, long person_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -267,26 +211,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         long id = db.insert(TABLE_Person_Mote, null, values);
         return id;
     }
-
-    //Slette et møte til en person
-    public int SletteMotetilPerson(long id, long mote_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(Mote_ID, mote_id);
-        return db.update(TABLE_Person_Mote, values, Person_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-    //Oppdater et møte til en person
-    public int OppdaterMoteTilPerson(long id, long mote_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(Mote_ID, mote_id);
-        // updating row
-        return db.update(TABLE_Person, values, Person_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
     //Slutte Databasen
     public void closeDB() {
         SQLiteDatabase db = this.getReadableDatabase();

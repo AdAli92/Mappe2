@@ -3,10 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mappe2">
 
+    // gir tillatelse til å sende sms
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.example.mappe2.permission" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+
+    <permission android:name="com.example.mappe2.permission" />
+
 
     <application
         android:allowBackup="true"
@@ -15,12 +20,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        //Mote provider til å kunne dele møte info med andre app
         <provider
-            android:name=".MoteContentProvider"
-            android:authorities="com.example.mappe2.MoteContentProvider"
+            android:name="com.example.mappe2.MoteContentProvider"
+            android:authorities="com.example.mappe2"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true"
+            android:readPermission="com.example.mappe2.permission"
+            android:writePermission="com.example.mappe2.permission"></provider>
 
+        //Receiver som implementere en service
         <receiver android:name=".service.NotificationBrodcastReceiver">
             <intent-filter>
                 <action android:name="com.example.mappe2.service.NotificationBrodcastReceiver" />
@@ -36,14 +45,11 @@
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

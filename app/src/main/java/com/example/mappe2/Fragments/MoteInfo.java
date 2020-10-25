@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
-
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +18,6 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import com.example.mappe2.Activity.ListActivity;
 import com.example.mappe2.Activity.MainActivity;
 import com.example.mappe2.Controller.DatabaseHandler;
@@ -28,7 +25,6 @@ import com.example.mappe2.Modul.Mote;
 import com.example.mappe2.Modul.Person;
 import com.example.mappe2.R;
 import com.google.android.material.textfield.TextInputEditText;
-
 import java.util.List;
 
 public class MoteInfo extends Fragment {
@@ -37,7 +33,7 @@ public class MoteInfo extends Fragment {
     private Calendar calendar;
     private TextView personer_view;
     private DatabaseHandler db;
-    View v;
+    private View v;
     private int id;
 
     public MoteInfo() {
@@ -119,7 +115,6 @@ public class MoteInfo extends Fragment {
                 intent.putExtra("tid", innTid);
                 if (id != 0) {
                     intent.putExtra("id", id);
-                    ;
                 }
                 startActivity(intent);
             }
@@ -137,16 +132,16 @@ public class MoteInfo extends Fragment {
                 String innSted1 = sted.getText().toString();
                 String innDato1 = dato.getText().toString();
                 String innTid = tid.getText().toString();
-                //int moteId, String navn, String type, String dato, String sted
+
                 if (id != 0) {
                     Mote mote = new Mote(id, innNavn1, innType1, innDato1, innSted1, innTid);
                     db.OppdatereMote(mote);
+                    db.closeDB();
                     Intent intent1 = new Intent(getActivity().getBaseContext(), MainActivity.class);
                     startActivity(intent1);
                 }
             }
         });
-
 
         if (bundle != null) {
             try {
@@ -175,7 +170,6 @@ public class MoteInfo extends Fragment {
     //Validering metoder
     private boolean validerNavn() {
         String navnet = navn.getText().toString().trim();
-
         if (navnet.isEmpty()) {
             navn.setError("Du må fylle møte navn!");
             return false;

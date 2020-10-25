@@ -6,26 +6,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mappe2.Modul.Person;
 import com.example.mappe2.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapter.PersonViewHolder> {
-    Context context;
+    private Context context;
     private List<Person> personer;
-    ArrayList<Person> checked = new ArrayList<>();
+    private ArrayList<Person> checked = new ArrayList<>();
 
     public ListePrsonerAdapter(Context context, List<Person> personer) {
         this.context = context;
         this.personer = personer;
     }
-
     @NonNull
     @Override
     public PersonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,15 +40,14 @@ public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapte
         holder.setItemClickListener(new ItemClick() {
             @Override
             public void onItemClick(View v, int position) {
-                CheckBox checkBox = (CheckBox) v;
-                if (checkBox.isChecked()) {
-                    checked.add(personer.get(position));
-                } else if (!checkBox.isChecked()) {
-                    checked.remove(personer.get(position));
-                }
+            CheckBox checkBox = (CheckBox) v;
+            if (checkBox.isChecked()) {
+                checked.add(personer.get(position));
+            } else if (!checkBox.isChecked()) {
+                checked.remove(personer.get(position));
+            }
             }
         });
-
     }
 
     @Override
@@ -83,6 +78,7 @@ public class ListePrsonerAdapter extends RecyclerView.Adapter<ListePrsonerAdapte
         }
     }
 
+    // return selected personer
     public ArrayList<Person> returnChecked() {
         return checked;
     }

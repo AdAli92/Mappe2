@@ -20,7 +20,6 @@ public class Mote {
         this.tid = tid;
     }
 
-
     public Mote(int moteId, String navn, String type, String dato, String sted, String tid) {
         this.moteId = moteId;
         this.navn = navn;
@@ -31,7 +30,6 @@ public class Mote {
     }
 
     public Mote() {
-
     }
 
     public String getNavn() {

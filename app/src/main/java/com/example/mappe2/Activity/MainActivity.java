@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager.widget.ViewPager;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -18,7 +19,6 @@ import android.widget.Toast;
 import com.example.mappe2.Adapters.ViewPagerAdapter;
 import com.example.mappe2.Fragments.MessageFragment;
 import com.example.mappe2.Fragments.MoteFragment;
-import com.example.mappe2.Fragments.MoteInfo;
 import com.example.mappe2.Fragments.PersonFragment;
 import com.example.mappe2.Fragments.PersonInfo;
 import com.example.mappe2.Fragments.SettingFragment;
@@ -36,18 +36,21 @@ public class MainActivity extends AppCompatActivity {
     private SettingFragment settingFragment;
     private FloatingActionButton fab;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setElevation(0);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
         fab = findViewById(R.id.main_fab);
         viewPager = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tab_layout);
+        setSupportActionBar(toolbar);
+        toolbar.setElevation(0);
+        //Sette farge til tablayout
+        getSupportActionBar().setBackgroundDrawable(
+                new ColorDrawable(getResources().
+                        getColor(R.color.colorPrimaryDark)));
         //Fragmenter som skal vi sitte i viewpager
         moteFragment = new MoteFragment();
         personFragment = new PersonFragment();
@@ -127,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void onClick(View view) {
                                     Intent intent = new Intent(getBaseContext(), PersonActivity.class);
                                     startActivity(intent);
-                                    finish();
+
                                 }
                             });
                         }
@@ -138,8 +141,6 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-
-
             }
 
 
@@ -148,16 +149,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
 
-
     }
-    public void Sendsms(View view){
-
-
-}
 }

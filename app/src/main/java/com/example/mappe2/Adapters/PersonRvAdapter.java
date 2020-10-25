@@ -18,7 +18,7 @@ import java.util.List;
 
 public class PersonRvAdapter extends RecyclerView.Adapter<PersonRvAdapter.ViewHolder> {
     private RecyclerViewInterface recyclerViewInterface;
-    Context mContext;
+    private Context mContext;
     private List<Person> mpersonList;
 
     public PersonRvAdapter(Context context, List<Person> listPerson, RecyclerViewInterface recyclerViewInterface) {
@@ -74,7 +74,5 @@ public class PersonRvAdapter extends RecyclerView.Adapter<PersonRvAdapter.ViewHo
             });
 
         }
-
     }
-
 }

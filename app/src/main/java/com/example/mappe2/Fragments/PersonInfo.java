@@ -2,15 +2,12 @@ package com.example.mappe2.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.mappe2.Activity.MainActivity;
 import com.example.mappe2.Controller.DatabaseHandler;
 import com.example.mappe2.Modul.Person;
@@ -22,7 +19,7 @@ public class PersonInfo extends Fragment {
     private Button lagre, endre;
     private int id;
     private DatabaseHandler db;
-    View v;
+    private View v;
     public PersonInfo() {
     }
 
@@ -36,9 +33,7 @@ public class PersonInfo extends Fragment {
         endre = v.findViewById(R.id.endre);
         db = new DatabaseHandler(getActivity().getApplicationContext());
 
-
         Bundle bundle = this.getArguments();
-
         if (bundle != null) {
             try {
                 navn.setText(bundle.getString("navn2"));
@@ -52,6 +47,7 @@ public class PersonInfo extends Fragment {
         else {
             endre.setVisibility(View.INVISIBLE);
         }
+
         lagre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

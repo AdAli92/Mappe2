@@ -11,9 +11,8 @@ import android.view.ViewGroup;
 import com.example.mappe2.R;
 
 public class TekstFragment extends Fragment {
-
-    public TekstFragment() { }
-
+    public TekstFragment() {
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

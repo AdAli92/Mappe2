@@ -32,7 +32,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.List;
 
 public class MoteActivity extends AppCompatActivity {
-
     private TextInputEditText navn, type, sted, dato, tid;
     private Button button;
     private Bundle extras;
@@ -40,9 +39,9 @@ public class MoteActivity extends AppCompatActivity {
     private Calendar calendar;
     private DatabaseHandler db;
     private int id;
-    Mote mote;
-    TextView personer_view;
-    MenuItem lagre, endre, slette;
+    private Mote mote;
+    private TextView personer_view;
+    private MenuItem lagre, endre, slette;
     private boolean forEndre = false; //Boolean som sjeker om vi kommer til å endre eller legge til
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -50,7 +49,6 @@ public class MoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mote);
-
         navn = findViewById(R.id.navn1);
         type = findViewById(R.id.type1);
         sted = findViewById(R.id.sted1);
@@ -63,7 +61,8 @@ public class MoteActivity extends AppCompatActivity {
         personer_view = findViewById(R.id.person_view);
         db = new DatabaseHandler(getApplicationContext());
         setSupportActionBar(toolbar);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources()
+                .getColor(R.color.colorPrimaryDark)));
 
         extras = getIntent().getExtras();
         if (extras != null) {
@@ -73,7 +72,6 @@ public class MoteActivity extends AppCompatActivity {
                 type.setText(extras.getString("type"));
                 sted.setText(extras.getString("sted"));
                 dato.setText(extras.getString("dato"));
-
                 tid.setText(extras.getString("tid"));
                 id = extras.getInt("id");
             } catch (Exception e) {
@@ -90,7 +88,6 @@ public class MoteActivity extends AppCompatActivity {
         } else {
             forEndre = false;
         }
-
         calendar = Calendar.getInstance();
         final int aar = calendar.get(Calendar.YEAR);
         final int moneder = calendar.get(Calendar.MONTH);
@@ -121,7 +118,6 @@ public class MoteActivity extends AppCompatActivity {
                         MoteActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hour, int min) {
-
                         String tiden = hour + ":" + min;
                         tid.setText(tiden);
                     }
@@ -141,7 +137,6 @@ public class MoteActivity extends AppCompatActivity {
                 String innType = type.getText().toString();
                 String innSted = sted.getText().toString();
                 String innDato = dato.getText().toString();
-
                 String innTid = tid.getText().toString();
 
                 Intent intent = new Intent(getBaseContext(), ListActivity.class);
@@ -182,8 +177,6 @@ public class MoteActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.meny_lagre:
-
-
                 return true;
             case R.id.meny_endre:
                 String innNavn1 = navn.getText().toString();
@@ -212,12 +205,10 @@ public class MoteActivity extends AppCompatActivity {
         return false;
     }
 
-   //Validering metoder
+    //Validering metoder
     private boolean validerNavn() {
         String navnet = navn.getText().toString().trim();
-
         if (navnet.isEmpty()) {
-
             navn.setError(getResources().getString(R.string.fylleNavn));
             return false;
         } else if (navn.length() > 15) {

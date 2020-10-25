@@ -4,7 +4,6 @@ public class Person {
     private int personId;
     private String navn, telefonnr;
 
-
     public Person() {
     }
 
