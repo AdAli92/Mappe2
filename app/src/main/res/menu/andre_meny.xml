@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/meny_endre"
-        android:icon="@drawable/ic_endre"
+        android:icon="@drawable/ic_lagre"
         android:title="Endre"
         app:showAsAction="always"/>
 

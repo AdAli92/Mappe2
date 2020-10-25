@@ -3,12 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mappe2">
 
-
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <application
         android:allowBackup="true"
@@ -17,6 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name=".MoteContentProvider"
+            android:authorities="com.example.mappe2.MoteContentProvider"
+            android:enabled="true"
+            android:exported="true"></provider>
+
         <receiver android:name=".service.NotificationBrodcastReceiver">
             <intent-filter>
                 <action android:name="com.example.mappe2.service.NotificationBrodcastReceiver" />
@@ -24,15 +28,12 @@
         </receiver>
 
         <service android:name=".service.PerioderService" />
-
         <service android:name=".service.NotifcationService" />
 
-        <activity android:name=".Activity.ListActivity"></activity>
+        <activity android:name=".Activity.ListActivity" />
         <activity android:name=".Activity.PersonActivity" />
         <activity android:name=".Activity.MoteActivity" />
         <activity android:name=".Activity.MainActivity">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

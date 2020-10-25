@@ -93,7 +93,7 @@ public class NotifcationService extends Service {
                 .build();
               //  .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE+ "://" +getApplicationContext().getPackageName()+"/"+R.raw.apple_ring)
 
-
+        notification.defaults |= Notification.DEFAULT_SOUND;
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
         Objects.requireNonNull(   notificationManager).notify(0, notification);
     }

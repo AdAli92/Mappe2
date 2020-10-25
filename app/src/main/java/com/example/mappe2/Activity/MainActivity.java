@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frag, new TekstFragment()).addToBackStack(null).commit();
             CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
             lp.gravity = Gravity.BOTTOM;
             fab.setLayoutParams(lp);
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                             fab.setEnabled(true);
                             fab.setVisibility(View.VISIBLE);
                             fab.setImageResource(R.drawable.add_fore);
-                            getSupportFragmentManager().beginTransaction().replace(R.id.frag, new MoteInfo()).addToBackStack(null).commit();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.frag, new TekstFragment()).addToBackStack(null).commit();
                         }
                         if (tabLayout.getSelectedTabPosition() == 1) {
                             fab.setEnabled(false);

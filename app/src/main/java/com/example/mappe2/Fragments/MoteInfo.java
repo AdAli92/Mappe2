@@ -166,8 +166,6 @@ public class MoteInfo extends Fragment {
                     personer_view.append(", ");
                 }
             }
-        }else {
-            getFragmentManager().beginTransaction().replace(R.id.frag, new TekstFragment()).addToBackStack(null).commit();
         }
 
         return v;
